@@ -1,0 +1,2190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sorting & Matching - NeuroSaathi</title>
+
+    <!-- Performance Tracking -->
+    <script src="../js/performance.js"></script>
+    <script src="../js/adaptive-engine.js"></script>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f8f6;
+            color: #17332f;
+        }
+
+        header {
+            background: #17332f;
+            color: white;
+            padding: 18px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .header-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        button {
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        .listen-button,
+        .back-button {
+            padding: 11px 17px;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        .listen-button {
+            background: #ffffff;
+            color: #17332f;
+        }
+
+        .back-button {
+            background: #237c70;
+            color: white;
+        }
+
+        main {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 30px 20px 50px;
+        }
+
+        .intro {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .intro h2 {
+            margin-bottom: 10px;
+            font-size: 30px;
+        }
+
+        .intro p {
+            font-size: 18px;
+            margin: 0 auto;
+            max-width: 700px;
+            line-height: 1.5;
+        }
+
+        .instruction-box {
+            background: white;
+            border-radius: 18px;
+            padding: 18px;
+            margin-bottom: 25px;
+            text-align: center;
+            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.06);
+        }
+
+        #instruction {
+            font-size: 19px;
+            margin: 0 0 12px;
+            font-weight: bold;
+        }
+
+        .small-listen {
+            background: #237c70;
+            color: white;
+            padding: 10px 17px;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        /* =========================
+           STATS
+        ========================= */
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+
+        .stat {
+            background: white;
+            border-radius: 15px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+        }
+
+        .stat-label {
+            font-size: 14px;
+            margin-bottom: 6px;
+            color: #55706b;
+        }
+
+        .stat-value {
+            font-size: 23px;
+            font-weight: bold;
+        }
+
+        /* =========================
+           GAME AREA
+        ========================= */
+
+        .game-area {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .section-title h3 {
+            margin: 0 0 5px;
+            font-size: 24px;
+        }
+
+        .section-title p {
+            margin: 0;
+            color: #55706b;
+        }
+
+        /* =========================
+           OBJECTS
+        ========================= */
+
+        .objects-container {
+            display: grid;
+            gap: 15px;
+            max-width: 800px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .object-slot {
+            width: 100%;
+            height: 115px;
+            min-height: 115px;
+            border-radius: 16px;
+            background: #e8f1ee;
+        }
+
+        .draggable-object {
+            width: 100%;
+            height: 115px;
+            border-radius: 16px;
+            border: 3px solid #237c70;
+            background: white;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+            padding: 12px;
+
+            font-size: 18px;
+            font-weight: bold;
+            color: #17332f;
+
+            cursor: grab;
+            user-select: none;
+            -webkit-user-select: none;
+
+            touch-action: none;
+
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+
+            transition:
+                transform 0.15s ease,
+                box-shadow 0.15s ease;
+        }
+
+        .draggable-object:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 7px 16px rgba(0, 0, 0, 0.12);
+        }
+
+        .draggable-object.dragging {
+            cursor: grabbing;
+            transform: scale(1.03);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.20);
+        }
+
+        .draggable-object.placed {
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        /* =========================
+           CATEGORIES
+        ========================= */
+
+        .categories-container {
+            display: grid;
+            gap: 18px;
+            width: 100%;
+        }
+
+        .category-card {
+            width: 100%;
+        }
+
+        .category-box {
+            min-height: 180px;
+            background: white;
+            border: 3px dashed #237c70;
+            border-radius: 18px;
+
+            padding: 15px;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            transition:
+                background 0.15s ease,
+                border-color 0.15s ease,
+                transform 0.15s ease;
+        }
+
+        .category-box.drag-over {
+            background: #e4f3ef;
+            border-color: #17332f;
+            transform: scale(1.02);
+        }
+
+        .drop-hint {
+            color: #78918c;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .category-title {
+            text-align: center;
+            font-size: 19px;
+            font-weight: bold;
+            margin-top: 9px;
+            color: #17332f;
+        }
+
+        .placed-items {
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .placed-pill {
+            background: #e4f3ef;
+            border: 2px solid #237c70;
+            border-radius: 10px;
+            padding: 8px 12px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        /* =========================
+           MESSAGE
+        ========================= */
+
+        .message {
+            min-height: 28px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+
+        /* =========================
+           CONTROLS
+        ========================= */
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        .control-button {
+            padding: 13px 22px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .restart-button {
+            background: #237c70;
+            color: white;
+        }
+
+        .next-button {
+            background: #17332f;
+            color: white;
+        }
+
+        .next-button:disabled {
+            opacity: 0.45;
+            cursor: not-allowed;
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 700px) {
+
+            header {
+                padding: 15px;
+            }
+
+            header h1 {
+                font-size: 20px;
+            }
+
+            .header-buttons {
+                gap: 6px;
+            }
+
+            .listen-button,
+            .back-button {
+                padding: 9px 11px;
+                font-size: 13px;
+            }
+
+            main {
+                padding: 22px 14px 40px;
+            }
+
+            .intro h2 {
+                font-size: 25px;
+            }
+
+            .intro p {
+                font-size: 16px;
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .object-slot,
+            .draggable-object {
+                height: 95px;
+                min-height: 95px;
+            }
+
+            .draggable-object {
+                font-size: 16px;
+                padding: 8px;
+            }
+
+            .categories-container {
+                grid-template-columns: 1fr !important;
+            }
+
+            .category-box {
+                min-height: 150px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+
+    <h1>NeuroSaathi</h1>
+
+    <div class="header-buttons">
+
+        <button
+            class="listen-button"
+            id="voiceButton">
+            🔊 Listen
+        </button>
+
+        <button
+            class="back-button"
+            onclick="goBack()">
+            ← Back
+        </button>
+
+    </div>
+
+</header>
+
+
+<main>
+
+    <section class="intro">
+
+        <h2>Sorting & Matching</h2>
+
+        <p>
+            Pick an object and place it into the correct category.
+            Take your time and enjoy the activity.
+        </p>
+
+    </section>
+
+
+    <section class="instruction-box">
+
+        <p id="instruction">
+            Drag each object into the correct category.
+        </p>
+
+        <button
+            class="small-listen"
+            id="instructionVoice">
+            🔊 Tap to Listen
+        </button>
+
+    </section>
+
+
+    <!-- STATS -->
+
+    <section class="stats">
+
+        <div class="stat">
+            <div class="stat-label">Level</div>
+            <div
+                class="stat-value"
+                id="levelValue">
+                1
+            </div>
+        </div>
+
+        <div class="stat">
+            <div class="stat-label">Objects</div>
+            <div
+                class="stat-value"
+                id="objectsValue">
+                4
+            </div>
+        </div>
+
+        <div class="stat">
+            <div class="stat-label">Placed</div>
+            <div
+                class="stat-value"
+                id="placedValue">
+                0
+            </div>
+        </div>
+
+        <div class="stat">
+            <div class="stat-label">Accuracy</div>
+            <div
+                class="stat-value"
+                id="accuracyValue">
+                100%
+            </div>
+        </div>
+
+    </section>
+
+
+    <section class="game-area">
+
+        <!-- OBJECTS -->
+
+        <div>
+
+            <div class="section-title">
+
+                <h3>Objects</h3>
+
+                <p>
+                    Choose an object and drag it below.
+                </p>
+
+            </div>
+
+            <div
+                class="objects-container"
+                id="objectsContainer">
+            </div>
+
+        </div>
+
+
+        <!-- CATEGORIES -->
+
+        <div>
+
+            <div class="section-title">
+
+                <h3>Categories</h3>
+
+                <p>
+                    Place each object in the correct category.
+                </p>
+
+            </div>
+
+            <div
+                class="categories-container"
+                id="categoriesContainer">
+            </div>
+
+        </div>
+
+
+        <div
+            class="message"
+            id="message">
+        </div>
+
+
+        <div class="controls">
+
+            <button
+                class="control-button restart-button"
+                id="restartButton">
+                ↻ Restart
+            </button>
+
+            <button
+                class="control-button next-button"
+                id="nextButton"
+                disabled>
+                Next Level →
+            </button>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<script>
+
+    /* ================================================
+       OBJECT LIBRARY
+    ================================================ */
+
+    const objectLibrary = [
+
+        {
+            name: "Apple",
+            category: "Food"
+        },
+
+        {
+            name: "Banana",
+            category: "Food"
+        },
+
+        {
+            name: "Spoon",
+            category: "Household"
+        },
+
+        {
+            name: "Cup",
+            category: "Household"
+        },
+
+        {
+            name: "Shirt",
+            category: "Clothing"
+        },
+
+        {
+            name: "Shoes",
+            category: "Clothing"
+        },
+
+        {
+            name: "Bus",
+            category: "Transport"
+        },
+
+        {
+            name: "Bicycle",
+            category: "Transport"
+        },
+
+        {
+            name: "Book",
+            category: "Education"
+        },
+
+        {
+            name: "Pencil",
+            category: "Education"
+        },
+
+        {
+            name: "Flower",
+            category: "Nature"
+        },
+
+        {
+            name: "Tree",
+            category: "Nature"
+        },
+
+        {
+            name: "Football",
+            category: "Sports"
+        },
+
+        {
+            name: "Badminton Racket",
+            category: "Sports"
+        }
+
+    ];
+
+
+    /* ================================================
+       DIFFICULTY
+    ================================================ */
+
+    const difficultyLevels = {
+
+        1: {
+            categories: 2,
+            objectsPerCategory: 2
+        },
+
+        2: {
+            categories: 3,
+            objectsPerCategory: 2
+        },
+
+        3: {
+            categories: 4,
+            objectsPerCategory: 2
+        },
+
+        4: {
+            categories: 4,
+            objectsPerCategory: 3
+        }
+
+    };
+
+
+    /* ================================================
+       VARIABLES
+    ================================================ */
+
+    let currentLevel = 1;
+
+    let currentObjects = [];
+
+    let currentCategories = [];
+
+    let placedCount = 0;
+
+    let correctCount = 0;
+
+    let totalAttempts = 0;
+
+    let draggedObject = null;
+
+    let draggingPointerId = null;
+
+    let pointerOffsetX = 0;
+
+    let pointerOffsetY = 0;
+
+    let levelStartTime = 0;
+
+    let performanceSaved = false;
+
+
+    /* ================================================
+       ELEMENTS
+    ================================================ */
+
+    const objectsContainer =
+        document.getElementById(
+            "objectsContainer"
+        );
+
+    const categoriesContainer =
+        document.getElementById(
+            "categoriesContainer"
+        );
+
+    const levelValue =
+        document.getElementById(
+            "levelValue"
+        );
+
+    const objectsValue =
+        document.getElementById(
+            "objectsValue"
+        );
+
+    const placedValue =
+        document.getElementById(
+            "placedValue"
+        );
+
+    const accuracyValue =
+        document.getElementById(
+            "accuracyValue"
+        );
+
+    const message =
+        document.getElementById(
+            "message"
+        );
+
+    const nextButton =
+        document.getElementById(
+            "nextButton"
+        );
+
+    const restartButton =
+        document.getElementById(
+            "restartButton"
+        );
+
+    const instruction =
+        document.getElementById(
+            "instruction"
+        );
+
+
+    /* ================================================
+       SHUFFLE
+    ================================================ */
+
+    function shuffle(array) {
+
+        const copy = [...array];
+
+        for (
+            let i = copy.length - 1;
+            i > 0;
+            i--
+        ) {
+
+            const j =
+                Math.floor(
+                    Math.random() * (i + 1)
+                );
+
+            [
+                copy[i],
+                copy[j]
+            ] = [
+                copy[j],
+                copy[i]
+            ];
+
+        }
+
+        return copy;
+
+    }
+
+
+    /* ================================================
+       START LEVEL
+    ================================================ */
+
+    function startLevel(level) {
+
+        currentLevel = level;
+
+        placedCount = 0;
+
+        correctCount = 0;
+
+        totalAttempts = 0;
+
+        draggedObject = null;
+
+        draggingPointerId = null;
+
+        levelStartTime =
+            Date.now();
+
+        performanceSaved = false;
+
+        message.textContent = "";
+
+        nextButton.disabled = true;
+
+
+        const settings =
+            difficultyLevels[level];
+
+
+        const allCategories = [
+            ...new Set(
+                objectLibrary.map(
+                    object =>
+                        object.category
+                )
+            )
+        ];
+
+
+        currentCategories =
+            shuffle(allCategories)
+                .slice(
+                    0,
+                    settings.categories
+                );
+
+
+        currentObjects = [];
+
+
+        currentCategories.forEach(
+            category => {
+
+                const categoryObjects =
+                    objectLibrary.filter(
+                        object =>
+                            object.category ===
+                            category
+                    );
+
+
+                const selected =
+                    shuffle(categoryObjects)
+                        .slice(
+                            0,
+                            settings.objectsPerCategory
+                        );
+
+
+                currentObjects.push(
+                    ...selected
+                );
+
+            }
+        );
+
+
+        currentObjects =
+            shuffle(currentObjects);
+
+
+        renderObjects();
+
+        renderCategories();
+
+        updateStats();
+
+        updateInstruction();
+
+    }
+
+
+    /* ================================================
+       FIXED GRID ACCORDING TO LEVEL
+    ================================================ */
+
+    function setObjectGrid() {
+
+        if (currentLevel === 1) {
+
+            objectsContainer.style.gridTemplateColumns =
+                "repeat(2, minmax(0, 1fr))";
+
+        }
+
+        else if (currentLevel === 2) {
+
+            objectsContainer.style.gridTemplateColumns =
+                "repeat(3, minmax(0, 1fr))";
+
+        }
+
+        else {
+
+            objectsContainer.style.gridTemplateColumns =
+                "repeat(4, minmax(0, 1fr))";
+
+        }
+
+    }
+
+
+    /* ================================================
+       RENDER OBJECTS
+    ================================================ */
+
+    function renderObjects() {
+
+        objectsContainer.innerHTML = "";
+
+        setObjectGrid();
+
+
+        currentObjects.forEach(
+            (object, index) => {
+
+                const slot =
+                    document.createElement(
+                        "div"
+                    );
+
+                slot.className =
+                    "object-slot";
+
+                slot.dataset.slotIndex =
+                    index;
+
+
+                const objectElement =
+                    document.createElement(
+                        "div"
+                    );
+
+                objectElement.className =
+                    "draggable-object";
+
+                objectElement.textContent =
+                    object.name;
+
+                objectElement.dataset.category =
+                    object.category;
+
+                objectElement.dataset.name =
+                    object.name;
+
+
+                objectElement.originalSlot =
+                    slot;
+
+
+                slot.appendChild(
+                    objectElement
+                );
+
+                objectsContainer.appendChild(
+                    slot
+                );
+
+
+                objectElement.addEventListener(
+                    "pointerdown",
+                    startDrag
+                );
+
+            }
+        );
+
+    }
+
+
+    /* ================================================
+       RENDER CATEGORIES
+    ================================================ */
+
+    function renderCategories() {
+
+        categoriesContainer.innerHTML = "";
+
+
+        if (currentLevel === 1) {
+
+            categoriesContainer.style.gridTemplateColumns =
+                "repeat(2, minmax(0, 1fr))";
+
+        }
+
+        else if (currentLevel === 2) {
+
+            categoriesContainer.style.gridTemplateColumns =
+                "repeat(3, minmax(0, 1fr))";
+
+        }
+
+        else {
+
+            categoriesContainer.style.gridTemplateColumns =
+                "repeat(4, minmax(0, 1fr))";
+
+        }
+
+
+        currentCategories.forEach(
+            category => {
+
+                const card =
+                    document.createElement(
+                        "div"
+                    );
+
+                card.className =
+                    "category-card";
+
+
+                const box =
+                    document.createElement(
+                        "div"
+                    );
+
+                box.className =
+                    "category-box";
+
+                box.dataset.category =
+                    category;
+
+
+                const hint =
+                    document.createElement(
+                        "div"
+                    );
+
+                hint.className =
+                    "drop-hint";
+
+                hint.textContent =
+                    "Drop objects here";
+
+
+                const placedItems =
+                    document.createElement(
+                        "div"
+                    );
+
+                placedItems.className =
+                    "placed-items";
+
+
+                box.appendChild(hint);
+
+                box.appendChild(
+                    placedItems
+                );
+
+
+                const title =
+                    document.createElement(
+                        "div"
+                    );
+
+                title.className =
+                    "category-title";
+
+                title.textContent =
+                    category;
+
+
+                card.appendChild(box);
+
+                card.appendChild(title);
+
+                categoriesContainer.appendChild(
+                    card
+                );
+
+            }
+        );
+
+    }
+
+
+    /* ================================================
+       START DRAG
+    ================================================ */
+
+    function startDrag(event) {
+
+        event.preventDefault();
+
+
+        if (
+            draggedObject ||
+            this.classList.contains("placed")
+        ) {
+
+            return;
+
+        }
+
+
+        draggedObject = this;
+
+        draggingPointerId =
+            event.pointerId;
+
+
+        const rect =
+            this.getBoundingClientRect();
+
+
+        pointerOffsetX =
+            event.clientX -
+            rect.left;
+
+        pointerOffsetY =
+            event.clientY -
+            rect.top;
+
+
+        document.body.appendChild(
+            draggedObject
+        );
+
+
+        draggedObject.classList.add(
+            "dragging"
+        );
+
+
+        draggedObject.style.position =
+            "fixed";
+
+        draggedObject.style.left =
+            (
+                event.clientX -
+                pointerOffsetX
+            ) + "px";
+
+        draggedObject.style.top =
+            (
+                event.clientY -
+                pointerOffsetY
+            ) + "px";
+
+        draggedObject.style.width =
+            rect.width + "px";
+
+        draggedObject.style.height =
+            rect.height + "px";
+
+        draggedObject.style.zIndex =
+            "9999";
+
+
+        try {
+
+            draggedObject.setPointerCapture(
+                event.pointerId
+            );
+
+        } catch (error) {}
+
+
+        draggedObject.addEventListener(
+            "pointermove",
+            dragMove
+        );
+
+        draggedObject.addEventListener(
+            "pointerup",
+            endDrag
+        );
+
+        draggedObject.addEventListener(
+            "pointercancel",
+            cancelDrag
+        );
+
+    }
+
+
+    /* ================================================
+       DRAG MOVE
+    ================================================ */
+
+    function dragMove(event) {
+
+        if (
+            !draggedObject ||
+            event.pointerId !==
+                draggingPointerId
+        ) {
+
+            return;
+
+        }
+
+
+        event.preventDefault();
+
+
+        draggedObject.style.left =
+            (
+                event.clientX -
+                pointerOffsetX
+            ) + "px";
+
+        draggedObject.style.top =
+            (
+                event.clientY -
+                pointerOffsetY
+            ) + "px";
+
+
+        autoScroll(
+            event.clientY
+        );
+
+
+        const categoryBox =
+            getCategoryUnderPointer(
+                event.clientX,
+                event.clientY
+            );
+
+
+        document
+            .querySelectorAll(
+                ".category-box"
+            )
+            .forEach(
+                box => {
+
+                    box.classList.remove(
+                        "drag-over"
+                    );
+
+                }
+            );
+
+
+        if (categoryBox) {
+
+            categoryBox.classList.add(
+                "drag-over"
+            );
+
+        }
+
+    }
+
+
+    /* ================================================
+       AUTO SCROLL
+    ================================================ */
+
+    function autoScroll(clientY) {
+
+        const threshold = 70;
+
+        const speed = 8;
+
+
+        if (
+            clientY <
+            threshold
+        ) {
+
+            window.scrollBy(
+                0,
+                -speed
+            );
+
+        }
+
+        else if (
+            clientY >
+            window.innerHeight -
+            threshold
+        ) {
+
+            window.scrollBy(
+                0,
+                speed
+            );
+
+        }
+
+    }
+
+
+    /* ================================================
+       FIND CATEGORY UNDER POINTER
+    ================================================ */
+
+    function getCategoryUnderPointer(
+        x,
+        y
+    ) {
+
+        if (!draggedObject) {
+
+            return null;
+
+        }
+
+
+        draggedObject.style.pointerEvents =
+            "none";
+
+
+        const element =
+            document.elementFromPoint(
+                x,
+                y
+            );
+
+
+        draggedObject.style.pointerEvents =
+            "auto";
+
+
+        if (!element) {
+
+            return null;
+
+        }
+
+
+        return element.closest(
+            ".category-box"
+        );
+
+    }
+
+
+    /* ================================================
+       END DRAG
+    ================================================ */
+
+    function endDrag(event) {
+
+        if (
+            !draggedObject ||
+            event.pointerId !==
+                draggingPointerId
+        ) {
+
+            return;
+
+        }
+
+
+        event.preventDefault();
+
+
+        const object =
+            draggedObject;
+
+
+        const categoryBox =
+            getCategoryUnderPointer(
+                event.clientX,
+                event.clientY
+            );
+
+
+        if (categoryBox) {
+
+            handleDrop(
+                object,
+                categoryBox
+            );
+
+        }
+
+        else {
+
+            returnObject(
+                object
+            );
+
+        }
+
+
+        cleanupDrag(event);
+
+    }
+
+
+    /* ================================================
+       CANCEL DRAG
+    ================================================ */
+
+    function cancelDrag(event) {
+
+        if (!draggedObject) {
+
+            return;
+
+        }
+
+
+        returnObject(
+            draggedObject
+        );
+
+
+        cleanupDrag(event);
+
+    }
+
+
+    /* ================================================
+       HANDLE DROP
+    ================================================ */
+
+    function handleDrop(
+        object,
+        categoryBox
+    ) {
+
+        totalAttempts++;
+
+
+        const correctCategory =
+            object.dataset.category;
+
+        const selectedCategory =
+            categoryBox.dataset.category;
+
+
+        if (
+            correctCategory ===
+            selectedCategory
+        ) {
+
+            correctCount++;
+
+            placedCount++;
+
+
+            const pill =
+                document.createElement(
+                    "div"
+                );
+
+            pill.className =
+                "placed-pill";
+
+            pill.textContent =
+                object.dataset.name;
+
+
+            const placedItems =
+                categoryBox.querySelector(
+                    ".placed-items"
+                );
+
+
+            placedItems.appendChild(
+                pill
+            );
+
+
+            object.classList.remove(
+                "dragging"
+            );
+
+            object.classList.add(
+                "placed"
+            );
+
+
+            resetObjectStyle(
+                object
+            );
+
+
+            categoryBox.classList.remove(
+                "drag-over"
+            );
+
+
+            message.textContent =
+                "Correct! Well done.";
+
+
+            updateStats();
+
+
+            if (
+                placedCount ===
+                currentObjects.length
+            ) {
+
+                levelComplete();
+
+            }
+
+        }
+
+        else {
+
+            message.textContent =
+                "Try another category.";
+
+            returnObject(
+                object
+            );
+
+            updateStats();
+
+        }
+
+    }
+
+
+    /* ================================================
+       RETURN OBJECT
+    ================================================ */
+
+    function returnObject(object) {
+
+        if (
+            object &&
+            object.originalSlot
+        ) {
+
+            object.originalSlot.appendChild(
+                object
+            );
+
+        }
+
+
+        if (object) {
+
+            object.classList.remove(
+                "dragging"
+            );
+
+            resetObjectStyle(
+                object
+            );
+
+        }
+
+    }
+
+
+    /* ================================================
+       RESET OBJECT STYLE
+    ================================================ */
+
+    function resetObjectStyle(object) {
+
+        object.style.position = "";
+
+        object.style.left = "";
+
+        object.style.top = "";
+
+        object.style.width = "";
+
+        object.style.height = "";
+
+        object.style.zIndex = "";
+
+        object.style.pointerEvents = "";
+
+    }
+
+
+    /* ================================================
+       CLEANUP
+    ================================================ */
+
+    function cleanupDrag(event) {
+
+        if (!draggedObject) {
+
+            return;
+
+        }
+
+
+        try {
+
+            if (
+                draggedObject.hasPointerCapture &&
+                draggedObject.hasPointerCapture(
+                    event.pointerId
+                )
+            ) {
+
+                draggedObject.releasePointerCapture(
+                    event.pointerId
+                );
+
+            }
+
+        } catch (error) {}
+
+
+        draggedObject.removeEventListener(
+            "pointermove",
+            dragMove
+        );
+
+        draggedObject.removeEventListener(
+            "pointerup",
+            endDrag
+        );
+
+        draggedObject.removeEventListener(
+            "pointercancel",
+            cancelDrag
+        );
+
+
+        document
+            .querySelectorAll(
+                ".category-box"
+            )
+            .forEach(
+                box => {
+
+                    box.classList.remove(
+                        "drag-over"
+                    );
+
+                }
+            );
+
+
+        draggedObject = null;
+
+        draggingPointerId = null;
+
+    }
+
+
+    /* ================================================
+       UPDATE STATS
+    ================================================ */
+
+    function updateStats() {
+
+        levelValue.textContent =
+            currentLevel;
+
+        objectsValue.textContent =
+            currentObjects.length;
+
+        placedValue.textContent =
+            placedCount;
+
+
+        let accuracy = 100;
+
+
+        if (totalAttempts > 0) {
+
+            accuracy =
+                Math.round(
+                    (
+                        correctCount /
+                        totalAttempts
+                    ) * 100
+                );
+
+        }
+
+
+        accuracyValue.textContent =
+            accuracy + "%";
+
+    }
+
+
+    /* ================================================
+       SOOTHING COMPLETION SOUND
+    ================================================ */
+
+    function playSuccessSound() {
+
+        try {
+
+            const AudioContext =
+                window.AudioContext ||
+                window.webkitAudioContext;
+
+            if (!AudioContext) {
+
+                return;
+
+            }
+
+
+            const audioContext =
+                new AudioContext();
+
+
+            const now =
+                audioContext.currentTime;
+
+
+            const notes = [
+
+                {
+                    frequency: 523.25,
+                    start: 0,
+                    duration: 0.18
+                },
+
+                {
+                    frequency: 659.25,
+                    start: 0.16,
+                    duration: 0.18
+                },
+
+                {
+                    frequency: 783.99,
+                    start: 0.32,
+                    duration: 0.30
+                }
+
+            ];
+
+
+            notes.forEach(note => {
+
+                const oscillator =
+                    audioContext.createOscillator();
+
+                const gain =
+                    audioContext.createGain();
+
+
+                oscillator.type =
+                    "sine";
+
+                oscillator.frequency.value =
+                    note.frequency;
+
+
+                gain.gain.setValueAtTime(
+                    0.0001,
+                    now + note.start
+                );
+
+                gain.gain.exponentialRampToValueAtTime(
+                    0.18,
+                    now + note.start + 0.03
+                );
+
+                gain.gain.exponentialRampToValueAtTime(
+                    0.0001,
+                    now +
+                    note.start +
+                    note.duration
+                );
+
+
+                oscillator.connect(gain);
+
+                gain.connect(
+                    audioContext.destination
+                );
+
+
+                oscillator.start(
+                    now + note.start
+                );
+
+                oscillator.stop(
+                    now +
+                    note.start +
+                    note.duration
+                );
+
+            });
+
+
+            setTimeout(
+                () => {
+
+                    audioContext.close();
+
+                },
+                1000
+            );
+
+        } catch (error) {
+
+            console.log(
+                "Sound could not be played."
+            );
+
+        }
+
+    }
+
+
+    /* ================================================
+       SAVE PERFORMANCE
+    ================================================ */
+
+    function savePerformanceData() {
+
+        if (
+            performanceSaved
+        ) {
+
+            return;
+
+        }
+
+
+        performanceSaved = true;
+
+
+        const completionTime =
+            Math.round(
+                (
+                    Date.now() -
+                    levelStartTime
+                ) / 1000
+            );
+
+
+        const accuracy =
+            totalAttempts > 0
+                ? Math.round(
+                    (
+                        correctCount /
+                        totalAttempts
+                    ) * 100
+                )
+                : 100;
+
+
+        const mistakes =
+            totalAttempts -
+            correctCount;
+
+
+        if (
+            typeof NeuroSaathiPerformance !==
+            "undefined"
+        ) {
+
+            NeuroSaathiPerformance.saveGameSession({
+
+                game:
+                    "sorting-matching",
+
+                level:
+                    currentLevel,
+
+                accuracy:
+                    accuracy,
+
+                attempts:
+                    totalAttempts,
+
+                correct:
+                    correctCount,
+
+                mistakes:
+                    mistakes,
+
+                completionTime:
+                    completionTime,
+
+                completed:
+                    true
+
+            });
+
+        }
+
+    }
+
+
+    /* ================================================
+       LEVEL COMPLETE
+    ================================================ */
+
+    function levelComplete() {
+
+        const accuracy =
+            totalAttempts > 0
+                ? Math.round(
+                    (
+                        correctCount /
+                        totalAttempts
+                    ) * 100
+                )
+                : 100;
+
+
+        /*
+            SAVE PERFORMANCE
+        */
+
+        savePerformanceData();
+
+
+        /*
+            PLAY SOOTHING SOUND
+        */
+
+        playSuccessSound();
+
+
+        if (currentLevel < 4) {
+
+            message.textContent =
+                "Level complete! Accuracy: "
+                + accuracy
+                + "%";
+
+
+            nextButton.disabled = false;
+
+        }
+
+        else {
+
+            nextButton.disabled = true;
+
+
+            message.textContent =
+                "Excellent! You completed all 4 levels.";
+
+        }
+
+    }
+
+
+    /* ================================================
+       ADAPTIVE DIFFICULTY
+    ================================================ */
+
+    function calculateNextLevel() {
+
+        const accuracy =
+            totalAttempts > 0
+                ? (
+                    correctCount /
+                    totalAttempts
+                ) * 100
+                : 100;
+
+
+        if (
+            accuracy >= 85 &&
+            currentLevel < 4
+        ) {
+
+            return currentLevel + 1;
+
+        }
+
+
+        if (
+            accuracy < 60 &&
+            currentLevel > 1
+        ) {
+
+            return currentLevel - 1;
+
+        }
+
+
+        return currentLevel;
+
+    }
+
+
+    /* ================================================
+       NEXT LEVEL
+    ================================================ */
+
+    nextButton.addEventListener(
+        "click",
+        () => {
+
+            const nextLevel =
+                calculateNextLevel();
+
+
+            startLevel(
+                nextLevel
+            );
+
+        }
+    );
+
+
+    /* ================================================
+       RESTART
+    ================================================ */
+
+    restartButton.addEventListener(
+        "click",
+        () => {
+
+            startLevel(
+                currentLevel
+            );
+
+        }
+    );
+
+
+    /* ================================================
+       VOICE
+    ================================================ */
+
+    function speak(text) {
+
+        if (
+            !("speechSynthesis" in window)
+        ) {
+
+            return;
+
+        }
+
+
+        window.speechSynthesis.cancel();
+
+
+        const speech =
+            new SpeechSynthesisUtterance(
+                text
+            );
+
+
+        speech.lang = "en-IN";
+
+        speech.rate = 0.85;
+
+        speech.pitch = 1;
+
+
+        window.speechSynthesis.speak(
+            speech
+        );
+
+    }
+
+
+    document
+        .getElementById("voiceButton")
+        .addEventListener(
+            "click",
+            () => {
+
+                speak(
+                    "Welcome to NeuroSaathi. " +
+                    "This is the Sorting and Matching game. " +
+                    "Drag each object into the correct category."
+                );
+
+            }
+        );
+
+
+    document
+        .getElementById("instructionVoice")
+        .addEventListener(
+            "click",
+            () => {
+
+                speak(
+                    instruction.textContent
+                );
+
+            }
+        );
+
+
+    /* ================================================
+       INSTRUCTION
+    ================================================ */
+
+    function updateInstruction() {
+
+        instruction.textContent =
+            "Drag each object into the correct category. " +
+            "Level " +
+            currentLevel +
+            ".";
+
+    }
+
+
+    /* ================================================
+       BACK
+    ================================================ */
+
+    function goBack() {
+
+        window.location.href =
+            "../index.html";
+
+    }
+
+
+    /* ================================================
+       ESCAPE = STOP VOICE
+    ================================================ */
+
+    document.addEventListener(
+        "keydown",
+        event => {
+
+            if (
+                event.key === "Escape"
+            ) {
+
+                if (
+                    "speechSynthesis"
+                    in window
+                ) {
+
+                    window.speechSynthesis.cancel();
+
+                }
+
+            }
+
+        }
+    );
+
+
+    /* ================================================
+       START GAME
+    ================================================ */
+
+    const recommendedLevel =
+    NeuroSaathiAdaptiveEngine
+        .getRecommendedLevel("sorting-matching");
+
+currentLevel =
+    recommendedLevel || 1;
+
+startLevel(currentLevel);;
+
+</script>
+
+</body>
+</html>

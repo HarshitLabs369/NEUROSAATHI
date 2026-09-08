@@ -1,0 +1,1426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Memory Match | NeuroSaathi</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f8f6;
+            color: #17332f;
+        }
+
+        header {
+            background: #17332f;
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .header-left h1 {
+            margin: 0;
+            font-size: 28px;
+        }
+
+        .header-left p {
+            margin: 5px 0 0;
+            opacity: 0.85;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        button {
+            font-family: inherit;
+            cursor: pointer;
+        }
+
+        .voice-button,
+        .secondary-button,
+        .listen-button {
+            border: none;
+            border-radius: 12px;
+            padding: 12px 18px;
+            font-size: 16px;
+            font-weight: bold;
+            transition: 0.2s ease;
+        }
+
+        .voice-button {
+            background: #ffffff;
+            color: #17332f;
+        }
+
+        .secondary-button {
+            background: #dcece8;
+            color: #17332f;
+        }
+
+        .listen-button {
+            background: #237c70;
+            color: white;
+        }
+
+        .voice-button:hover,
+        .secondary-button:hover,
+        .listen-button:hover {
+            transform: translateY(-2px);
+        }
+
+        main {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 30px 20px 50px;
+        }
+
+        .intro {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .intro h2 {
+            margin-bottom: 8px;
+            font-size: 30px;
+        }
+
+        .intro p {
+            font-size: 18px;
+            color: #50615e;
+        }
+
+        .instruction-box {
+            background: white;
+            border-radius: 18px;
+            padding: 20px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            box-shadow: 0 5px 18px rgba(0,0,0,0.06);
+        }
+
+        .instruction-text {
+            font-size: 19px;
+            font-weight: bold;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 16px;
+            padding: 18px;
+            text-align: center;
+            box-shadow: 0 5px 18px rgba(0,0,0,0.06);
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: #657470;
+            margin-bottom: 7px;
+        }
+
+        .stat-value {
+            font-size: 26px;
+            font-weight: bold;
+        }
+
+        .board {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            max-width: 800px;
+            margin: 0 auto 25px;
+        }
+
+        .card {
+            aspect-ratio: 1 / 1;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+
+        .card-inner {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.5s;
+        }
+
+        .card.flipped .card-inner,
+        .card.matched .card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .card-front,
+        .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 18px;
+            backface-visibility: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 12px;
+            font-weight: bold;
+        }
+
+        .card-front {
+            background: #237c70;
+            color: white;
+            font-size: 30px;
+        }
+
+        .card-back {
+            background: white;
+            color: #17332f;
+            transform: rotateY(180deg);
+            font-size: 17px;
+            border: 3px solid #237c70;
+        }
+
+        .card.matched .card-back {
+            border-color: #4d8b68;
+            background: #edf7f1;
+        }
+
+        .feedback {
+            min-height: 35px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .completion {
+            display: none;
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 5px 18px rgba(0,0,0,0.07);
+            margin-top: 20px;
+        }
+
+        .completion h3 {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        .completion p {
+            font-size: 18px;
+            color: #50615e;
+        }
+
+        .completion button {
+            margin-top: 15px;
+        }
+
+        @media (max-width: 800px) {
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .board {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 550px) {
+
+            header {
+                align-items: flex-start;
+            }
+
+            .header-actions {
+                width: 100%;
+            }
+
+            .voice-button,
+            .secondary-button {
+                flex: 1;
+            }
+
+            main {
+                padding: 25px 15px 40px;
+            }
+
+            .intro h2 {
+                font-size: 25px;
+            }
+
+            .instruction-box {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .board {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+<header>
+
+    <div class="header-left">
+        <h1>Memory Match</h1>
+        <p>NeuroSaathi cognitive activity</p>
+    </div>
+
+    <div class="header-actions">
+
+        <button
+            class="voice-button"
+            id="voiceButton">
+            Listen
+        </button>
+
+        <button
+            class="secondary-button"
+            id="backButton">
+            Back
+        </button>
+
+    </div>
+
+</header>
+
+
+<main>
+
+    <section class="intro">
+
+        <h2>Memory Match</h2>
+
+        <p>
+            Find the matching pairs and keep your mind active.
+        </p>
+
+    </section>
+
+
+    <section class="instruction-box">
+
+        <div class="instruction-text">
+            Find all the matching pairs.
+        </div>
+
+        <button
+            class="listen-button"
+            id="instructionListen">
+            Listen
+        </button>
+
+    </section>
+
+
+    <section class="stats">
+
+        <div class="stat-card">
+
+            <div class="stat-label">
+                Level
+            </div>
+
+            <div
+                class="stat-value"
+                id="levelValue">
+                1
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-label">
+                Pairs Found
+            </div>
+
+            <div
+                class="stat-value"
+                id="pairsValue">
+                0
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-label">
+                Attempts
+            </div>
+
+            <div
+                class="stat-value"
+                id="attemptsValue">
+                0
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-label">
+                Accuracy
+            </div>
+
+            <div
+                class="stat-value"
+                id="accuracyValue">
+                0%
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section
+        class="board"
+        id="gameBoard">
+    </section>
+
+
+    <div
+        class="feedback"
+        id="feedback">
+    </div>
+
+
+    <div class="controls">
+
+        <button
+            class="secondary-button"
+            id="restartButton">
+            Restart
+        </button>
+
+    </div>
+
+
+    <section
+        class="completion"
+        id="completionBox">
+
+        <h3>Well done!</h3>
+
+        <p id="completionText">
+            You completed the round.
+        </p>
+
+        <button
+            class="listen-button"
+            id="nextRoundButton">
+            Start Next Round
+        </button>
+
+    </section>
+
+</main>
+
+
+<!-- Performance Tracking -->
+<script src="../js/performance.js"></script>
+<script src="../js/adaptive-engine.js"></script>
+
+<script>
+
+    /* ==========================================
+       MEMORY MATCH
+       ========================================== */
+
+
+    const categories = {
+
+        "Household Objects": [
+            "Chair",
+            "Table",
+            "Clock",
+            "Lamp",
+            "Cup",
+            "Book"
+        ],
+
+        "Fruits & Vegetables": [
+            "Apple",
+            "Banana",
+            "Mango",
+            "Carrot",
+            "Tomato",
+            "Potato"
+        ],
+
+        "Animals": [
+            "Dog",
+            "Cat",
+            "Elephant",
+            "Tiger",
+            "Cow",
+            "Rabbit"
+        ],
+
+        "Nature": [
+            "Tree",
+            "Flower",
+            "Mountain",
+            "River",
+            "Sun",
+            "Leaf"
+        ],
+
+        "Food & Kitchen": [
+            "Rice",
+            "Bread",
+            "Spoon",
+            "Plate",
+            "Bowl",
+            "Bottle"
+        ],
+
+        "Clothing": [
+            "Shirt",
+            "Shoes",
+            "Hat",
+            "Socks",
+            "Jacket",
+            "Scarf"
+        ],
+
+        "Transport": [
+            "Car",
+            "Bus",
+            "Train",
+            "Bicycle",
+            "Boat",
+            "Airplane"
+        ],
+
+        "Everyday Life": [
+            "Phone",
+            "Key",
+            "Bag",
+            "Umbrella",
+            "Bottle",
+            "Watch"
+        ],
+
+        "Education": [
+            "Pencil",
+            "Notebook",
+            "School",
+            "Teacher",
+            "Eraser",
+            "Ruler"
+        ],
+
+        "Sports": [
+            "Football",
+            "Cricket",
+            "Badminton",
+            "Tennis",
+            "Volleyball",
+            "Basketball"
+        ],
+
+        "Family & Relationships": [
+            "Mother",
+            "Father",
+            "Brother",
+            "Sister",
+            "Grandmother",
+            "Grandfather"
+        ],
+
+        "Indian & North-Eastern Culture": [
+            "Bamboo",
+            "Tea",
+            "Handloom",
+            "Festival",
+            "Drum",
+            "Village"
+        ]
+
+    };
+
+
+    /* ==========================================
+       DIFFICULTY
+       ========================================== */
+
+    const difficultyLevels = {
+
+        1: 3,
+        2: 4,
+        3: 6,
+        4: 8
+
+    };
+
+
+    /* ==========================================
+       GAME STATE
+       ========================================== */
+
+    let currentLevel = 1;
+
+    let currentPairs =
+        difficultyLevels[currentLevel];
+
+    let matchedPairs = 0;
+
+    let attempts = 0;
+
+    let correctAttempts = 0;
+
+    let lockBoard = false;
+
+    let firstCard = null;
+
+    let secondCard = null;
+
+    let startTime = 0;
+
+    let completedTime = 0;
+
+    let adaptationScore = 0;
+
+    let sessionSaved = false;
+
+
+    /* ==========================================
+       ELEMENTS
+       ========================================== */
+
+    const gameBoard =
+        document.getElementById("gameBoard");
+
+    const levelValue =
+        document.getElementById("levelValue");
+
+    const pairsValue =
+        document.getElementById("pairsValue");
+
+    const attemptsValue =
+        document.getElementById("attemptsValue");
+
+    const accuracyValue =
+        document.getElementById("accuracyValue");
+
+    const feedback =
+        document.getElementById("feedback");
+
+    const completionBox =
+        document.getElementById("completionBox");
+
+    const completionText =
+        document.getElementById("completionText");
+
+    const restartButton =
+        document.getElementById("restartButton");
+
+    const nextRoundButton =
+        document.getElementById("nextRoundButton");
+
+    const voiceButton =
+        document.getElementById("voiceButton");
+
+    const instructionListen =
+        document.getElementById("instructionListen");
+
+    const backButton =
+        document.getElementById("backButton");
+
+
+    /* ==========================================
+       START ROUND
+       ========================================== */
+
+    function startRound() {
+
+        currentPairs =
+            difficultyLevels[currentLevel];
+
+        matchedPairs = 0;
+
+        attempts = 0;
+
+        correctAttempts = 0;
+
+        lockBoard = false;
+
+        firstCard = null;
+
+        secondCard = null;
+
+        startTime = Date.now();
+
+        completedTime = 0;
+
+        adaptationScore = 0;
+
+        sessionSaved = false;
+
+        completionBox.style.display = "none";
+
+        feedback.textContent = "";
+
+        levelValue.textContent =
+            currentLevel;
+
+        pairsValue.textContent =
+            matchedPairs;
+
+        attemptsValue.textContent =
+            attempts;
+
+        accuracyValue.textContent =
+            "0%";
+
+        createBoard();
+
+    }
+
+
+    /* ==========================================
+       CREATE BOARD
+       ========================================== */
+
+    function createBoard() {
+
+        gameBoard.innerHTML = "";
+
+        const categoryNames =
+            Object.keys(categories);
+
+        const randomCategory =
+            categoryNames[
+                Math.floor(
+                    Math.random() *
+                    categoryNames.length
+                )
+            ];
+
+        const availableObjects =
+            [...categories[randomCategory]];
+
+        availableObjects.sort(
+            () => Math.random() - 0.5
+        );
+
+        const selectedObjects =
+            availableObjects.slice(
+                0,
+                currentPairs
+            );
+
+        let cards = [];
+
+        selectedObjects.forEach(
+            function(object) {
+
+                cards.push(object);
+                cards.push(object);
+
+            }
+        );
+
+        cards.sort(
+            () => Math.random() - 0.5
+        );
+
+        cards.forEach(
+            function(object) {
+
+                const card =
+                    document.createElement("div");
+
+                card.className = "card";
+
+                card.dataset.value =
+                    object;
+
+                card.innerHTML = `
+
+                    <div class="card-inner">
+
+                        <div class="card-front">
+                            ?
+                        </div>
+
+                        <div class="card-back">
+                            ${object}
+                        </div>
+
+                    </div>
+
+                `;
+
+                card.addEventListener(
+                    "click",
+                    function() {
+
+                        flipCard(card);
+
+                    }
+                );
+
+                gameBoard.appendChild(card);
+
+            }
+        );
+
+        updateBoardLayout();
+
+    }
+
+
+    /* ==========================================
+       BOARD LAYOUT
+       ========================================== */
+
+    function updateBoardLayout() {
+
+        if (currentPairs === 3) {
+
+            gameBoard.style.gridTemplateColumns =
+                "repeat(3, 1fr)";
+
+        } else {
+
+            gameBoard.style.gridTemplateColumns =
+                "repeat(4, 1fr)";
+
+        }
+
+    }
+
+
+    /* ==========================================
+       FLIP CARD
+       ========================================== */
+
+    function flipCard(card) {
+
+        if (lockBoard) {
+            return;
+        }
+
+        if (card === firstCard) {
+            return;
+        }
+
+        if (card.classList.contains("matched")) {
+            return;
+        }
+
+        card.classList.add("flipped");
+
+        if (!firstCard) {
+
+            firstCard = card;
+
+            return;
+        }
+
+        secondCard = card;
+
+        attempts++;
+
+        updateStats();
+
+        checkMatch();
+
+    }
+
+
+    /* ==========================================
+       CHECK MATCH
+       ========================================== */
+
+    function checkMatch() {
+
+        const firstValue =
+            firstCard.dataset.value;
+
+        const secondValue =
+            secondCard.dataset.value;
+
+        if (firstValue === secondValue) {
+
+            handleMatch();
+
+        } else {
+
+            handleMismatch();
+
+        }
+
+    }
+
+
+    /* ==========================================
+       MATCH
+       ========================================== */
+
+    function handleMatch() {
+
+        firstCard.classList.add("matched");
+
+        secondCard.classList.add("matched");
+
+        matchedPairs++;
+
+        correctAttempts++;
+
+        feedback.textContent =
+            "Good match!";
+
+        updateStats();
+
+        resetTurn();
+
+        if (matchedPairs === currentPairs) {
+
+            finishRound();
+
+        }
+
+    }
+
+
+    /* ==========================================
+       MISMATCH
+       ========================================== */
+
+    function handleMismatch() {
+
+        lockBoard = true;
+
+        feedback.textContent =
+            "Try again.";
+
+        setTimeout(
+            function() {
+
+                firstCard.classList.remove(
+                    "flipped"
+                );
+
+                secondCard.classList.remove(
+                    "flipped"
+                );
+
+                resetTurn();
+
+            },
+            900
+        );
+
+    }
+
+
+    /* ==========================================
+       RESET TURN
+       ========================================== */
+
+    function resetTurn() {
+
+        firstCard = null;
+
+        secondCard = null;
+
+        lockBoard = false;
+
+    }
+
+
+    /* ==========================================
+       UPDATE STATS
+       ========================================== */
+
+    function updateStats() {
+
+        pairsValue.textContent =
+            matchedPairs;
+
+        attemptsValue.textContent =
+            attempts;
+
+        let accuracy = 0;
+
+        if (attempts > 0) {
+
+            accuracy =
+                Math.round(
+                    (correctAttempts / attempts) *
+                    100
+                );
+
+        }
+
+        accuracyValue.textContent =
+            accuracy + "%";
+
+    }
+
+
+    /* ==========================================
+       FINISH ROUND
+       ========================================== */
+
+    function finishRound() {
+
+        if (sessionSaved) {
+            return;
+        }
+
+        completedTime =
+            Math.round(
+                (Date.now() - startTime) / 1000
+            );
+
+        let accuracy = 0;
+
+        if (attempts > 0) {
+
+            accuracy =
+                Math.round(
+                    (correctAttempts / attempts) *
+                    100
+                );
+
+        }
+
+        const playedLevel =
+            currentLevel;
+
+
+        calculateAdaptationScore();
+
+
+        /* ==========================================
+           SAVE PERFORMANCE DATA
+           ========================================== */
+
+        if (
+            typeof NeuroSaathiPerformance !==
+            "undefined"
+        ) {
+
+            NeuroSaathiPerformance.saveGameSession({
+
+                game: "Memory Match",
+
+                level: playedLevel,
+
+                accuracy: accuracy,
+
+                attempts: attempts,
+
+                correct: correctAttempts,
+
+                mistakes:
+                    attempts - correctAttempts,
+
+                completionTime:
+                    completedTime,
+
+                completed: true
+
+            });
+
+            sessionSaved = true;
+
+        }
+
+
+        completionText.textContent =
+            "You completed Level " +
+            playedLevel +
+            " with " +
+            accuracy +
+            "% accuracy in " +
+            completedTime +
+            " seconds.";
+
+        completionBox.style.display =
+            "block";
+
+
+        /* ==========================================
+           SMOOTH COMPLETION TUNE
+           ========================================== */
+
+        playCompletionTune();
+
+
+        adaptDifficulty();
+
+    }
+
+
+    /* ==========================================
+       SMOOTH COMPLETION TUNE
+       ========================================== */
+
+    function playCompletionTune() {
+
+        if (
+            !window.AudioContext &&
+            !window.webkitAudioContext
+        ) {
+
+            return;
+
+        }
+
+        const AudioCtx =
+            window.AudioContext ||
+            window.webkitAudioContext;
+
+        const audioContext =
+            new AudioCtx();
+
+
+        const notes = [
+
+            523.25,
+            659.25,
+            783.99
+
+        ];
+
+
+        notes.forEach(
+            function(frequency, index) {
+
+                const oscillator =
+                    audioContext.createOscillator();
+
+                const gain =
+                    audioContext.createGain();
+
+
+                oscillator.type =
+                    "sine";
+
+                oscillator.frequency.value =
+                    frequency;
+
+
+                oscillator.connect(gain);
+
+                gain.connect(
+                    audioContext.destination
+                );
+
+
+                const start =
+                    audioContext.currentTime +
+                    (index * 0.16);
+
+                const end =
+                    start + 0.45;
+
+
+                gain.gain.setValueAtTime(
+                    0,
+                    start
+                );
+
+                gain.gain.linearRampToValueAtTime(
+                    0.12,
+                    start + 0.04
+                );
+
+                gain.gain.exponentialRampToValueAtTime(
+                    0.001,
+                    end
+                );
+
+
+                oscillator.start(start);
+
+                oscillator.stop(end);
+
+            }
+        );
+
+    }
+
+
+    /* ==========================================
+       ADAPTATION SCORE
+       ========================================== */
+
+    function calculateAdaptationScore() {
+
+        adaptationScore = 0;
+
+        let accuracy = 0;
+
+        if (attempts > 0) {
+
+            accuracy =
+                (correctAttempts / attempts) *
+                100;
+
+        }
+
+
+        if (accuracy >= 90) {
+
+            adaptationScore += 3;
+
+        } else if (accuracy >= 75) {
+
+            adaptationScore += 2;
+
+        } else if (accuracy >= 60) {
+
+            adaptationScore += 1;
+
+        }
+
+
+        if (completedTime <= 60) {
+
+            adaptationScore += 2;
+
+        } else if (completedTime <= 120) {
+
+            adaptationScore += 1;
+
+        }
+
+
+        if (
+            attempts <=
+            currentPairs + 2
+        ) {
+
+            adaptationScore += 1;
+
+        }
+
+    }
+
+
+    /* ==========================================
+       ADAPT DIFFICULTY
+       ========================================== */
+
+    function adaptDifficulty() {
+
+        let accuracy = 0;
+
+        if (attempts > 0) {
+
+            accuracy =
+                (correctAttempts / attempts) *
+                100;
+
+        }
+
+
+        if (
+            adaptationScore >= 5 &&
+            currentLevel < 4
+        ) {
+
+            currentLevel++;
+
+        } else if (
+            accuracy < 60 &&
+            currentLevel > 1
+        ) {
+
+            currentLevel--;
+
+        }
+
+        levelValue.textContent =
+            currentLevel;
+
+    }
+
+
+    /* ==========================================
+       RESTART
+       ========================================== */
+
+    restartButton.addEventListener(
+        "click",
+        function() {
+
+            startRound();
+
+        }
+    );
+
+
+    /* ==========================================
+       NEXT ROUND
+       ========================================== */
+
+    nextRoundButton.addEventListener(
+        "click",
+        function() {
+
+            startRound();
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+
+        }
+    );
+
+
+    /* ==========================================
+       VOICE
+       ========================================== */
+
+    function speak(text) {
+
+        if (
+            !("speechSynthesis" in window)
+        ) {
+
+            return;
+
+        }
+
+        window.speechSynthesis.cancel();
+
+        const speech =
+            new SpeechSynthesisUtterance(text);
+
+        speech.lang = "en-IN";
+
+        speech.rate = 0.85;
+
+        window.speechSynthesis.speak(
+            speech
+        );
+
+    }
+
+
+    voiceButton.addEventListener(
+        "click",
+        function() {
+
+            speak(
+                "Memory Match. Find all the matching pairs and keep your mind active."
+            );
+
+        }
+    );
+
+
+    instructionListen.addEventListener(
+        "click",
+        function() {
+
+            speak(
+                "Find all the matching pairs."
+            );
+
+        }
+    );
+
+
+    document.addEventListener(
+        "keydown",
+        function(event) {
+
+            if (event.key === "Escape") {
+
+                if (
+                    "speechSynthesis" in window
+                ) {
+
+                    window.speechSynthesis.cancel();
+
+                }
+
+            }
+
+        }
+    );
+
+
+    /* ==========================================
+       BACK
+       ========================================== */
+
+    backButton.addEventListener(
+        "click",
+        function() {
+
+            window.location.href =
+                "../index.html";
+
+        }
+    );
+
+
+    /* ==========================================
+       START GAME
+       ========================================== */
+
+    const recommendedLevel = 
+           NeuroSaathiAdaptiveEngine
+               .getRecommendedLevel("Memory Match")
+
+    currentLevel = 
+        recommendedLevel || 1;
+
+    startRound();    
+         
+
+</script>
+
+</body>
+</html>
