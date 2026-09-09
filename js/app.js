@@ -968,3 +968,375 @@ gameButtons.forEach(
 // =========================================
 // END OF MAIN JAVASCRIPT
 // =========================================
+// =========================================
+// =========================================
+// CAREGIVER ACCESS
+// =========================================
+
+const caregiverAccessButton =
+    document.getElementById(
+        "caregiverAccessButton"
+    );
+
+
+const DEFAULT_CAREGIVER_PIN =
+    "2468";
+
+
+const CAREGIVER_PIN_KEY =
+    "neurosaathi_caregiver_pin";
+
+
+// -----------------------------------------
+// Get saved caregiver PIN
+// -----------------------------------------
+
+function getCaregiverPIN() {
+
+    const savedPIN =
+        localStorage.getItem(
+            CAREGIVER_PIN_KEY
+        );
+
+
+    if (
+        savedPIN &&
+        /^\d{4}$/.test(savedPIN)
+    ) {
+
+        return savedPIN;
+
+    }
+
+
+    // First-time default PIN
+
+    localStorage.setItem(
+        CAREGIVER_PIN_KEY,
+        DEFAULT_CAREGIVER_PIN
+    );
+
+
+    return DEFAULT_CAREGIVER_PIN;
+
+}
+
+
+
+// -----------------------------------------
+// Caregiver Access
+// -----------------------------------------
+
+if (caregiverAccessButton) {
+
+    caregiverAccessButton.addEventListener(
+        "click",
+        function() {
+
+            const enteredPin =
+                window.prompt(
+                    "Enter caregiver PIN:"
+                );
+
+
+            if (enteredPin === null) {
+                return;
+            }
+
+
+            const savedPIN =
+                getCaregiverPIN();
+
+
+            if (
+                enteredPin === savedPIN
+            ) {
+
+                window.location.href =
+                    "games/caregiver-dashboard.html";
+
+            }
+
+            else {
+
+                window.alert(
+                    "Incorrect caregiver PIN."
+                );
+
+            }
+
+        }
+    );
+
+}
+
+// =========================================
+// TODAY'S ACTIVITY PROGRESS
+// =========================================
+
+function updateDailyProgress() {
+
+    const progressFill =
+        document.getElementById(
+            "dailyProgressFill"
+        );
+
+    const progressText =
+        document.getElementById(
+            "dailyProgressText"
+        );
+
+
+    if (
+        !progressFill ||
+        !progressText
+    ) {
+        return;
+    }
+
+
+    // Start from zero every time
+
+    progressFill.style.width =
+        "0%";
+
+
+    /*
+     * These are the exact game names
+     * used by performance.js and the
+     * four activity files.
+     */
+
+    const activityNames = [
+
+        "Memory Match",
+
+        "sorting-matching",
+
+        "relationship-match",
+
+        "guided-yoga-focus"
+
+    ];
+
+
+    let enabledActivities =
+        activityNames.slice();
+
+
+    /*
+     * Respect caregiver settings.
+     */
+
+    if (
+        typeof NeuroSaathiCaregiverSettings !==
+        "undefined"
+    ) {
+
+        const settings =
+            NeuroSaathiCaregiverSettings
+                .getSettings();
+
+
+        const activities =
+            settings.activities || {};
+
+
+        enabledActivities = [];
+
+
+        if (
+            activities.memoryMatch !== false
+        ) {
+
+            enabledActivities.push(
+                "Memory Match"
+            );
+
+        }
+
+
+        if (
+            activities.sortingMatching !== false
+        ) {
+
+            enabledActivities.push(
+                "sorting-matching"
+            );
+
+        }
+
+
+        if (
+            activities.relationshipMatch !== false
+        ) {
+
+            enabledActivities.push(
+                "relationship-match"
+            );
+
+        }
+
+
+        if (
+            activities.guidedYogaFocus !== false
+        ) {
+
+            enabledActivities.push(
+                "guided-yoga-focus"
+            );
+
+        }
+
+    }
+
+
+    const totalActivities =
+        enabledActivities.length;
+
+
+    if (totalActivities === 0) {
+
+        progressText.textContent =
+            "No activities are currently enabled.";
+
+        return;
+
+    }
+
+
+    let completedActivities = 0;
+
+
+    /*
+     * Read existing performance data.
+     */
+
+    if (
+        typeof NeuroSaathiPerformance !==
+        "undefined"
+    ) {
+
+        const allData =
+            NeuroSaathiPerformance
+                .getAllData();
+
+
+        /*
+         * Use the user's local date instead
+         * of UTC date.
+         */
+
+        const today =
+            new Date();
+
+
+        const todayYear =
+            today.getFullYear();
+
+
+        const todayMonth =
+            today.getMonth();
+
+
+        const todayDay =
+            today.getDate();
+
+
+        enabledActivities.forEach(
+            function(activityName) {
+
+                const completedToday =
+                    allData.some(
+                        function(session) {
+
+                            if (
+                                session.game !==
+                                activityName
+                            ) {
+
+                                return false;
+
+                            }
+
+
+                            if (
+                                session.completed !==
+                                true
+                            ) {
+
+                                return false;
+
+                            }
+
+
+                            if (
+                                !session.timestamp
+                            ) {
+
+                                return false;
+
+                            }
+
+
+                            const sessionDate =
+                                new Date(
+                                    session.timestamp
+                                );
+
+
+                            return (
+                                sessionDate
+                                    .getFullYear() ===
+                                todayYear &&
+
+                                sessionDate
+                                    .getMonth() ===
+                                todayMonth &&
+
+                                sessionDate
+                                    .getDate() ===
+                                todayDay
+                            );
+
+                        }
+                    );
+
+
+                if (completedToday) {
+
+                    completedActivities++;
+
+                }
+
+            }
+        );
+
+    }
+
+
+    const percentage =
+        Math.round(
+            (
+                completedActivities /
+                totalActivities
+            ) * 100
+        );
+
+
+    progressFill.style.width =
+        percentage + "%";
+
+
+    progressText.textContent =
+        completedActivities +
+        " of " +
+        totalActivities +
+        " activities completed today.";
+
+}
+
+
+// Update progress when home page loads
+
+updateDailyProgress();

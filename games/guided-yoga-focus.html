@@ -12,6 +12,10 @@
 
     <title>Guided Yoga & Focus - NeuroSaathi</title>
 
+    <!-- NeuroSaathi Caregiver Settings -->
+    <script src="../js/caregiver-settings.js"></script>
+
+    <!-- NeuroSaathi Performance Tracking -->
     <script src="../js/performance.js"></script>
 
     <style>
@@ -125,10 +129,7 @@
             margin-bottom: 25px;
         }
 
-
-        /* =========================================
-           SETTINGS
-        ========================================= */
+        /* SETTINGS */
 
         .settings-grid {
             display: grid;
@@ -159,10 +160,7 @@
             font-size: 17px;
         }
 
-
-        /* =========================================
-           EXERCISE LIBRARY
-        ========================================= */
+        /* EXERCISE LIBRARY */
 
         .exercise-library {
             margin-top: 30px;
@@ -177,53 +175,18 @@
         }
 
         .exercise-option {
-            min-height: 220px;
+            min-height: 115px;
             border: 2px solid #d7e5e0;
             border-radius: 16px;
             background: white;
-            padding: 12px;
+            padding: 15px;
             text-align: center;
             transition: 0.2s;
-        }
-
-        .exercise-option:hover {
-            border-color: #237c70;
-            transform: translateY(-2px);
         }
 
         .exercise-option.selected {
             border: 3px solid #237c70;
             background: #eef8f5;
-        }
-
-        /*
-           Reserved visual area.
-           Actual exercise visuals can be added later
-           without changing the layout.
-        */
-
-        .exercise-visual-slot {
-            width: 100%;
-            height: 115px;
-            border-radius: 12px;
-            background: #e9f3ef;
-            border: 2px solid #d4e5df;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 10px;
-            overflow: hidden;
-        }
-
-        .exercise-visual-slot span {
-            color: #5d746d;
-            font-size: 13px;
-        }
-
-        .exercise-visual-slot img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
         }
 
         .exercise-number {
@@ -252,10 +215,7 @@
             margin-top: 5px;
         }
 
-
-        /* =========================================
-           ROUTINE
-        ========================================= */
+        /* ROUTINE */
 
         .routine-section {
             margin-top: 35px;
@@ -324,10 +284,7 @@
             grid-column: 1 / -1;
         }
 
-
-        /* =========================================
-           SCHEDULE
-        ========================================= */
+        /* SCHEDULE */
 
         .schedule-section {
             margin-top: 35px;
@@ -369,10 +326,7 @@
             font-size: 17px;
         }
 
-
-        /* =========================================
-           BUTTONS
-        ========================================= */
+        /* BUTTONS */
 
         .button-row {
             display: flex;
@@ -413,10 +367,7 @@
             transform: translateY(-2px);
         }
 
-
-        /* =========================================
-           WORKOUT
-        ========================================= */
+        /* WORKOUT */
 
         .workout-card {
             text-align: center;
@@ -555,10 +506,7 @@
             margin-top: 25px;
         }
 
-
-        /* =========================================
-           BREAK
-        ========================================= */
+        /* BREAK */
 
         .break-card {
             text-align: center;
@@ -604,10 +552,7 @@
             font-weight: bold;
         }
 
-
-        /* =========================================
-           COMPLETION
-        ========================================= */
+        /* COMPLETION */
 
         .completion-card {
             text-align: center;
@@ -625,11 +570,6 @@
             max-width: 650px;
             margin: 0 auto;
         }
-
-
-        /* =========================================
-           MESSAGES / SAFETY
-        ========================================= */
 
         .saved-message {
             text-align: center;
@@ -652,18 +592,28 @@
             font-size: 14px;
         }
 
+        /* CAREGIVER CONTROL NOTICE */
 
-        /* =========================================
-           RESPONSIVE
-        ========================================= */
+        .caregiver-note {
+            max-width: 760px;
+            margin: 0 auto 25px;
+            padding: 14px 18px;
+            background: #eef8f5;
+            border: 2px solid #cfe4dd;
+            border-radius: 13px;
+            text-align: center;
+            color: #365d55;
+            font-size: 15px;
+            line-height: 1.5;
+        }
 
         @media (max-width: 850px) {
 
             .exercise-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
-        }
 
+        }
 
         @media (max-width: 700px) {
 
@@ -692,8 +642,8 @@
             .current-exercise-name {
                 font-size: 26px;
             }
-        }
 
+        }
 
         @media (max-width: 480px) {
 
@@ -738,8 +688,442 @@
             .danger-button {
                 width: 100%;
             }
-        }
 
+        }
+     /* =========================================
+   EXERCISE ILLUSTRATION
+   ========================================= */
+
+.exercise-illustration {
+    width: 240px;
+    height: 240px;
+    margin: 0 auto 18px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* Main person container */
+
+.illustration-person {
+    width: 170px;
+    height: 210px;
+    position: relative;
+}
+
+/* Head */
+
+.illustration-head {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #d8a47f;
+
+    position: absolute;
+    top: 5px;
+    left: 65px;
+}
+
+/* Body */
+
+.illustration-body {
+    width: 52px;
+    height: 82px;
+    border-radius: 24px 24px 15px 15px;
+    background: #237c70;
+
+    position: absolute;
+    top: 48px;
+    left: 59px;
+}
+
+/* Arms */
+
+.illustration-arm-left,
+.illustration-arm-right {
+    width: 17px;
+    height: 72px;
+    border-radius: 10px;
+
+    background: #d8a47f;
+
+    position: absolute;
+    top: 52px;
+
+    transform-origin: top center;
+}
+
+.illustration-arm-left {
+    left: 40px;
+    transform: rotate(18deg);
+}
+
+.illustration-arm-right {
+    right: 40px;
+    transform: rotate(-18deg);
+}
+
+/* Legs */
+
+.illustration-leg-left,
+.illustration-leg-right {
+    width: 19px;
+    height: 78px;
+    border-radius: 10px;
+
+    background: #315b66;
+
+    position: absolute;
+    top: 125px;
+
+    transform-origin: top center;
+}
+
+.illustration-leg-left {
+    left: 61px;
+    transform: rotate(7deg);
+}
+
+.illustration-leg-right {
+    right: 61px;
+    transform: rotate(-7deg);
+}
+
+/* Ground shadow */
+
+.exercise-illustration::after {
+    content: "";
+
+    position: absolute;
+
+    width: 155px;
+    height: 9px;
+
+    border-radius: 50%;
+
+    background: rgba(35, 124, 112, 0.15);
+
+    bottom: 8px;
+    left: 42px;
+}
+
+/* Prevent selection while interacting */
+
+.exercise-illustration,
+.illustration-person,
+.illustration-head,
+.illustration-body,
+.illustration-arm-left,
+.illustration-arm-right,
+.illustration-leg-left,
+.illustration-leg-right {
+    user-select: none;
+    pointer-events: none;
+}
+/* =========================================
+   EXERCISE-SPECIFIC POSES
+   ========================================= */
+
+/* Smooth pose transition */
+
+.illustration-person > * {
+    transition:
+        transform 0.35s ease,
+        top 0.35s ease,
+        left 0.35s ease,
+        right 0.35s ease;
+}
+
+
+/* -----------------------------------------
+   1. DEEP BREATHING
+   ----------------------------------------- */
+
+.pose-breathing .illustration-arm-left {
+    transform: rotate(42deg);
+}
+
+.pose-breathing .illustration-arm-right {
+    transform: rotate(-42deg);
+}
+
+
+/* -----------------------------------------
+   2. SEATED MARCHING
+   ----------------------------------------- */
+
+.pose-seated-marching .illustration-body {
+    top: 65px;
+}
+
+.pose-seated-marching .illustration-leg-left {
+    top: 135px;
+    transform: rotate(72deg);
+}
+
+.pose-seated-marching .illustration-leg-right {
+    top: 135px;
+    transform: rotate(-8deg);
+}
+
+.pose-seated-marching .illustration-arm-left {
+    transform: rotate(20deg);
+}
+
+.pose-seated-marching .illustration-arm-right {
+    transform: rotate(-20deg);
+}
+
+
+/* -----------------------------------------
+   3. SHOULDER ROTATION
+   ----------------------------------------- */
+
+.pose-shoulder-rotation .illustration-arm-left {
+    transform: rotate(70deg);
+}
+
+.pose-shoulder-rotation .illustration-arm-right {
+    transform: rotate(-70deg);
+}
+
+
+/* -----------------------------------------
+   4. ARM RAISE & LOWER
+   ----------------------------------------- */
+
+.pose-arm-raise .illustration-arm-left {
+    transform: rotate(-145deg);
+}
+
+.pose-arm-raise .illustration-arm-right {
+    transform: rotate(145deg);
+}
+
+
+/* -----------------------------------------
+   5. ARM CIRCLES
+   ----------------------------------------- */
+
+.pose-arm-circles .illustration-arm-left {
+    transform: rotate(-115deg);
+}
+
+.pose-arm-circles .illustration-arm-right {
+    transform: rotate(115deg);
+}
+
+
+/* -----------------------------------------
+   6. GENTLE NECK MOVEMENT
+   ----------------------------------------- */
+
+.pose-neck .illustration-head {
+    transform: rotate(-18deg);
+}
+
+
+/* -----------------------------------------
+   7. SEATED SIDE STRETCH
+   ----------------------------------------- */
+
+.pose-side-stretch .illustration-body {
+    transform: rotate(-15deg);
+    transform-origin: bottom center;
+}
+
+.pose-side-stretch .illustration-head {
+    transform: translate(-8px, -2px);
+}
+
+.pose-side-stretch .illustration-arm-left {
+    transform: rotate(-105deg);
+}
+
+.pose-side-stretch .illustration-arm-right {
+    transform: rotate(-25deg);
+}
+
+
+/* -----------------------------------------
+   8. SEATED LEG EXTENSION
+   ----------------------------------------- */
+
+.pose-leg-extension .illustration-body {
+    top: 62px;
+}
+
+.pose-leg-extension .illustration-leg-left {
+    top: 130px;
+    transform: rotate(82deg);
+}
+
+.pose-leg-extension .illustration-leg-right {
+    top: 130px;
+    transform: rotate(-8deg);
+}
+
+
+/* -----------------------------------------
+   9. HEEL-TOE RAISES
+   ----------------------------------------- */
+
+.pose-heel-toe .illustration-leg-left {
+    transform: rotate(3deg);
+}
+
+.pose-heel-toe .illustration-leg-right {
+    transform: rotate(-3deg);
+}
+
+
+/* -----------------------------------------
+   10. ANKLE CIRCLES
+   ----------------------------------------- */
+
+.pose-ankle .illustration-leg-left {
+    transform: rotate(28deg);
+}
+
+.pose-ankle .illustration-leg-right {
+    transform: rotate(-28deg);
+}
+
+
+/* -----------------------------------------
+   11. SEATED ROWING
+   ----------------------------------------- */
+
+.pose-rowing .illustration-arm-left {
+    transform: rotate(72deg);
+}
+
+.pose-rowing .illustration-arm-right {
+    transform: rotate(-72deg);
+}
+
+.pose-rowing .illustration-body {
+    transform: rotate(-5deg);
+}
+
+
+/* -----------------------------------------
+   12. SIT-TO-STAND
+   ----------------------------------------- */
+
+.pose-sit-stand .illustration-body {
+    transform: translateY(-5px);
+}
+
+.pose-sit-stand .illustration-leg-left {
+    transform: rotate(18deg);
+}
+
+.pose-sit-stand .illustration-leg-right {
+    transform: rotate(-18deg);
+}
+
+.pose-sit-stand .illustration-arm-left {
+    transform: rotate(55deg);
+}
+
+.pose-sit-stand .illustration-arm-right {
+    transform: rotate(-55deg);
+}
+
+
+/* -----------------------------------------
+   13. STANDING BALANCE
+   ----------------------------------------- */
+
+.pose-balance .illustration-leg-left {
+    transform: rotate(2deg);
+}
+
+.pose-balance .illustration-leg-right {
+    transform: rotate(-45deg);
+}
+
+.pose-balance .illustration-arm-left {
+    transform: rotate(75deg);
+}
+
+.pose-balance .illustration-arm-right {
+    transform: rotate(-75deg);
+}
+
+
+/* -----------------------------------------
+   14. TAI CHI WEIGHT SHIFTING
+   ----------------------------------------- */
+
+.pose-tai-chi .illustration-body {
+    transform: translateX(-5px);
+}
+
+.pose-tai-chi .illustration-arm-left {
+    transform: rotate(55deg);
+}
+
+.pose-tai-chi .illustration-arm-right {
+    transform: rotate(-35deg);
+}
+
+.pose-tai-chi .illustration-leg-left {
+    transform: rotate(18deg);
+}
+
+.pose-tai-chi .illustration-leg-right {
+    transform: rotate(-18deg);
+}
+
+
+/* -----------------------------------------
+   15. RELAXATION & MINDFULNESS
+   ----------------------------------------- */
+
+.pose-relaxation .illustration-body {
+    transform: translateY(8px);
+}
+
+.pose-relaxation .illustration-arm-left {
+    transform: rotate(35deg);
+}
+
+.pose-relaxation .illustration-arm-right {
+    transform: rotate(-35deg);
+}
+
+
+/* -----------------------------------------
+   DEFAULT
+   ----------------------------------------- */
+
+.pose-default .illustration-head {
+    transform: none;
+}
+
+.pose-default .illustration-body {
+    transform: none;
+}
+
+.pose-default .illustration-arm-left {
+    transform: rotate(18deg);
+}
+
+.pose-default .illustration-arm-right {
+    transform: rotate(-18deg);
+}
+
+.pose-default .illustration-leg-left {
+    transform: rotate(7deg);
+}
+
+.pose-default .illustration-leg-right {
+    transform: rotate(-7deg);
+}
     </style>
 
 </head>
@@ -747,10 +1131,6 @@
 
 <body>
 
-
-    <!-- =========================================
-         HEADER
-    ========================================== -->
 
     <header class="header">
 
@@ -782,10 +1162,6 @@
     <main class="page">
 
 
-        <!-- =====================================
-             INTRO
-        ====================================== -->
-
         <div class="intro">
 
             <h1>
@@ -793,17 +1169,14 @@
             </h1>
 
             <p>
-                Create a gentle movement and focus routine with
-                exercises selected for comfort, mobility,
-                balance and attention.
+                Create a gentle movement and focus routine with exercises
+                selected for comfort, mobility, balance and attention.
             </p>
 
         </div>
 
 
-        <!-- =====================================
-             SETUP SCREEN
-        ====================================== -->
+        <!-- SETUP SCREEN -->
 
         <section
             id="setupScreen"
@@ -813,29 +1186,34 @@
             <div class="card">
 
                 <h2 class="section-title">
-                    Create Your Routine
+                    Today's Routine
                 </h2>
 
                 <p class="section-description">
-                    Choose your exercise time, break time and
-                    the exercises you want in your routine.
+                    Your routine is configured by the caregiver.
                 </p>
+
+
+                <div class="caregiver-note">
+                    Exercise selection and routine duration are controlled
+                    from Caregiver Settings.
+                </div>
 
 
                 <div class="settings-grid">
 
+
                     <div class="setting-box">
 
-                        <label for="exerciseTime">
-                            Exercise time (seconds)
+                        <label>
+                            Exercise time
                         </label>
 
                         <input
-                            type="number"
+                            type="text"
                             id="exerciseTime"
-                            value="60"
-                            min="10"
-                            max="600"
+                            value="5 minutes"
+                            readonly
                         >
 
                     </div>
@@ -843,24 +1221,24 @@
 
                     <div class="setting-box">
 
-                        <label for="breakTime">
-                            Break time (seconds)
+                        <label>
+                            Break time
                         </label>
 
                         <input
-                            type="number"
+                            type="text"
                             id="breakTime"
-                            value="30"
-                            min="5"
-                            max="300"
+                            value="2 minutes"
+                            readonly
                         >
 
                     </div>
+
 
                 </div>
 
 
-                <!-- Exercise Library -->
+                <!-- EXERCISE LIBRARY -->
 
                 <div class="exercise-library">
 
@@ -869,8 +1247,7 @@
                     </h2>
 
                     <p class="section-description">
-                        Select the exercises you want to add
-                        to your routine.
+                        These exercises have been selected for your routine.
                     </p>
 
                     <div
@@ -881,7 +1258,7 @@
                 </div>
 
 
-                <!-- Routine -->
+                <!-- ROUTINE -->
 
                 <div class="routine-section">
 
@@ -890,8 +1267,7 @@
                     </h2>
 
                     <p class="section-description">
-                        Your selected exercises will appear
-                        here in order.
+                        Your caregiver-selected exercises will appear here.
                     </p>
 
                     <div
@@ -904,7 +1280,7 @@
             </div>
 
 
-            <!-- Schedule -->
+            <!-- SCHEDULE -->
 
             <div class="card schedule-section">
 
@@ -1005,6 +1381,7 @@
 
                     </div>
 
+
                 </div>
 
 
@@ -1030,20 +1407,16 @@
 
             <div class="safety-note">
 
-                Keep movements gentle and comfortable.
-                The routine is designed as supportive activity,
-                not medical treatment. Stop if there is pain,
-                dizziness, unusual shortness of breath or
-                feeling unwell.
+                Keep movements gentle and comfortable. The routine is designed
+                as supportive activity, not medical treatment. Stop if there is
+                pain, dizziness, unusual shortness of breath or feeling unwell.
 
             </div>
 
         </section>
 
 
-        <!-- =====================================
-             WORKOUT SCREEN
-        ====================================== -->
+        <!-- WORKOUT SCREEN -->
 
         <section
             id="workoutScreen"
@@ -1070,30 +1443,28 @@
 
                 <div class="visual-demo">
 
-                    <div class="demo-person">
-
-                        <div class="demo-head"></div>
-
-                        <div class="demo-body"></div>
-
-                        <div class="demo-arm-left"></div>
-
-                        <div class="demo-arm-right"></div>
-
-                        <div class="demo-leg-left"></div>
-
-                        <div class="demo-leg-right"></div>
-
+                    <div
+                        id="exerciseIllustration"
+                        class="exercise-illustration"
+                        aria-label="Exercise illustration"
+                    >
+                        <div class="illustration-person">
+                            <div class="illustration-head"></div>
+                            <div class="illustration-body"></div>
+                            <div class="illustration-arm-left"></div>
+                            <div class="illustration-arm-right"></div>
+                            <div class="illustration-leg-left"></div>
+                            <div class="illustration-leg-right"></div>
+                        </div>
                     </div>
-
-
+                
                     <div
                         id="demoLabel"
                         class="demo-label"
                     >
                         Follow the gentle movement
                     </div>
-
+                
                 </div>
 
 
@@ -1145,9 +1516,7 @@
         </section>
 
 
-        <!-- =====================================
-             BREAK SCREEN
-        ====================================== -->
+        <!-- BREAK SCREEN -->
 
         <section
             id="breakScreen"
@@ -1212,9 +1581,7 @@
         </section>
 
 
-        <!-- =====================================
-             COMPLETION SCREEN
-        ====================================== -->
+        <!-- COMPLETION SCREEN -->
 
         <section
             id="completionScreen"
@@ -1229,8 +1596,8 @@
 
                 <p>
                     You completed your movement and focus routine.
-                    Every completed activity is a small step
-                    toward maintaining an active daily routine.
+                    Every completed activity is a small step toward
+                    maintaining an active daily routine.
                 </p>
 
 
@@ -1256,328 +1623,611 @@
 
         </section>
 
+
     </main>
 
 
     <script>
 
-        // =========================================
-        // EXERCISE LIBRARY
-        // =========================================
+
+        /*
+         * ==========================================
+         * NEUROSAATHI
+         * GUIDED YOGA & FOCUS
+         *
+         * Caregiver controlled.
+         * No adaptive engine.
+         * ==========================================
+         */
+
 
         const exercises = [
 
             {
                 id: "deep-breathing",
                 name: "Deep Breathing",
-                focus: "Breathing & calm",
-                instruction: "Sit comfortably and take slow, gentle breaths."
+                focus: "Calmness and attention"
             },
 
             {
-                id: "neck-movement",
+                id: "seated-marching",
+                name: "Seated Marching",
+                focus: "Coordination and movement"
+            },
+
+            {
+                id: "shoulder-rotation",
+                name: "Shoulder Rotation",
+                focus: "Shoulder mobility"
+            },
+
+            {
+                id: "arm-raise-lower",
+                name: "Arm Raise and Lower",
+                focus: "Upper-body mobility"
+            },
+
+            {
+                id: "arm-circles",
+                name: "Arm Circles",
+                focus: "Shoulder mobility"
+            },
+
+            {
+                id: "gentle-neck-movement",
                 name: "Gentle Neck Movement",
-                focus: "Mobility & attention",
-                instruction: "Move your neck gently and comfortably."
+                focus: "Gentle neck mobility"
             },
 
             {
-                id: "shoulder-rolls",
-                name: "Shoulder Rolls",
-                focus: "Shoulder mobility",
-                instruction: "Slowly roll your shoulders in a comfortable movement."
-            },
-
-            {
-                id: "seated-arm-raise",
-                name: "Seated Arm Raise",
-                focus: "Movement & coordination",
-                instruction: "Raise your arms gently and bring them back down."
+                id: "seated-side-stretch",
+                name: "Seated Side Stretch",
+                focus: "Flexibility"
             },
 
             {
                 id: "seated-leg-extension",
                 name: "Seated Leg Extension",
-                focus: "Leg movement",
-                instruction: "Extend one leg gently and return it to a comfortable position."
+                focus: "Leg strength and mobility"
             },
 
             {
-                id: "ankle-movement",
-                name: "Ankle Movement",
-                focus: "Mobility & attention",
-                instruction: "Move your ankles gently while remaining comfortable."
+                id: "heel-toe-raises",
+                name: "Heel and Toe Raises",
+                focus: "Lower-leg strength"
             },
 
             {
-                id: "seated-twist",
-                name: "Gentle Seated Twist",
-                focus: "Movement & focus",
-                instruction: "Turn your upper body gently without forcing the movement."
+                id: "ankle-circles",
+                name: "Ankle Circles",
+                focus: "Ankle mobility"
             },
 
             {
-                id: "balance-focus",
-                name: "Balance Focus",
-                focus: "Balance & attention",
-                instruction: "Stay comfortably seated or supported and focus your attention."
+                id: "seated-rowing",
+                name: "Seated Rowing Motion",
+                focus: "Coordination and upper body"
             },
 
             {
-                id: "mindful-rest",
-                name: "Mindful Rest",
-                focus: "Attention & relaxation",
-                instruction: "Sit comfortably and focus quietly on your breathing."
+                id: "sit-to-stand",
+                name: "Sit to Stand",
+                focus: "Functional strength"
+            },
+
+            {
+                id: "standing-balance",
+                name: "Gentle Standing Balance",
+                focus: "Balance and stability"
+            },
+
+            {
+                id: "tai-chi-weight-shifting",
+                name: "Tai Chi Weight Shifting",
+                focus: "Balance and controlled movement"
+            },
+
+            {
+                id: "relaxation-mindfulness",
+                name: "Relaxation and Mindfulness",
+                focus: "Attention and relaxation"
             }
 
         ];
 
 
-        // =========================================
-        // STATE
-        // =========================================
-
         let selectedExercises = [];
 
-        let exerciseTime = 60;
+        let exerciseDuration = 5 * 60;
 
-        let breakTime = 30;
+        let breakDuration = 2 * 60;
 
         let currentExerciseIndex = 0;
 
-        let remainingSeconds = 0;
+        let timerSeconds = 0;
 
         let timerInterval = null;
 
-        let breakInterval = null;
-
         let isPaused = false;
 
-        let routineStartTime = null;
+        let isBreak = false;
 
         let completedExercises = 0;
 
+        let skippedExercises = 0;
 
-        // =========================================
-        // ELEMENTS
-        // =========================================
-
-        const exerciseGrid =
-            document.getElementById("exerciseGrid");
-
-        const routineList =
-            document.getElementById("routineList");
-
-        const exerciseTimeInput =
-            document.getElementById("exerciseTime");
-
-        const breakTimeInput =
-            document.getElementById("breakTime");
-
-        const setupScreen =
-            document.getElementById("setupScreen");
-
-        const workoutScreen =
-            document.getElementById("workoutScreen");
-
-        const breakScreen =
-            document.getElementById("breakScreen");
-
-        const completionScreen =
-            document.getElementById("completionScreen");
-
-        const timer =
-            document.getElementById("timer");
-
-        const breakTimer =
-            document.getElementById("breakTimer");
-
-        const progressBar =
-            document.getElementById("progressBar");
-
-        const currentExerciseName =
-            document.getElementById("currentExerciseName");
-
-        const exerciseCounter =
-            document.getElementById("exerciseCounter");
-
-        const demoLabel =
-            document.getElementById("demoLabel");
-
-        const nextExerciseName =
-            document.getElementById("nextExerciseName");
+        let workoutStartTime = null;
 
 
-        // =========================================
-        // SCREEN CONTROL
-        // =========================================
+        /*
+         * LOAD CAREGIVER SETTINGS
+         */
+         function loadCaregiverSettings() {
 
-        function showScreen(screen) {
+let settings = null;
 
-            [
-                setupScreen,
-                workoutScreen,
-                breakScreen,
-                completionScreen
-            ].forEach(function (item) {
 
-                item.classList.remove("active");
+/*
+ * LOAD CAREGIVER SETTINGS
+ */
 
-            });
+if (
+    typeof NeuroSaathiCaregiverSettings !==
+    "undefined"
+) {
 
-            screen.classList.add("active");
+    settings =
+        NeuroSaathiCaregiverSettings.getSettings();
+
+}
+
+
+/*
+ * FALLBACK TO LOCAL STORAGE
+ */
+
+if (!settings) {
+
+    try {
+
+        const saved =
+            localStorage.getItem(
+                "neurosaathi_caregiver_settings"
+            );
+
+        if (saved) {
+
+            settings =
+                JSON.parse(saved);
+
         }
 
+    } catch (error) {
 
-        // =========================================
-        // EXERCISE LIBRARY RENDERING
-        // =========================================
+        console.log(
+            "Caregiver settings could not be loaded."
+        );
 
-        function renderExerciseLibrary() {
+    }
 
-            exerciseGrid.innerHTML = "";
+}
 
-            exercises.forEach(function (exercise, index) {
 
-                const card =
-                    document.createElement("button");
+/*
+ * DEFAULT SETTINGS
+ */
 
-                card.type = "button";
+if (!settings) {
 
-                card.className = "exercise-option";
+    settings = {
 
-                if (
-                    selectedExercises.includes(
+        yoga: {
+
+            selectedExercises:
+                exercises.map(
+                    exercise =>
                         exercise.id
-                    )
-                ) {
-                    card.classList.add("selected");
-                }
+                ),
+
+            exerciseDuration: 5,
+
+            breakDuration: 2
+
+        }
+
+    };
+
+}
 
 
-                card.innerHTML = `
-
-                    <div class="exercise-visual-slot">
-
-                        <span>
-                            Exercise visual
-                        </span>
-
-                    </div>
-
-                    <span class="exercise-number">
-                        ${index + 1}
-                    </span>
-
-                    <span class="exercise-name">
-                        ${exercise.name}
-                    </span>
-
-                    <span class="exercise-focus">
-                        ${exercise.focus}
-                    </span>
-
-                `;
+const yoga =
+    settings.yoga || {};
 
 
-                card.addEventListener(
-                    "click",
-                    function () {
+/*
+ * NORMALIZE EXERCISE VALUE
+ *
+ * This allows the system to match:
+ *
+ * deep-breathing
+ * Deep Breathing
+ * deep breathing
+ * Deep-Breathing
+ */
 
-                        toggleExercise(
-                            exercise.id
-                        );
+function normalizeExerciseValue(value) {
+
+    return String(value || "")
+        .trim()
+        .toLowerCase()
+        .replace(/&/g, "and")
+        .replace(/[^a-z0-9]/g, "");
+
+}
+
+
+/*
+ * CAREGIVER SELECTED EXERCISES
+ */
+
+const hasSelectedExercises =
+    Object.prototype.hasOwnProperty.call(
+        yoga,
+        "selectedExercises"
+    );
+
+
+if (
+    hasSelectedExercises &&
+    Array.isArray(
+        yoga.selectedExercises
+    )
+) {
+
+    selectedExercises =
+        yoga.selectedExercises
+            .map(
+                value => {
+
+                    /*
+                     * Support both:
+                     *
+                     * "deep-breathing"
+                     *
+                     * "Deep Breathing"
+                     *
+                     * and objects such as:
+                     *
+                     * { id: "deep-breathing" }
+                     */
+
+                    let savedValue =
+                        value;
+
+
+                    if (
+                        typeof value ===
+                        "object" &&
+                        value !== null
+                    ) {
+
+                        savedValue =
+                            value.id ||
+                            value.name ||
+                            "";
 
                     }
-                );
 
 
-                exerciseGrid.appendChild(card);
+                    const normalizedSaved =
+                        normalizeExerciseValue(
+                            savedValue
+                        );
 
-            });
+
+                    return exercises.find(
+                        exercise => {
+
+                            const normalizedId =
+                                normalizeExerciseValue(
+                                    exercise.id
+                                );
+
+
+                            const normalizedName =
+                                normalizeExerciseValue(
+                                    exercise.name
+                                );
+
+
+                            return (
+                                normalizedId ===
+                                normalizedSaved
+                            ) || (
+                                normalizedName ===
+                                normalizedSaved
+                            );
+
+                        }
+                    );
+
+                }
+            )
+            .filter(Boolean);
+
+} else {
+
+    /*
+     * BACKWARD COMPATIBILITY
+     *
+     * Older settings may contain only
+     * "exercise".
+     */
+
+    selectedExercises = [];
+
+
+    if (
+        yoga.exercise
+    ) {
+
+        const normalizedOldExercise =
+            normalizeExerciseValue(
+                yoga.exercise
+            );
+
+
+        const oldExercise =
+            exercises.find(
+                exercise => {
+
+                    return (
+                        normalizeExerciseValue(
+                            exercise.id
+                        ) ===
+                        normalizedOldExercise
+                    ) || (
+                        normalizeExerciseValue(
+                            exercise.name
+                        ) ===
+                        normalizedOldExercise
+                    );
+
+                }
+            );
+
+
+        if (oldExercise) {
+
+            selectedExercises =
+                [oldExercise];
 
         }
 
-
-        // =========================================
-        // SELECT / REMOVE EXERCISE
-        // =========================================
-
-        function toggleExercise(exerciseId) {
-
-            const existingIndex =
-                selectedExercises.indexOf(
-                    exerciseId
-                );
+    }
 
 
-            if (existingIndex >= 0) {
+    /*
+     * If there is no old exercise setting,
+     * use all exercises for legacy data.
+     */
 
-                selectedExercises.splice(
-                    existingIndex,
-                    1
-                );
+    if (
+        selectedExercises.length === 0
+    ) {
 
-            } else {
+        selectedExercises =
+            [...exercises];
 
-                selectedExercises.push(
-                    exerciseId
-                );
+    }
+
+}
+
+
+/*
+ * CAREGIVER EXERCISE DURATION
+ */
+
+const caregiverDuration =
+    Number(
+        yoga.exerciseDuration
+    );
+
+
+if (
+    Number.isFinite(
+        caregiverDuration
+    ) &&
+    caregiverDuration > 0
+) {
+
+    exerciseDuration =
+        caregiverDuration * 60;
+
+}
+
+
+/*
+ * CAREGIVER BREAK DURATION
+ */
+
+const caregiverBreak =
+    Number(
+        yoga.breakDuration
+    );
+
+
+if (
+    Number.isFinite(
+        caregiverBreak
+    ) &&
+    caregiverBreak >= 0
+) {
+
+    breakDuration =
+        caregiverBreak * 60;
+
+}
+
+
+/*
+ * DISPLAY CAREGIVER VALUES
+ */
+
+document.getElementById(
+    "exerciseTime"
+).value =
+    formatDuration(
+        exerciseDuration
+    );
+
+
+document.getElementById(
+    "breakTime"
+).value =
+    formatDuration(
+        breakDuration
+    );
+
+
+/*
+ * DISPLAY CAREGIVER-SELECTED EXERCISES
+ */
+
+renderExerciseLibrary();
+
+renderRoutine();
+
+}
+
+
+        /*
+         * FORMAT DURATION
+         */
+
+        function formatDuration(seconds) {
+
+            const minutes =
+                seconds / 60;
+
+
+            if (
+                Number.isInteger(
+                    minutes
+                )
+            ) {
+
+                return `${minutes} minute${
+                    minutes === 1 ? "" : "s"
+                }`;
 
             }
 
 
-            renderExerciseLibrary();
-
-            renderRoutine();
+            return `${minutes} minutes`;
 
         }
 
 
-        // =========================================
-        // ROUTINE RENDERING
-        // =========================================
+        /*
+         * RENDER EXERCISE LIBRARY
+         *
+         * IMPORTANT:
+         * These are DISPLAY ONLY.
+         *
+         * The patient cannot select or
+         * remove exercises here.
+         */
+
+        function renderExerciseLibrary() {
+
+            const grid =
+                document.getElementById(
+                    "exerciseGrid"
+                );
+
+
+            grid.innerHTML = "";
+
+
+            selectedExercises.forEach(
+                (exercise, index) => {
+
+                    const option =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    option.className =
+                        "exercise-option selected";
+
+
+                    option.innerHTML = `
+
+                        <span class="exercise-number">
+                            ${index + 1}
+                        </span>
+
+                        <span class="exercise-name">
+                            ${exercise.name}
+                        </span>
+
+                        <span class="exercise-focus">
+                            ${exercise.focus}
+                        </span>
+
+                    `;
+
+
+                    grid.appendChild(option);
+
+                }
+            );
+
+        }
+
+
+        /*
+         * RENDER ROUTINE
+         */
 
         function renderRoutine() {
 
-            routineList.innerHTML = "";
+            const list =
+                document.getElementById(
+                    "routineList"
+                );
 
 
-            if (selectedExercises.length === 0) {
+            list.innerHTML = "";
 
-                const empty =
-                    document.createElement("div");
 
-                empty.className =
-                    "empty-routine";
+            if (
+                selectedExercises.length === 0
+            ) {
 
-                empty.textContent =
-                    "No exercises selected yet. Choose an exercise above.";
+                list.innerHTML = `
 
-                routineList.appendChild(empty);
+                    <div class="empty-routine">
+                        No exercises have been selected.
+                    </div>
+
+                `;
 
                 return;
+
             }
 
 
             selectedExercises.forEach(
-                function (exerciseId, index) {
-
-                    const exercise =
-                        exercises.find(
-                            function (item) {
-                                return item.id === exerciseId;
-                            }
-                        );
-
-
-                    if (!exercise) {
-                        return;
-                    }
-
+                (exercise, index) => {
 
                     const item =
-                        document.createElement("div");
+                        document.createElement(
+                            "div"
+                        );
+
 
                     item.className =
                         "routine-item";
@@ -1597,32 +2247,10 @@
 
                         </div>
 
-                        <button
-                            class="remove-button"
-                            type="button"
-                            data-id="${exercise.id}"
-                        >
-                            Remove
-                        </button>
-
                     `;
 
 
-                    item.querySelector(
-                        ".remove-button"
-                    ).addEventListener(
-                        "click",
-                        function () {
-
-                            toggleExercise(
-                                exercise.id
-                            );
-
-                        }
-                    );
-
-
-                    routineList.appendChild(item);
+                    list.appendChild(item);
 
                 }
             );
@@ -1630,397 +2258,486 @@
         }
 
 
-        // =========================================
-        // INPUT VALIDATION
-        // =========================================
+        /*
+         * SCREEN CONTROL
+         */
 
-        function readSettings() {
+        function showScreen(screenId) {
 
-            exerciseTime =
-                Number(
-                    exerciseTimeInput.value
+            document
+                .querySelectorAll(".screen")
+                .forEach(
+                    screen =>
+                        screen.classList.remove(
+                            "active"
+                        )
                 );
 
-            breakTime =
-                Number(
-                    breakTimeInput.value
-                );
 
-
-            if (
-                !Number.isFinite(exerciseTime) ||
-                exerciseTime < 10
-            ) {
-
-                exerciseTime = 10;
-
-                exerciseTimeInput.value = 10;
-            }
-
-
-            if (
-                !Number.isFinite(breakTime) ||
-                breakTime < 5
-            ) {
-
-                breakTime = 5;
-
-                breakTimeInput.value = 5;
-            }
-
-
-            if (exerciseTime > 600) {
-
-                exerciseTime = 600;
-
-                exerciseTimeInput.value = 600;
-            }
-
-
-            if (breakTime > 300) {
-
-                breakTime = 300;
-
-                breakTimeInput.value = 300;
-            }
+            document
+                .getElementById(screenId)
+                .classList.add("active");
 
         }
 
 
-        // =========================================
-        // START ROUTINE
-        // =========================================
+        /*
+         * START ROUTINE
+         */
 
         document
             .getElementById("startButton")
             .addEventListener(
                 "click",
-                function () {
-
-                    if (
-                        selectedExercises.length === 0
-                    ) {
-
-                        alert(
-                            "Please select at least one exercise."
-                        );
-
-                        return;
-                    }
-
-
-                    readSettings();
-
-
-                    currentExerciseIndex = 0;
-
-                    completedExercises = 0;
-
-                    routineStartTime =
-                        Date.now();
-
-
-                    clearTimers();
-
-
-                    startExercise();
-
-                }
+                startWorkout
             );
 
 
-        // =========================================
-        // START EXERCISE
-        // =========================================
+        function startWorkout() {
+           
+            /*
+             * Reload latest caregiver settings
+             * immediately before starting.
+             */
 
-        function startExercise() {
+            loadCaregiverSettings();
 
-            clearInterval(timerInterval);
 
-            clearInterval(breakInterval);
+            if (
+                selectedExercises.length === 0
+            ) {
+
+                return;
+
+            }
+
+
+            currentExerciseIndex = 0;
+
+            completedExercises = 0;
+
+            skippedExercises = 0;
 
             isPaused = false;
 
+            isBreak = false;
 
-            const exerciseId =
-                selectedExercises[
-                    currentExerciseIndex
-                ];
-
-
-            const exercise =
-                exercises.find(
-                    function (item) {
-                        return item.id === exerciseId;
-                    }
-                );
+            workoutStartTime =
+                Date.now();
 
 
-            if (!exercise) {
+            showScreen(
+                "workoutScreen"
+            );
+           
+            startExercise();
+        }
+    
+
+
+        /*
+         * START EXERCISE
+         */
+
+         function startExercise() {
+            console.log("START EXERCISE REACHED");
+            
+
+clearInterval(
+    timerInterval
+);
+
+isBreak = false;
+
+isPaused = false;
+
+const exercise =
+    selectedExercises[
+        currentExerciseIndex
+    ];
+
+if (!exercise) {
+
+    finishWorkout();
+
+    return;
+
+}
+
+timerSeconds =
+    exerciseDuration;
+
+
+document.getElementById(
+    "exerciseCounter"
+).textContent =
+
+    `Exercise ${
+        currentExerciseIndex + 1
+    } of ${
+        selectedExercises.length
+    }`;
+
+
+document.getElementById(
+    "currentExerciseName"
+).textContent =
+    exercise.name;
+
+
+document.getElementById(
+    "demoLabel"
+).textContent =
+    exercise.focus;
+
+
+document.getElementById(
+    "pauseButton"
+).textContent =
+    "Pause";
+
+
+updateTimer();
+
+updateProgress();
+
+
+speakExercise(
+    exercise
+);
+
+
+timerInterval =
+    setInterval(
+        exerciseTick,
+        1000
+    );
+
+}
+function updateExerciseIllustration(exerciseId) {
+
+const illustration =
+    document.getElementById("exerciseIllustration");
+
+if (!illustration) {
+    return;
+}
+
+const poseMap = {
+
+    "deep-breathing": "breathing",
+
+    "seated-marching": "seated-marching",
+
+    "shoulder-rotation": "shoulder-rotation",
+
+    "arm-raise-lower": "arm-raise",
+
+    "arm-circles": "arm-circles",
+
+    "gentle-neck-movement": "neck",
+
+    "seated-side-stretch": "side-stretch",
+
+    "seated-leg-extension": "leg-extension",
+
+    "heel-toe-raises": "heel-toe",
+
+    "ankle-circles": "ankle",
+
+    "seated-rowing": "rowing",
+
+    "sit-to-stand": "sit-stand",
+
+    "standing-balance": "balance",
+
+    "tai-chi-weight-shifting": "tai-chi",
+
+    "relaxation-mindfulness": "relaxation"
+
+};
+
+const pose =
+    poseMap[exerciseId];
+    
+    console.log("ILLUSTRATION:",exercise,pose);
+
+illustration.className =
+    "exercise-illustration";
+
+if (pose) {
+    illustration.classList.add(
+        "pose-" + pose
+    );
+}
+}
+
+        /*
+         * EXERCISE TIMER
+         */
+
+        function exerciseTick() {
+
+            if (isPaused) {
                 return;
             }
 
 
-            showScreen(workoutScreen);
+            timerSeconds--;
 
 
-            exerciseCounter.textContent =
-                "Exercise " +
-                (currentExerciseIndex + 1) +
-                " of " +
-                selectedExercises.length;
-
-
-            currentExerciseName.textContent =
-                exercise.name;
-
-
-            demoLabel.textContent =
-                exercise.instruction;
-
-
-            remainingSeconds =
-                exerciseTime;
-
-
-            updateTimerDisplay();
+            updateTimer();
 
             updateProgress();
 
 
-            timerInterval =
-                setInterval(
-                    function () {
+            if (
+                timerSeconds <= 0
+            ) {
 
-                        if (isPaused) {
-                            return;
-                        }
-
-
-                        remainingSeconds--;
-
-                        updateTimerDisplay();
-
-                        updateProgress();
+                clearInterval(
+                    timerInterval
+                );
 
 
-                        if (
-                            remainingSeconds <= 0
-                        ) {
+                completedExercises++;
 
-                            clearInterval(
-                                timerInterval
-                            );
+                playSuccessSound();
 
-                            completeCurrentExercise();
 
-                        }
+                if (
+                    currentExerciseIndex >=
+                    selectedExercises.length - 1
+                ) {
 
-                    },
-                    1000
+                    finishWorkout();
+
+                } else {
+
+                    startBreak();
+
+                }
+
+            }
+
+        }
+
+
+        /*
+         * UPDATE TIMER
+         */
+
+        function updateTimer() {
+
+            document.getElementById(
+                "timer"
+            ).textContent =
+                formatClock(
+                    timerSeconds
                 );
 
         }
 
 
-        // =========================================
-        // TIMER DISPLAY
-        // =========================================
+        function formatClock(seconds) {
 
-        function updateTimerDisplay() {
-
-            timer.textContent =
-                Math.max(
-                    0,
-                    remainingSeconds
+            const minutes =
+                Math.floor(
+                    seconds / 60
                 );
+
+
+            const remainingSeconds =
+                seconds % 60;
+
+
+            return `${String(
+                minutes
+            ).padStart(2, "0")}:${String(
+                remainingSeconds
+            ).padStart(2, "0")}`;
 
         }
 
 
-        // =========================================
-        // PROGRESS
-        // =========================================
+        /*
+         * PROGRESS BAR
+         */
 
         function updateProgress() {
 
-            const elapsed =
-                exerciseTime -
-                remainingSeconds;
-
-
             const percentage =
-                (
-                    elapsed /
-                    exerciseTime
-                ) * 100;
+                exerciseDuration > 0
+                    ? (
+                        (
+                            exerciseDuration -
+                            timerSeconds
+                        ) /
+                        exerciseDuration
+                    ) * 100
+                    : 0;
 
 
-            progressBar.style.width =
-                Math.min(
-                    100,
-                    Math.max(
-                        0,
+            document.getElementById(
+                "progressBar"
+            ).style.width =
+                `${Math.max(
+                    0,
+                    Math.min(
+                        100,
                         percentage
                     )
-                ) + "%";
+                )}%`;
 
         }
 
 
-        // =========================================
-        // COMPLETE CURRENT EXERCISE
-        // =========================================
+        /*
+         * START BREAK
+         */
 
-        function completeCurrentExercise() {
-
-            completedExercises++;
-
+        function startBreak() {
 
             if (
                 currentExerciseIndex >=
                 selectedExercises.length - 1
             ) {
 
-                finishRoutine();
+                finishWorkout();
 
                 return;
+
             }
 
 
-            const nextId =
+            if (
+                breakDuration <= 0
+            ) {
+
+                currentExerciseIndex++;
+
+                startExercise();
+
+                return;
+
+            }
+
+
+            isBreak = true;
+
+            isPaused = false;
+
+            timerSeconds =
+                breakDuration;
+
+
+            const nextExercise =
                 selectedExercises[
                     currentExerciseIndex + 1
                 ];
 
 
-            const nextExercise =
-                exercises.find(
-                    function (item) {
-                        return item.id === nextId;
-                    }
+            document.getElementById(
+                "nextExerciseName"
+            ).textContent =
+                nextExercise
+                    ? nextExercise.name
+                    : "Complete";
+
+
+            document.getElementById(
+                "breakTimer"
+            ).textContent =
+                formatClock(
+                    timerSeconds
                 );
 
 
-            nextExerciseName.textContent =
-                nextExercise
-                    ? nextExercise.name
-                    : "Next exercise";
+            showScreen(
+                "breakScreen"
+            );
 
 
-            startBreak();
-
-        }
-
-
-        // =========================================
-        // BREAK TIMER
-        // =========================================
-
-        function startBreak() {
-
-            clearInterval(timerInterval);
-
-            clearInterval(breakInterval);
-
-
-            remainingSeconds =
-                breakTime;
-
-
-            breakTimer.textContent =
-                remainingSeconds;
-
-
-            showScreen(breakScreen);
-
-
-            breakInterval =
+            timerInterval =
                 setInterval(
-                    function () {
-
-                        remainingSeconds--;
-
-                        breakTimer.textContent =
-                            Math.max(
-                                0,
-                                remainingSeconds
-                            );
-
-
-                        if (
-                            remainingSeconds <= 0
-                        ) {
-
-                            clearInterval(
-                                breakInterval
-                            );
-
-                            currentExerciseIndex++;
-
-                            startExercise();
-
-                        }
-
-                    },
+                    breakTick,
                     1000
                 );
 
         }
 
 
-        // =========================================
-        // SKIP BREAK
-        // =========================================
+        /*
+         * BREAK TIMER
+         */
+
+        function breakTick() {
+
+            if (isPaused) {
+                return;
+            }
+
+
+            timerSeconds--;
+
+
+            document.getElementById(
+                "breakTimer"
+            ).textContent =
+                formatClock(
+                    timerSeconds
+                );
+
+
+            if (
+                timerSeconds <= 0
+            ) {
+
+                clearInterval(
+                    timerInterval
+                );
+
+
+                currentExerciseIndex++;
+
+                showScreen(
+                    "workoutScreen"
+                );
+
+
+                startExercise();
+
+            }
+
+        }
+
+
+        /*
+         * PAUSE / RESUME
+         */
 
         document
-            .getElementById("skipBreakButton")
+            .getElementById("pauseButton")
             .addEventListener(
                 "click",
                 function () {
 
-                    clearInterval(
-                        breakInterval
-                    );
+                    isPaused =
+                        !isPaused;
 
-                    currentExerciseIndex++;
 
-                    startExercise();
+                    this.textContent =
+                        isPaused
+                            ? "Resume"
+                            : "Pause";
 
                 }
             );
 
 
-        // =========================================
-        // PAUSE / RESUME
-        // =========================================
-
-        const pauseButton =
-            document.getElementById(
-                "pauseButton"
-            );
-
-
-        pauseButton.addEventListener(
-            "click",
-            function () {
-
-                isPaused =
-                    !isPaused;
-
-
-                pauseButton.textContent =
-                    isPaused
-                        ? "Resume"
-                        : "Pause";
-
-            }
-        );
-
-
-        // =========================================
-        // SKIP EXERCISE
-        // =========================================
+        /*
+         * SKIP EXERCISE
+         */
 
         document
             .getElementById("skipButton")
@@ -2032,15 +2749,62 @@
                         timerInterval
                     );
 
-                    completeCurrentExercise();
+
+                    skippedExercises++;
+
+
+                    if (
+                        currentExerciseIndex >=
+                        selectedExercises.length - 1
+                    ) {
+
+                        finishWorkout();
+
+                        return;
+
+                    }
+
+
+                    startBreak();
 
                 }
             );
 
 
-        // =========================================
-        // STOP ROUTINE
-        // =========================================
+        /*
+         * SKIP BREAK
+         */
+
+        document
+            .getElementById(
+                "skipBreakButton"
+            )
+            .addEventListener(
+                "click",
+                function () {
+
+                    clearInterval(
+                        timerInterval
+                    );
+
+
+                    currentExerciseIndex++;
+
+
+                    showScreen(
+                        "workoutScreen"
+                    );
+
+
+                    startExercise();
+
+                }
+            );
+
+
+        /*
+         * STOP DURING EXERCISE
+         */
 
         document
             .getElementById("stopButton")
@@ -2048,58 +2812,211 @@
                 "click",
                 function () {
 
-                    stopRoutine();
+                    clearInterval(
+                        timerInterval
+                    );
+
+
+                    finishWorkout();
 
                 }
             );
 
 
+        /*
+         * STOP DURING BREAK
+         */
+
         document
-            .getElementById("stopBreakButton")
+            .getElementById(
+                "stopBreakButton"
+            )
             .addEventListener(
                 "click",
                 function () {
 
-                    stopRoutine();
+                    clearInterval(
+                        timerInterval
+                    );
+
+
+                    finishWorkout();
 
                 }
             );
 
 
-        function stopRoutine() {
+        /*
+         * VOICE
+         */
 
-            clearTimers();
+        document
+            .getElementById("listenButton")
+            .addEventListener(
+                "click",
+                function () {
 
-            showScreen(setupScreen);
+                    if (
+                        isBreak
+                    ) {
+
+                        speakText(
+                            "Take a gentle break and relax."
+                        );
+
+                        return;
+
+                    }
+
+const exercise =
+    selectedExercises[
+        currentExerciseIndex
+    ];
+
+if (!exercise) {
+
+    finishWorkout();
+
+    return;
+
+}
+
+console.log("CALLING ILLUSTRATION:", exercise.id);
+updateExerciseIllustration(exercise.id);
+
+speakExercise(
+    exercise
+);
+
+                    }
+
+                
+            );
+
+
+        function speakExercise(
+            exercise
+        ) {
+
+            speakText(
+
+                `${exercise.name}. ` +
+                `${exercise.focus}. ` +
+                `Please perform the exercise gently and comfortably.`
+
+            );
 
         }
 
 
-        // =========================================
-        // CLEAR TIMERS
-        // =========================================
+        function speakText(
+            text
+        ) {
 
-        function clearTimers() {
+            if (
+                !("speechSynthesis" in window)
+            ) {
 
-            clearInterval(timerInterval);
+                return;
 
-            clearInterval(breakInterval);
+            }
 
-            timerInterval = null;
 
-            breakInterval = null;
+            speechSynthesis.cancel();
 
-            isPaused = false;
 
-            pauseButton.textContent =
-                "Pause";
+            const utterance =
+                new SpeechSynthesisUtterance(
+                    text
+                );
+
+
+            utterance.lang =
+                "en-IN";
+
+
+            utterance.rate =
+                0.85;
+
+
+            utterance.pitch =
+                1;
+
+
+            speechSynthesis.speak(
+                utterance
+            );
 
         }
 
 
-        // =========================================
-        // COMPLETION SOUND
-        // =========================================
+        /*
+         * BACK BUTTON
+         */
+
+        document
+            .getElementById("backButton")
+            .addEventListener(
+                "click",
+                function () {
+
+                    clearInterval(
+                        timerInterval
+                    );
+
+
+                    speechSynthesis.cancel();
+
+
+                    window.location.href =
+                        "../index.html";
+
+                }
+            );
+
+
+        /*
+         * START AGAIN
+         */
+
+        document
+            .getElementById("againButton")
+            .addEventListener(
+                "click",
+                function () {
+
+                    loadCaregiverSettings();
+
+                    showScreen(
+                        "setupScreen"
+                    );
+
+                }
+            );
+
+
+        /*
+         * HOME
+         */
+
+        document
+            .getElementById("homeButton")
+            .addEventListener(
+                "click",
+                function () {
+
+                    window.location.href =
+                        "../index.html";
+
+                }
+            );
+
+
+        /*
+         * COMPLETION SOUND
+         *
+         * Soothing sound only.
+         */
 
         function playSuccessSound() {
 
@@ -2115,7 +3032,7 @@
                 }
 
 
-                const audioContext =
+                const context =
                     new AudioContext();
 
 
@@ -2127,62 +3044,67 @@
 
 
                 notes.forEach(
-                    function (frequency, index) {
+                    (
+                        frequency,
+                        index
+                    ) => {
 
                         const oscillator =
-                            audioContext.createOscillator();
+                            context.createOscillator();
+
 
                         const gain =
-                            audioContext.createGain();
+                            context.createGain();
 
-
-                        oscillator.frequency.value =
-                            frequency;
 
                         oscillator.type =
                             "sine";
 
 
-                        gain.gain.setValueAtTime(
-                            0.001,
-                            audioContext.currentTime +
-                            index * 0.16
+                        oscillator.frequency.value =
+                            frequency;
+
+
+                        oscillator.connect(
+                            gain
                         );
 
-
-                        gain.gain.exponentialRampToValueAtTime(
-                            0.18,
-                            audioContext.currentTime +
-                            index * 0.16 +
-                            0.03
-                        );
-
-
-                        gain.gain.exponentialRampToValueAtTime(
-                            0.001,
-                            audioContext.currentTime +
-                            index * 0.16 +
-                            0.30
-                        );
-
-
-                        oscillator.connect(gain);
 
                         gain.connect(
-                            audioContext.destination
+                            context.destination
+                        );
+
+
+                        const startTime =
+                            context.currentTime +
+                            index * 0.16;
+
+
+                        gain.gain.setValueAtTime(
+                            0,
+                            startTime
+                        );
+
+
+                        gain.gain.linearRampToValueAtTime(
+                            0.18,
+                            startTime + 0.04
+                        );
+
+
+                        gain.gain.linearRampToValueAtTime(
+                            0,
+                            startTime + 0.30
                         );
 
 
                         oscillator.start(
-                            audioContext.currentTime +
-                            index * 0.16
+                            startTime
                         );
 
 
                         oscillator.stop(
-                            audioContext.currentTime +
-                            index * 0.16 +
-                            0.32
+                            startTime + 0.30
                         );
 
                     }
@@ -2190,365 +3112,158 @@
 
             } catch (error) {
 
-                // Sound is optional and should never
-                // prevent the routine from completing.
+                console.log(
+                    "Completion sound unavailable."
+                );
 
             }
 
         }
 
 
-        // =========================================
-        // FINISH ROUTINE
-        // =========================================
+        /*
+         * FINISH WORKOUT
+         */
 
-        function finishRoutine() {
+        function finishWorkout() {
 
-            clearTimers();
+            clearInterval(
+                timerInterval
+            );
+
+
+            speechSynthesis.cancel();
 
 
             const completionTime =
-                Math.round(
-                    (
-                        Date.now() -
-                        routineStartTime
-                    ) / 1000
-                );
+                workoutStartTime
+                    ? Math.round(
+                        (
+                            Date.now() -
+                            workoutStartTime
+                        ) / 1000
+                    )
+                    : 0;
+
+
+            const totalExercises =
+                selectedExercises.length;
+
+
+            const accuracy =
+                totalExercises > 0
+                    ? Math.round(
+                        (
+                            completedExercises /
+                            totalExercises
+                        ) * 100
+                    )
+                    : 0;
 
 
             /*
-             * Guided Yoga & Focus intentionally does
-             * NOT use the adaptive engine.
-             *
-             * We only record the completed routine
-             * for caregiver visibility.
+             * Performance tracking
              */
 
             if (
-                typeof savePerformance ===
-                "function"
+                typeof NeuroSaathiPerformance !==
+                "undefined"
             ) {
 
-                savePerformance({
+                NeuroSaathiPerformance
+                    .saveGameSession({
 
-                    game: "guided-yoga-focus",
+                        game:
+                            "guided-yoga-focus",
 
-                    level: 1,
+                        level:
+                            1,
 
-                    accuracy: 100,
+                        accuracy:
+                            accuracy,
 
-                    attempts:
-                        selectedExercises.length,
+                        attempts:
+                            totalExercises,
 
-                    correct:
-                        completedExercises,
+                        correct:
+                            completedExercises,
 
-                    mistakes: 0,
+                        mistakes:
+                            skippedExercises,
 
-                    completionTime:
-                        completionTime,
+                        completionTime:
+                            completionTime,
 
-                    completed: true,
+                        completed:
+                            completedExercises > 0
 
-                    timestamp:
-                        new Date().toISOString()
-
-                });
+                    });
 
             }
 
 
             playSuccessSound();
 
+
             showScreen(
-                completionScreen
+                "completionScreen"
             );
 
         }
 
 
-        // =========================================
-        // START AGAIN
-        // =========================================
+        /*
+         * SCHEDULE
+         *
+         * Schedule remains patient-visible
+         * but does not modify caregiver routine.
+         */
+
+        const scheduleKey =
+            "neurosaathiYogaSchedule";
+
+
+        let selectedDays = [];
+
 
         document
-            .getElementById("againButton")
-            .addEventListener(
-                "click",
-                function () {
+            .querySelectorAll(".day-button")
+            .forEach(
+                button => {
 
-                    showScreen(
-                        setupScreen
-                    );
+                    button.addEventListener(
+                        "click",
+                        function () {
 
-                }
-            );
+                            const day =
+                                this.dataset.day;
 
 
-        // =========================================
-        // BACK HOME
-        // =========================================
+                            if (
+                                selectedDays.includes(
+                                    day
+                                )
+                            ) {
 
-        document
-            .getElementById("homeButton")
-            .addEventListener(
-                "click",
-                function () {
+                                selectedDays =
+                                    selectedDays.filter(
+                                        item =>
+                                            item !== day
+                                    );
 
-                    window.location.href =
-                        "../index.html";
 
-                }
-            );
+                                this.classList.remove(
+                                    "selected"
+                                );
 
+                            } else {
 
-        // =========================================
-        // HEADER BACK BUTTON
-        // =========================================
-
-        document
-            .getElementById("backButton")
-            .addEventListener(
-                "click",
-                function () {
-
-                    clearTimers();
-
-                    window.location.href =
-                        "../index.html";
-
-                }
-            );
-
-
-        // =========================================
-        // VOICE
-        // =========================================
-
-        const listenButton =
-            document.getElementById(
-                "listenButton"
-            );
-
-
-        function speakText(text) {
-
-            if (
-                !(
-                    "speechSynthesis"
-                    in window
-                )
-            ) {
-
-                alert(
-                    "Voice support is not available in this browser."
-                );
-
-                return;
-            }
-
-
-            window.speechSynthesis.cancel();
-
-
-            const speech =
-                new SpeechSynthesisUtterance(
-                    text
-                );
-
-
-            speech.lang =
-                "en-IN";
-
-            speech.rate =
-                0.85;
-
-            speech.pitch =
-                1;
-
-
-            window.speechSynthesis.speak(
-                speech
-            );
-
-        }
-
-
-        listenButton.addEventListener(
-            "click",
-            function () {
-
-                speakText(
-                    "Guided Yoga and Focus. " +
-                    "Choose the exercises you want in your routine. " +
-                    "You can set the exercise time and break time. " +
-                    "When you are ready, start your routine. " +
-                    "You can pause, skip or stop at any time."
-                );
-
-            }
-        );
-
-
-        // =========================================
-        // SCHEDULE
-        // =========================================
-
-        const selectedDays =
-            new Set();
-
-
-        const dayButtons =
-            document.querySelectorAll(
-                ".day-button"
-            );
-
-
-        dayButtons.forEach(
-            function (button) {
-
-                button.addEventListener(
-                    "click",
-                    function () {
-
-                        const day =
-                            button.dataset.day;
-
-
-                        if (
-                            selectedDays.has(day)
-                        ) {
-
-                            selectedDays.delete(
-                                day
-                            );
-
-                            button.classList.remove(
-                                "selected"
-                            );
-
-                        } else {
-
-                            selectedDays.add(
-                                day
-                            );
-
-                            button.classList.add(
-                                "selected"
-                            );
-
-                        }
-
-                    }
-                );
-
-            }
-        );
-
-
-        // =========================================
-        // SAVE SCHEDULE
-        // =========================================
-
-        document
-            .getElementById(
-                "saveScheduleButton"
-            )
-            .addEventListener(
-                "click",
-                function () {
-
-                    const scheduleTime =
-                        document.getElementById(
-                            "scheduleTime"
-                        ).value;
-
-
-                    const schedule = {
-
-                        days:
-                            Array.from(
-                                selectedDays
-                            ),
-
-                        time:
-                            scheduleTime
-
-                    };
-
-
-                    try {
-
-                        localStorage.setItem(
-                            "neurosaathi_yoga_schedule",
-                            JSON.stringify(
-                                schedule
-                            )
-                        );
-
-
-                        document.getElementById(
-                            "savedMessage"
-                        ).textContent =
-                            "Routine schedule saved.";
-
-                    } catch (error) {
-
-                        document.getElementById(
-                            "savedMessage"
-                        ).textContent =
-                            "The schedule could not be saved.";
-
-                    }
-
-                }
-            );
-
-
-        // =========================================
-        // LOAD SAVED SCHEDULE
-        // =========================================
-
-        function loadSchedule() {
-
-            const saved =
-                localStorage.getItem(
-                    "neurosaathi_yoga_schedule"
-                );
-
-
-            if (!saved) {
-                return;
-            }
-
-
-            try {
-
-                const schedule =
-                    JSON.parse(saved);
-
-
-                if (
-                    Array.isArray(
-                        schedule.days
-                    )
-                ) {
-
-                    schedule.days.forEach(
-                        function (day) {
-
-                            selectedDays.add(day);
-
-
-                            const button =
-                                document.querySelector(
-                                    `[data-day="${day}"]`
+                                selectedDays.push(
+                                    day
                                 );
 
 
-                            if (button) {
-
-                                button.classList.add(
+                                this.classList.add(
                                     "selected"
                                 );
 
@@ -2558,9 +3273,129 @@
                     );
 
                 }
+            );
 
 
-                if (schedule.time) {
+        /*
+         * SAVE SCHEDULE
+         */
+
+        document
+            .getElementById(
+                "saveScheduleButton"
+            )
+            .addEventListener(
+                "click",
+                function () {
+
+                    const time =
+                        document.getElementById(
+                            "scheduleTime"
+                        ).value;
+
+
+                    const schedule = {
+
+                        days:
+                            selectedDays,
+
+                        time:
+                            time
+
+                    };
+
+
+                    try {
+
+                        localStorage.setItem(
+                            scheduleKey,
+                            JSON.stringify(
+                                schedule
+                            )
+                        );
+
+
+                        document.getElementById(
+                            "savedMessage"
+                        ).textContent =
+                            "Schedule saved.";
+
+                    } catch (error) {
+
+                        document.getElementById(
+                            "savedMessage"
+                        ).textContent =
+                            "Schedule could not be saved.";
+
+                    }
+
+                }
+            );
+
+
+        /*
+         * LOAD SCHEDULE
+         */
+
+        function loadSchedule() {
+
+            try {
+
+                const saved =
+                    localStorage.getItem(
+                        scheduleKey
+                    );
+
+
+                if (!saved) {
+                    return;
+                }
+
+
+                const schedule =
+                    JSON.parse(
+                        saved
+                    );
+
+
+                if (
+                    Array.isArray(
+                        schedule.days
+                    )
+                ) {
+
+                    selectedDays =
+                        schedule.days;
+
+
+                    document
+                        .querySelectorAll(
+                            ".day-button"
+                        )
+                        .forEach(
+                            button => {
+
+                                if (
+                                    selectedDays.includes(
+                                        button.dataset.day
+                                    )
+                                ) {
+
+                                    button.classList.add(
+                                        "selected"
+                                    );
+
+                                }
+
+                            }
+                        );
+
+                }
+
+
+                if (
+                    schedule.time
+                ) {
 
                     document.getElementById(
                         "scheduleTime"
@@ -2571,24 +3406,26 @@
 
             } catch (error) {
 
-                // Ignore invalid saved schedule.
+                console.log(
+                    "Yoga schedule could not be loaded."
+                );
 
             }
 
         }
 
 
-        // =========================================
-        // INITIALIZE
-        // =========================================
+        /*
+         * INITIALIZE
+         */
 
-        renderExerciseLibrary();
-
-        renderRoutine();
+        loadCaregiverSettings();
 
         loadSchedule();
 
+
     </script>
+
 
 </body>
 

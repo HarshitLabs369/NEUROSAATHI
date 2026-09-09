@@ -251,7 +251,7 @@ main {
 }
 
 .progress-fill {
-    width: 35%;
+    width: 0%;
     height: 100%;
     background: #237c70;
 }
@@ -342,3 +342,76 @@ footer {
        transform: translateY(0);
        opacity: 0.7;
    }
+/* =========================================
+   CAREGIVER ACCESS BUTTON
+   ========================================= */
+
+   #caregiverAccessButton {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 11px 24px;
+
+    background: transparent;
+    color: #17332f;
+
+    border: 2px solid #237c70;
+    border-radius: 10px;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.25s ease,
+        color 0.25s ease,
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+#caregiverAccessButton:hover {
+    background: #237c70;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(35, 124, 112, 0.20);
+}
+
+#caregiverAccessButton:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+/* =========================================
+   CAREGIVER SETTINGS BUTTON
+========================================= */
+
+.caregiver-settings-button {
+    display: inline-block;
+    margin-left: 10px;
+    padding: 11px 22px;
+    background: #237c70;
+    color: white;
+    border: 2px solid #237c70;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition:
+        background-color 0.25s ease,
+        color 0.25s ease,
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.caregiver-settings-button:hover {
+    background: #17332f;
+    border-color: #17332f;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(23, 51, 47, 0.20);
+}
+
+.caregiver-settings-button:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
