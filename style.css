@@ -1,0 +1,417 @@
+/* =========================================
+   NEUROSAATHI — Main Styles
+   ========================================= */
+
+   * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f7f6;
+    color: #17332f;
+    line-height: 1.6;
+}
+
+/* ---------- HEADER ---------- */
+
+.app-header {
+    background: #17332f;
+    color: white;
+    padding: 22px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.app-header h1 {
+    font-size: 30px;
+    margin-bottom: 2px;
+}
+
+.app-header p {
+    font-size: 15px;
+    opacity: 0.8;
+}
+
+.voice-button {
+    background: white;
+    color: #17332f;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* ---------- MAIN ---------- */
+
+main {
+    width: 86%;
+    max-width: 1200px;
+    margin: 35px auto;
+}
+
+/* ---------- WELCOME ---------- */
+
+.welcome-section {
+    background: white;
+    padding: 45px;
+    border-radius: 22px;
+    text-align: center;
+    margin-bottom: 25px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06);
+}
+
+.welcome-section h2 {
+    font-size: 34px;
+    margin-bottom: 10px;
+}
+
+.welcome-section p {
+    font-size: 18px;
+    color: #5b6d68;
+    margin-bottom: 25px;
+}
+
+.primary-button {
+    background: #237c70;
+    color: white;
+    border: none;
+    padding: 15px 28px;
+    border-radius: 12px;
+    font-size: 17px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.primary-button:hover {
+    background: #195f56;
+}
+
+/* ---------- MEMORY ANCHOR ---------- */
+
+.memory-anchor {
+  background: #e4f2ee;
+  border-radius: 24px;
+  padding: 35px 30px;
+  margin-bottom: 35px;
+  text-align: center;
+}
+
+.memory-anchor-content {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.memory-anchor .section-label {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.memory-anchor h2 {
+  font-size: 30px;
+  margin-bottom: 8px;
+}
+
+.memory-anchor p {
+  color: #5b6d68;
+  font-size: 17px;
+  margin-bottom: 22px;
+}
+
+/* Large memory photo area */
+
+.memory-photo-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto 25px;
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid #ffffff;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+.memory-placeholder {
+  color: #71817d;
+  font-size: 18px;
+  padding: 20px;
+}
+
+/* Uploaded memory image */
+
+.memory-photo-container img {
+  display:block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  border-radius: 17px;
+}
+
+/* Memory button */
+
+.memory-anchor .secondary-button {
+  font-size: 17px;
+  padding: 14px 28px;
+}
+/* ---------- GAMES ---------- */
+
+.games-section {
+    margin-bottom: 35px;
+}
+
+.section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+.section-heading h2 {
+    font-size: 27px;
+    margin-top: 4px;
+}
+
+.listen-button {
+    background: white;
+    border: 1px solid #cbd8d4;
+    padding: 10px 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.games-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.game-card {
+    background: white;
+    padding: 28px;
+    border-radius: 18px;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e0e8e5;
+}
+
+.game-icon {
+    font-size: 25px;
+    font-weight: bold;
+    color: #237c70;
+    margin-bottom: 10px;
+}
+
+.game-card h3 {
+    font-size: 22px;
+    margin-bottom: 7px;
+}
+
+.game-card p {
+    color: #687974;
+    margin-bottom: 20px;
+}
+
+.game-button {
+    background: #17332f;
+    color: white;
+    border: none;
+    padding: 11px 22px;
+    border-radius: 9px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* ---------- PROGRESS ---------- */
+
+.progress-section {
+    background: white;
+    padding: 28px;
+    border-radius: 18px;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.05);
+}
+
+.progress-section h2 {
+    margin: 5px 0 18px;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 14px;
+    background: #e3ebe8;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    width: 0%;
+    height: 100%;
+    background: #237c70;
+}
+
+/* ---------- FOOTER ---------- */
+
+footer {
+    text-align: center;
+    padding: 30px;
+    color: #71817d;
+    font-size: 14px;
+}
+
+/* ---------- MOBILE ---------- */
+
+@media (max-width: 700px) {
+
+    .app-header {
+        padding: 18px 5%;
+    }
+
+    .app-header h1 {
+        font-size: 24px;
+    }
+
+    main {
+        width: 92%;
+    }
+
+    .welcome-section {
+        padding: 30px 20px;
+    }
+
+    .welcome-section h2 {
+        font-size: 27px;
+    }
+
+    .memory-anchor {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .games-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* =========================================
+   BUTTON FADE / HOVER EFFECT
+   ========================================= */
+
+   .voice-button,
+   .secondary-button,
+   .game-button,
+   .listen-button {
+       transition:
+           opacity 0.25s ease,
+           background-color 0.25s ease,
+           color 0.25s ease,
+           transform 0.25s ease,
+           box-shadow 0.25s ease;
+   }
+   
+   /* Cursor hover effect */
+   
+   .voice-button:hover,
+   .secondary-button:hover,
+   .game-button:hover,
+   .listen-button:hover {
+       opacity: 0.82;
+       transform: translateY(-2px);
+   }
+   
+   /* Slightly stronger effect for Play buttons */
+   
+   .game-button:hover {
+       opacity: 0.85;
+       box-shadow: 0 5px 12px rgba(0, 0, 0, 0.15);
+   }
+   
+   /* Click effect */
+   
+   .voice-button:active,
+   .secondary-button:active,
+   .game-button:active,
+   .listen-button:active {
+       transform: translateY(0);
+       opacity: 0.7;
+   }
+/* =========================================
+   CAREGIVER ACCESS BUTTON
+   ========================================= */
+
+   #caregiverAccessButton {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 11px 24px;
+
+    background: transparent;
+    color: #17332f;
+
+    border: 2px solid #237c70;
+    border-radius: 10px;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.25s ease,
+        color 0.25s ease,
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+#caregiverAccessButton:hover {
+    background: #237c70;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(35, 124, 112, 0.20);
+}
+
+#caregiverAccessButton:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+/* =========================================
+   CAREGIVER SETTINGS BUTTON
+========================================= */
+
+.caregiver-settings-button {
+    display: inline-block;
+    margin-left: 10px;
+    padding: 11px 22px;
+    background: #237c70;
+    color: white;
+    border: 2px solid #237c70;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition:
+        background-color 0.25s ease,
+        color 0.25s ease,
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.caregiver-settings-button:hover {
+    background: #17332f;
+    border-color: #17332f;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(23, 51, 47, 0.20);
+}
+
+.caregiver-settings-button:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
