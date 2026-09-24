@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5184,4 +5185,5192 @@ startRound();
 
 </body>
 
+=======
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Memory Match | NeuroSaathi</title>
+
+
+    <style>
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    min-height: 100%;
+}
+
+body {
+    margin: 0;
+
+    font-family:
+        Arial,
+        sans-serif;
+
+    color: #17332f;
+
+    /*
+       NeuroSaathi botanical background
+
+       memory-match.html is inside /games
+       bg.png is inside /assests
+
+       Therefore:
+       ../assests/bg.png
+    */
+    background-image:
+        url("../assests/bg.png");
+
+    background-repeat:
+        no-repeat;
+
+    background-position:
+        center center;
+
+    background-size:
+        cover;
+
+    background-attachment:
+        fixed;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+header {
+    background:
+        #17332f;
+
+    color:
+        white;
+
+    padding:
+        20px;
+
+    display:
+        flex;
+
+    justify-content:
+        space-between;
+
+    align-items:
+        center;
+
+    gap:
+        15px;
+
+    flex-wrap:
+        wrap;
+}
+
+.header-left h1 {
+    margin:
+        0;
+
+    font-size:
+        28px;
+}
+
+.header-left p {
+    margin:
+        5px 0 0;
+
+    opacity:
+        0.85;
+}
+
+.header-actions {
+    display:
+        flex;
+
+    gap:
+        10px;
+}
+
+button {
+    font-family:
+        inherit;
+
+    cursor:
+        pointer;
+}
+
+.voice-button,
+.secondary-button,
+.listen-button {
+    border:
+        none;
+
+    border-radius:
+        12px;
+
+    padding:
+        12px 18px;
+
+    font-size:
+        16px;
+
+    font-weight:
+        bold;
+
+    transition:
+        0.2s ease;
+}
+
+.voice-button {
+    background:
+        #ffffff;
+
+    color:
+        #17332f;
+}
+
+.secondary-button {
+    background:
+        #dcece8;
+
+    color:
+        #17332f;
+}
+
+.listen-button {
+    background:
+        #237c70;
+
+    color:
+        white;
+}
+
+.voice-button:hover,
+.secondary-button:hover,
+.listen-button:hover {
+    transform:
+        translateY(-2px);
+}
+
+
+/* =========================
+   MAIN
+========================= */
+
+main {
+    max-width:
+        1100px;
+
+    margin:
+        0 auto;
+
+    padding:
+        30px 20px 50px;
+
+    /*
+       Transparent so the botanical
+       background remains visible.
+    */
+    background:
+        transparent;
+}
+
+
+/* =========================
+   INTRO
+========================= */
+
+.intro {
+    text-align:
+        center;
+
+    margin-bottom:
+        25px;
+
+    background:
+        rgba(255,255,255,0.78);
+
+    padding:
+        22px;
+
+    border-radius:
+        20px;
+}
+
+.intro h2 {
+    margin-bottom:
+        8px;
+
+    font-size:
+        30px;
+}
+
+.intro p {
+    font-size:
+        18px;
+
+    color:
+        #50615e;
+}
+
+
+/* =========================
+   INSTRUCTIONS
+========================= */
+
+.instruction-box {
+    background:
+        rgba(255,255,255,0.90);
+
+    border-radius:
+        18px;
+
+    padding:
+        20px;
+
+    margin-bottom:
+        25px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    gap:
+        15px;
+
+    box-shadow:
+        0 5px 18px
+        rgba(0,0,0,0.06);
+}
+
+.instruction-text {
+    font-size:
+        19px;
+
+    font-weight:
+        bold;
+}
+
+
+/* =========================
+   STATS
+========================= */
+
+.stats {
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap:
+        15px;
+
+    margin-bottom:
+        25px;
+}
+
+.stat-card {
+    background:
+        rgba(255,255,255,0.90);
+
+    border-radius:
+        16px;
+
+    padding:
+        18px;
+
+    text-align:
+        center;
+
+    box-shadow:
+        0 5px 18px
+        rgba(0,0,0,0.06);
+}
+
+.stat-label {
+    font-size:
+        14px;
+
+    color:
+        #657470;
+
+    margin-bottom:
+        7px;
+}
+
+.stat-value {
+    font-size:
+        26px;
+
+    font-weight:
+        bold;
+}
+
+
+/* =========================
+   BOARD
+========================= */
+
+.board {
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap:
+        16px;
+
+    max-width:
+        800px;
+
+    margin:
+        0 auto 25px;
+}
+
+
+/* =========================
+   CARD
+========================= */
+
+.card {
+    aspect-ratio:
+        1 / 1;
+
+    perspective:
+        1000px;
+
+    cursor:
+        pointer;
+}
+
+.card-inner {
+    width:
+        100%;
+
+    height:
+        100%;
+
+    position:
+        relative;
+
+    transform-style:
+        preserve-3d;
+
+    transition:
+        transform 0.5s;
+}
+
+.card.flipped .card-inner,
+.card.matched .card-inner {
+    transform:
+        rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+    position:
+        absolute;
+
+    width:
+        100%;
+
+    height:
+        100%;
+
+    border-radius:
+        18px;
+
+    backface-visibility:
+        hidden;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    text-align:
+        center;
+
+    padding:
+        12px;
+
+    font-weight:
+        bold;
+}
+
+
+/* =========================
+   CARD FRONT
+========================= */
+
+.card-front {
+    background:
+        linear-gradient(
+            145deg,
+            #2b897b,
+            #176b61
+        );
+
+    color:
+        white;
+
+    font-size:
+        30px;
+
+    border:
+        2px solid
+        rgba(255,255,255,0.15);
+
+    box-shadow:
+        inset 0 0 0 1px
+        rgba(255,255,255,0.08);
+}
+
+.question-mark {
+    width:
+        58px;
+
+    height:
+        58px;
+
+    border-radius:
+        50%;
+
+    background:
+        rgba(255,255,255,0.14);
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    font-size:
+        34px;
+}
+
+
+/* =========================
+   CARD BACK
+========================= */
+
+.card-back {
+    background:
+        rgba(255,255,255,0.97);
+
+    color:
+        #17332f;
+
+    transform:
+        rotateY(180deg);
+
+    border:
+        3px solid
+        #237c70;
+
+    flex-direction:
+        column;
+
+    justify-content:
+        space-between;
+
+    padding:
+        12px;
+
+    overflow:
+        hidden;
+
+    box-shadow:
+        0 4px 12px
+        rgba(0,0,0,0.05);
+}
+
+.card.matched .card-back {
+    border-color:
+        #4d8b68;
+
+    background:
+        #edf7f1;
+}
+
+
+/* =========================
+   PICTURE AREA
+========================= */
+
+.card-picture {
+    width:
+        100%;
+
+    flex:
+        1;
+
+    min-height:
+        0;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+}
+
+.card-picture svg {
+    width:
+        100%;
+
+    height:
+        100%;
+
+    max-width:
+        135px;
+
+    max-height:
+        135px;
+
+    display:
+        block;
+}
+
+
+/* =========================
+   CARD LABEL
+========================= */
+
+.card-label {
+    width:
+        100%;
+
+    min-height:
+        27px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    font-size:
+        15px;
+
+    line-height:
+        1.15;
+
+    font-weight:
+        bold;
+
+    color:
+        #17332f;
+}
+
+
+/* =========================
+   FEEDBACK
+========================= */
+
+.feedback {
+    min-height:
+        35px;
+
+    text-align:
+        center;
+
+    font-size:
+        18px;
+
+    font-weight:
+        bold;
+
+    margin-bottom:
+        15px;
+}
+
+
+/* =========================
+   CONTROLS
+========================= */
+
+.controls {
+    display:
+        flex;
+
+    justify-content:
+        center;
+
+    gap:
+        15px;
+
+    margin-bottom:
+        25px;
+}
+
+
+/* =========================
+   COMPLETION
+========================= */
+
+.completion {
+    display:
+        none;
+
+    background:
+        rgba(255,255,255,0.92);
+
+    border-radius:
+        20px;
+
+    padding:
+        30px;
+
+    text-align:
+        center;
+
+    box-shadow:
+        0 5px 18px
+        rgba(0,0,0,0.07);
+
+    margin-top:
+        20px;
+}
+
+.completion h3 {
+    font-size:
+        30px;
+
+    margin-bottom:
+        10px;
+}
+
+.completion p {
+    font-size:
+        18px;
+
+    color:
+        #50615e;
+}
+
+.completion button {
+    margin-top:
+        15px;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 800px) {
+
+    body {
+        background-attachment:
+            scroll;
+
+        background-position:
+            center top;
+    }
+
+    .stats {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .board {
+        grid-template-columns:
+            repeat(3, 1fr);
+    }
+}
+
+
+@media (max-width: 550px) {
+
+    header {
+        align-items:
+            flex-start;
+    }
+
+    .header-actions {
+        width:
+            100%;
+    }
+
+    .voice-button,
+    .secondary-button {
+        flex:
+            1;
+    }
+
+    main {
+        padding:
+            25px 15px 40px;
+    }
+
+    .intro {
+        padding:
+            20px 15px;
+    }
+
+    .intro h2 {
+        font-size:
+            25px;
+    }
+
+    .instruction-box {
+        flex-direction:
+            column;
+
+        align-items:
+            stretch;
+    }
+
+    .board {
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        gap:
+            12px;
+    }
+
+    .card-label {
+        font-size:
+            13px;
+    }
+}
+    </style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+    <div class="header-left">
+
+        <h1>
+            Memory Match
+        </h1>
+
+        <p>
+            NeuroSaathi cognitive activity
+        </p>
+
+    </div>
+
+
+    <div class="header-actions">
+
+        <button
+            class="voice-button"
+            id="voiceButton">
+
+            Listen
+
+        </button>
+
+
+        <button
+            class="secondary-button"
+            id="backButton">
+
+            Back
+
+        </button>
+
+    </div>
+
+</header>
+
+
+<main>
+
+
+    <section class="intro">
+
+        <h2>
+            Memory Match
+        </h2>
+
+        <p>
+            Find the matching pairs and keep your mind active.
+        </p>
+
+    </section>
+
+
+    <section class="instruction-box">
+
+        <div class="instruction-text">
+
+            Find all the matching pairs.
+
+        </div>
+
+
+        <button
+            class="listen-button"
+            id="instructionListen">
+
+            Listen
+
+        </button>
+
+    </section>
+
+
+    <section class="stats">
+
+
+        <div class="stat-card">
+
+            <div class="stat-label">
+                Level
+            </div>
+
+            <div
+                class="stat-value"
+                id="levelValue">
+
+                1
+
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-label">
+                Pairs Found
+            </div>
+
+            <div
+                class="stat-value"
+                id="pairsValue">
+
+                0
+
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-label">
+                Attempts
+            </div>
+
+            <div
+                class="stat-value"
+                id="attemptsValue">
+
+                0
+
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-label">
+                Accuracy
+            </div>
+
+            <div
+                class="stat-value"
+                id="accuracyValue">
+
+                0%
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+    <section
+        class="board"
+        id="gameBoard">
+    </section>
+
+
+    <div
+        class="feedback"
+        id="feedback">
+    </div>
+
+
+    <div class="controls">
+
+        <button
+            class="secondary-button"
+            id="restartButton">
+
+            Restart
+
+        </button>
+
+    </div>
+
+
+    <section
+        class="completion"
+        id="completionBox">
+
+        <h3>
+            Well done!
+        </h3>
+
+        <p
+            id="completionText">
+
+            You completed the round.
+
+        </p>
+
+
+        <button
+            class="listen-button"
+            id="nextRoundButton">
+
+            Start Next Round
+
+        </button>
+
+    </section>
+
+
+</main>
+
+
+<script
+    src="../js/performance.js">
+</script>
+
+<script
+    src="../js/adaptive-engine.js">
+</script>
+
+
+<script>
+
+
+/* =========================================================
+   MEMORY MATCH
+   ========================================================= */
+
+
+/* =========================================================
+   ORIGINAL GAME CATEGORIES
+   ========================================================= */
+
+const categories = {
+
+    "Household Objects": [
+
+        "Chair",
+        "Table",
+        "Clock",
+        "Lamp",
+        "Cup",
+        "Book"
+
+    ],
+
+
+    "Fruits & Vegetables": [
+
+        "Apple",
+        "Banana",
+        "Mango",
+        "Carrot",
+        "Tomato",
+        "Potato"
+
+    ],
+
+
+    "Animals": [
+
+        "Dog",
+        "Cat",
+        "Elephant",
+        "Tiger",
+        "Cow",
+        "Rabbit"
+
+    ],
+
+
+    "Nature": [
+
+        "Tree",
+        "Flower",
+        "Mountain",
+        "River",
+        "Sun",
+        "Leaf"
+
+    ],
+
+
+    "Food & Kitchen": [
+
+        "Rice",
+        "Bread",
+        "Spoon",
+        "Plate",
+        "Bowl",
+        "Bottle"
+
+    ],
+
+
+    "Clothing": [
+
+        "Shirt",
+        "Shoes",
+        "Hat",
+        "Socks",
+        "Jacket",
+        "Scarf"
+
+    ],
+
+
+    "Transport": [
+
+        "Car",
+        "Bus",
+        "Train",
+        "Bicycle",
+        "Boat",
+        "Airplane"
+
+    ],
+
+
+    "Everyday Life": [
+
+        "Phone",
+        "Key",
+        "Bag",
+        "Umbrella",
+        "Bottle",
+        "Watch"
+
+    ],
+
+
+    "Education": [
+
+        "Pencil",
+        "Notebook",
+        "School",
+        "Teacher",
+        "Eraser",
+        "Ruler"
+
+    ],
+
+
+    "Sports": [
+
+        "Football",
+        "Cricket",
+        "Badminton",
+        "Tennis",
+        "Volleyball",
+        "Basketball"
+
+    ],
+
+
+    "Family & Relationships": [
+
+        "Mother",
+        "Father",
+        "Brother",
+        "Sister",
+        "Grandmother",
+        "Grandfather"
+
+    ],
+
+
+    "Indian & North-Eastern Culture": [
+
+        "Bamboo",
+        "Tea",
+        "Handloom",
+        "Festival",
+        "Drum",
+        "Village"
+
+    ]
+
+};
+
+
+/* =========================================================
+   DIFFICULTY
+   ========================================================= */
+
+const difficultyLevels = {
+
+    1: 3,
+    2: 4,
+    3: 6,
+    4: 8
+
+};
+
+
+/* =========================================================
+   GAME STATE
+   ========================================================= */
+
+let currentLevel = 1;
+
+let currentPairs =
+    difficultyLevels[currentLevel];
+
+let matchedPairs = 0;
+
+let attempts = 0;
+
+let correctAttempts = 0;
+
+let lockBoard = false;
+
+let firstCard = null;
+
+let secondCard = null;
+
+let startTime = 0;
+
+let completedTime = 0;
+
+let adaptationScore = 0;
+
+let sessionSaved = false;
+
+
+/* =========================================================
+   ELEMENTS
+   ========================================================= */
+
+const gameBoard =
+    document.getElementById(
+        "gameBoard"
+    );
+
+
+const levelValue =
+    document.getElementById(
+        "levelValue"
+    );
+
+
+const pairsValue =
+    document.getElementById(
+        "pairsValue"
+    );
+
+
+const attemptsValue =
+    document.getElementById(
+        "attemptsValue"
+    );
+
+
+const accuracyValue =
+    document.getElementById(
+        "accuracyValue"
+    );
+
+
+const feedback =
+    document.getElementById(
+        "feedback"
+    );
+
+
+const completionBox =
+    document.getElementById(
+        "completionBox"
+    );
+
+
+const completionText =
+    document.getElementById(
+        "completionText"
+    );
+
+
+const restartButton =
+    document.getElementById(
+        "restartButton"
+    );
+
+
+const nextRoundButton =
+    document.getElementById(
+        "nextRoundButton"
+    );
+
+
+const voiceButton =
+    document.getElementById(
+        "voiceButton"
+    );
+
+
+const instructionListen =
+    document.getElementById(
+        "instructionListen"
+    );
+
+
+const backButton =
+    document.getElementById(
+        "backButton"
+    );
+
+
+/* =========================================================
+   PICTORIAL LIBRARY
+   =========================================================
+
+   IMPORTANT:
+
+   This is purely visual.
+
+   It does NOT control:
+   - matching
+   - scoring
+   - levels
+   - performance
+   - adaptive engine
+
+   Therefore the original game mechanics remain unchanged.
+========================================================= */
+
+
+/* =========================================================
+   SVG HELPER
+   ========================================================= */
+
+function makeSVG(content) {
+
+    return `
+
+        <svg
+            viewBox="0 0 200 170"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true">
+
+            ${content}
+
+        </svg>
+
+    `;
+
+}
+
+
+/* =========================================================
+   OBJECT ILLUSTRATIONS
+   ========================================================= */
+
+function getObjectPicture(name) {
+
+
+    /* =========================
+       APPLE
+    ========================= */
+
+    if (name === "Apple") {
+
+        return makeSVG(`
+
+            <ellipse
+                cx="100"
+                cy="93"
+                rx="52"
+                ry="50"
+                fill="#e74c3c"/>
+
+            <ellipse
+                cx="82"
+                cy="75"
+                rx="15"
+                ry="25"
+                fill="#ff7768"
+                opacity="0.8"/>
+
+            <path
+                d="M100 46
+                   C94 29 101 19 118 14"
+                fill="none"
+                stroke="#70452b"
+                stroke-width="10"
+                stroke-linecap="round"/>
+
+            <path
+                d="M111 29
+                   C132 9 154 19 160 34
+                   C141 39 124 38 111 29Z"
+                fill="#4e9a51"/>
+
+        `);
+
+    }
+
+
+    /* =========================
+       BANANA
+    ========================= */
+
+    if (name === "Banana") {
+
+        return makeSVG(`
+
+            <path
+                d="M43 43
+                   C53 105 110 134 156 79"
+                fill="none"
+                stroke="#f4c542"
+                stroke-width="28"
+                stroke-linecap="round"/>
+
+            <path
+                d="M44 43
+                   C54 104 111 130 154 78"
+                fill="none"
+                stroke="#d9a92e"
+                stroke-width="4"
+                stroke-linecap="round"/>
+
+            <path
+                d="M38 38
+                   l-8 -10
+                   M38 38
+                   l8 -11"
+                stroke="#765331"
+                stroke-width="8"
+                stroke-linecap="round"/>
+
+        `);
+
+    }
+
+
+    /* =========================
+       MANGO
+    ========================= */
+
+    if (name === "Mango") {
+
+        return makeSVG(`
+
+            <path
+                d="M93 30
+                   C62 31 47 58 58 95
+                   C69 130 115 139 142 103
+                   C163 75 139 32 93 30Z"
+                fill="#f2ad32"/>
+
+            <ellipse
+                cx="86"
+                cy="68"
+                rx="14"
+                ry="27"
+                fill="#ffd568"
+                opacity="0.7"/>
+
+            <path
+                d="M99 31
+                   C108 13 127 9 143 18"
+                fill="none"
+                stroke="#6a4c32"
+                stroke-width="8"
+                stroke-linecap="round"/>
+
+            <path
+                d="M119 22
+                   C143 5 163 17 166 35
+                   C144 39 130 34 119 22Z"
+                fill="#55a453"/>
+
+        `);
+
+    }
+
+
+    /* =========================
+       CAR
+    ========================= */
+
+    if (name === "Car") {
+
+        return makeSVG(`
+
+            <path
+                d="M39 89
+                   L55 54
+                   Q59 46 70 46
+                   H125
+                   Q137 46 144 58
+                   L160 89Z"
+                fill="#327fd0"/>
+
+            <rect
+                x="27"
+                y="83"
+                width="145"
+                height="48"
+                rx="14"
+                fill="#2871bd"/>
+
+            <path
+                d="M66 55
+                   H101
+                   L116 82
+                   H56Z"
+                fill="#dceff7"/>
+
+            <path
+                d="M106 55
+                   H126
+                   Q134 57 141 82
+                   H116Z"
+                fill="#c8e6f0"/>
+
+            <circle
+                cx="58"
+                cy="132"
+                r="17"
+                fill="#30373b"/>
+
+            <circle
+                cx="142"
+                cy="132"
+                r="17"
+                fill="#30373b"/>
+
+            <circle
+                cx="58"
+                cy="132"
+                r="7"
+                fill="#d5d9da"/>
+
+            <circle
+                cx="142"
+                cy="132"
+                r="7"
+                fill="#d5d9da"/>
+
+        `);
+
+    }
+
+
+    /* =========================
+       BUS
+    ========================= */
+
+    if (name === "Bus") {
+
+        return makeSVG(`
+
+            <rect
+                x="32"
+                y="25"
+                width="136"
+                height="108"
+                rx="17"
+                fill="#f0b52e"/>
+
+            <rect
+                x="43"
+                y="40"
+                width="114"
+                height="43"
+                rx="6"
+                fill="#bde1ed"/>
+
+            <line
+                x1="81"
+                y1="40"
+                x2="81"
+                y2="83"
+                stroke="#6b8992"
+                stroke-width="4"/>
+
+            <line
+                x1="119"
+                y1="40"
+                x2="119"
+                y2="83"
+                stroke="#6b8992"
+                stroke-width="4"/>
+
+            <circle
+                cx="62"
+                cy="137"
+                r="15"
+                fill="#30373b"/>
+
+            <circle
+                cx="138"
+                cy="137"
+                r="15"
+                fill="#30373b"/>
+
+            <rect
+                x="46"
+                y="94"
+                width="108"
+                height="20"
+                rx="5"
+                fill="#fff2a9"/>
+
+        `);
+
+    }
+
+
+    /* =========================
+       DOG
+    ========================= */
+
+    if (name === "Dog") {
+
+        return makeSVG(`
+
+            <ellipse
+                cx="100"
+                cy="101"
+                rx="50"
+                ry="48"
+                fill="#c58a55"/>
+
+            <circle
+                cx="100"
+                cy="70"
+                r="43"
+                fill="#d49a61"/>
+
+            <ellipse
+                cx="62"
+                cy="64"
+                rx="20"
+                ry="34"
+                fill="#9a653c"
+                transform="rotate(-25 62 64)"/>
+
+            <ellipse
+                cx="138"
+                cy="64"
+                rx="20"
+                ry="34"
+                fill="#9a653c"
+                transform="rotate(25 138 64)"/>
+
+            <circle
+                cx="84"
+                cy="69"
+                r="6"
+                fill="#2d2925"/>
+
+            <circle
+                cx="116"
+                cy="69"
+                r="6"
+                fill="#2d2925"/>
+
+            <ellipse
+                cx="100"
+                cy="88"
+                rx="13"
+                ry="9"
+                fill="#403630"/>
+
+            <path
+                d="M91 103 Q100 111 109 103"
+                fill="none"
+                stroke="#5c4031"
+                stroke-width="5"
+                stroke-linecap="round"/>
+
+        `);
+
+    }
+
+
+    /* =========================
+       CAT
+    ========================= */
+
+    if (name === "Cat") {
+
+        return makeSVG(`
+
+            <path
+                d="M64 43
+                   L67 16
+                   L89 34
+                   Q100 29 111 34
+                   L133 16
+                   L136 43"
+                fill="#aeb6bd"/>
+
+            <circle
+                cx="100"
+                cy="76"
+                r="43"
+                fill="#b9c0c6"/>
+
+            <path
+                d="M76 46
+                   Q100 33 124 46"
+                fill="#777f86"/>
+
+            <circle
+                cx="84"
+                cy="72"
+                r="6"
+                fill="#30363a"/>
+
+            <circle
+                cx="116"
+                cy="72"
+                r="6"
+                fill="#30363a"/>
+
+            <path
+                d="M100 78
+                   l-7 6
+                   h14Z"
+                fill="#e28d9e"/>
+
+            <path
+                d="M76 83
+                   L48 79
+                   M76 91
+                   L48 94
+                   M124 83
+                   L152 79
+                   M124 91
+                   L152 94"
+                stroke="#6f777d"
+                stroke-width="3"/>
+
+        `);
+
+    }
+
+
+    /* =========================
+       TREE
+    ========================= */
+
+    if (name === "Tree") {
+
+        return makeSVG(`
+
+            <rect
+                x="87"
+                y="91"
+                width="27"
+                height="62"
+                rx="5"
+                fill="#875b39"/>
+
+            <circle
+                cx="100"
+                cy="55"
+                r="43"
+                fill="#5d9e55"/>
+
+            <circle
+                cx="65"
+                cy="70"
+                r="30"
+                fill="#6eac5f"/>
+
+            <circle
+                cx="135"
+                cy="70"
+                r="30"
+                fill="#6eac5f"/>
+
+            <circle
+                cx="100"
+                cy="35"
+                r="30"
+                fill="#70ad5e"/>
+
+        `);
+
+    }
+
+
+    /* =========================
+       FLOWER
+    ========================= */
+
+    if (name === "Flower") {
+
+        return makeSVG(`
+
+            <path
+                d="M100 80
+                   L100 150"
+                stroke="#4f9754"
+                stroke-width="10"
+                stroke-linecap="round"/>
+
+            <path
+                d="M100 123
+                   Q75 104 62 122"
+                fill="none"
+                stroke="#4f9754"
+                stroke-width="8"/>
+
+            <circle
+                cx="100"
+                cy="62"
+                r="20"
+                fill="#f3c644"/>
+
+            <circle
+                cx="68"
+                cy="60"
+                r="22"
+                fill="#ed82aa"/>
+
+            <circle
+                cx="132"
+                cy="60"
+                r="22"
+                fill="#ed82aa"/>
+
+            <circle
+                cx="82"
+                cy="34"
+                r="22"
+                fill="#ed82aa"/>
+
+            <circle
+                cx="118"
+                cy="34"
+                r="22"
+                fill="#ed82aa"/>
+
+        `);
+
+    }
+
+
+    /* =========================
+       BOOK
+    ========================= */
+
+    if (name === "Book") {
+
+        return makeSVG(`
+
+            <path
+                d="M32 31
+                   Q64 21 98 40
+                   V142
+                   Q65 123 32 134Z"
+                fill="#4383c4"/>
+
+            <path
+                d="M168 31
+                   Q136 21 102 40
+                   V142
+                   Q135 123 168 134Z"
+                fill="#6b9ed0"/>
+
+            <path
+                d="M100 40
+                   V142"
+                stroke="#315d86"
+                stroke-width="5"/>
+
+            <line
+                x1="48"
+                y1="57"
+                x2="84"
+                y2="68"
+                stroke="#dbeaf5"
+                stroke-width="5"/>
+
+            <line
+                x1="152"
+                y1="57"
+                x2="116"
+                y2="68"
+                stroke="#e5f0f7"
+                stroke-width="5"/>
+
+        `);
+
+    }
+
+
+    /* =========================
+       CLOCK
+    ========================= */
+
+    if (name === "Clock") {
+
+        return makeSVG(`
+
+            <circle
+                cx="100"
+                cy="85"
+                r="58"
+                fill="#f6f0d8"
+                stroke="#6b7477"
+                stroke-width="8"/>
+
+            <circle
+                cx="100"
+                cy="85"
+                r="48"
+                fill="#fffdf5"
+                stroke="#c8c3aa"
+                stroke-width="3"/>
+
+            <line
+                x1="100"
+                y1="85"
+                x2="100"
+                y2="50"
+                stroke="#333b3e"
+                stroke-width="7"
+                stroke-linecap="round"/>
+
+            <line
+                x1="100"
+                y1="85"
+                x2="132"
+                y2="100"
+                stroke="#333b3e"
+                stroke-width="7"
+                stroke-linecap="round"/>
+
+            <circle
+                cx="100"
+                cy="85"
+                r="6"
+                fill="#333b3e"/>
+
+        `);
+
+    }
+
+
+    /* =========================
+       CUP
+    ========================= */
+
+    if (name === "Cup") {
+
+        return makeSVG(`
+
+            <path
+                d="M49 45
+                   H145
+                   L135 119
+                   Q97 140 59 119Z"
+                fill="#dcecf1"
+                stroke="#5e858f"
+                stroke-width="6"/>
+
+            <path
+                d="M145 58
+                   Q177 55 164 88
+                   Q157 104 138 97"
+                fill="none"
+                stroke="#5e858f"
+                stroke-width="8"/>
+
+            <path
+                d="M75 31
+                   Q67 17 77 8
+                   M102 31
+                   Q94 17 104 8"
+                fill="none"
+                stroke="#b8c1c2"
+                stroke-width="5"
+                stroke-linecap="round"/>
+
+        `);
+
+    }
+
+
+    /* =========================
+       CHAIR
+    ========================= */
+
+    if (name === "Chair") {
+
+        return makeSVG(`
+
+            <rect
+                x="58"
+                y="34"
+                width="84"
+                height="58"
+                rx="8"
+                fill="#a87543"/>
+
+            <rect
+                x="48"
+                y="88"
+                width="105"
+                height="20"
+                rx="5"
+                fill="#bc8750"/>
+
+            <line
+                x1="62"
+                y1="108"
+                x2="51"
+                y2="151"
+                stroke="#80552f"
+                stroke-width="9"
+                stroke-linecap="round"/>
+
+            <line
+                x1="139"
+                y1="108"
+                x2="150"
+                y2="151"
+                stroke="#80552f"
+                stroke-width="9"
+                stroke-linecap="round"/>
+
+        `);
+
+    }
+
+
+    /* =========================
+       TABLE
+    ========================= */
+
+    if (name === "Table") {
+
+        return makeSVG(`
+
+            <rect
+                x="35"
+                y="45"
+                width="130"
+                height="22"
+                rx="7"
+                fill="#b9824c"/>
+
+            <rect
+                x="48"
+                y="67"
+                width="14"
+                height="78"
+                fill="#8d5d35"/>
+
+            <rect
+                x="138"
+                y="67"
+                width="14"
+                height="78"
+                fill="#8d5d35"/>
+
+        `);
+
+    }
+
+
+    /* =========================
+       LAMP
+    ========================= */
+
+    if (name === "Lamp") {
+
+        return makeSVG(`
+
+            <path
+                d="M54 58
+                   H146
+                   L128 100
+                   H72Z"
+                fill="#f2c65c"/>
+
+            <rect
+                x="94"
+                y="100"
+                width="12"
+                height="40"
+                fill="#6c7476"/>
+
+            <ellipse
+                cx="100"
+                cy="145"
+                rx="34"
+                ry="8"
+                fill="#777f81"/>
+
+            <circle
+                cx="100"
+                cy="66"
+                r="10"
+                fill="#fff0a0"/>
+
+        `);
+
+    }
+
+
+    /* =========================
+       CARROT
+    ========================= */
+
+    if (name === "Carrot") {
+
+        return makeSVG(`
+
+            <path
+                d="M66 47
+                   L134 47
+                   L103 143
+                   Q100 151 97 143Z"
+                fill="#ef8d38"/>
+
+            <path
+                d="M83 47
+                   Q68 27 54 29
+                   M100 47
+                   Q100 20 91 13
+                   M116 47
+                   Q132 26 146 29"
+                fill="none"
+                stroke="#5d984e"
+                stroke-width="10"
+                stroke-linecap="round"/>
+
+        `);
+
+    }
+
+
+    /* =========================
+       TOMATO
+    ========================= */
+
+    if (name === "Tomato") {
+
+        return makeSVG(`
+
+            <circle
+                cx="100"
+                cy="92"
+                r="51"
+                fill="#e55445"/>
+
+            <ellipse
+                cx="80"
+                cy="72"
+                rx="13"
+                ry="20"
+                fill="#ff8073"
+                opacity="0.7"/>
+
+            <path
+                d="M100 45
+                   L90 28
+                   L100 34
+                   L110 28
+                   L107 47"
+                fill="#4f9149"/>
+
+        `);
+
+    }
+
+
+    /* =========================
+       POTATO
+    ========================= */
+
+    if (name === "Potato") {
+
+        return makeSVG(`
+
+            <ellipse
+                cx="100"
+                cy="90"
+                rx="58"
+                ry="46"
+                fill="#c99b5e"/>
+
+            <ellipse
+                cx="78"
+                cy="73"
+                rx="14"
+                ry="20"
+                fill="#d8b477"
+                opacity="0.7"/>
+
+            <circle
+                cx="72"
+                cy="95"
+                r="4"
+                fill="#9b7042"/>
+
+            <circle
+                cx="119"
+                cy="75"
+                r="4"
+                fill="#9b7042"/>
+
+            <circle
+                cx="132"
+                cy="105"
+                r="4"
+                fill="#9b7042"/>
+
+        `);
+
+    }
+
+
+    /* =========================
+       ELEPHANT
+    ========================= */
+
+    if (name === "Elephant") {
+
+        return makeSVG(`
+
+            <ellipse
+                cx="106"
+                cy="96"
+                rx="57"
+                ry="42"
+                fill="#9ba5aa"/>
+
+            <circle
+                cx="58"
+                cy="67"
+                r="35"
+                fill="#9ba5aa"/>
+
+            <path
+                d="M45 77
+                   Q19 90 31 119"
+                fill="none"
+                stroke="#9ba5aa"
+                stroke-width="20"
+                stroke-linecap="round"/>
+
+            <ellipse
+                cx="72"
+                cy="45"
+                rx="18"
+                ry="28"
+                fill="#879196"/>
+
+            <circle
+                cx="65"
+                cy="63"
+                r="4"
+                fill="#30373b"/>
+
+            <path
+                d="M132 77
+                   Q151 67 163 79"
+                fill="none"
+                stroke="#879196"
+                stroke-width="8"/>
+
+        `);
+
+    }
+
+
+    /* =========================
+       TIGER
+    ========================= */
+
+    if (name === "Tiger") {
+
+        return makeSVG(`
+
+            <circle
+                cx="100"
+                cy="86"
+                r="52"
+                fill="#e59b35"/>
+
+            <path
+                d="M68 51
+                   L78 80
+                   M87 42
+                   L92 72
+                   M132 51
+                   L122 80
+                   M113 42
+                   L108 72"
+                stroke="#38332e"
+                stroke-width="9"
+                stroke-linecap="round"/>
+
+            <circle
+                cx="82"
+                cy="76"
+                r="6"
+                fill="#252525"/>
+
+            <circle
+                cx="118"
+                cy="76"
+                r="6"
+                fill="#252525"/>
+
+            <ellipse
+                cx="100"
+                cy="98"
+                rx="14"
+                ry="10"
+                fill="#44362c"/>
+
+            <path
+                d="M88 113 Q100 123 112 113"
+                fill="none"
+                stroke="#44362c"
+                stroke-width="5"/>
+
+        `);
+
+    }
+
+
+    /* =========================
+       COW
+    ========================= */
+
+    if (name === "Cow") {
+
+        return makeSVG(`
+
+            <ellipse
+                cx="105"
+                cy="96"
+                rx="60"
+                ry="38"
+                fill="#f0eee7"/>
+
+            <circle
+                cx="66"
+                cy="71"
+                r="34"
+                fill="#f0eee7"/>
+
+            <path
+                d="M43 52
+                   L27 35
+                   M88 52
+                   L104 35"
+                stroke="#815d3b"
+                stroke-width="8"
+                stroke-linecap="round"/>
+
+            <path
+                d="M52 67
+                   Q67 52 80 67
+                   Q67 83 52 67Z"
+                fill="#9d8370"/>
+
+            <circle
+                cx="57"
+                cy="66"
+                r="4"
+                fill="#333"/>
+
+            <circle
+                cx="77"
+                cy="66"
+                r="4"
+                fill="#333"/>
+
+        `);
+
+    }
+
+
+    /* =========================
+       RABBIT
+    ========================= */
+
+    if (name === "Rabbit") {
+
+        return makeSVG(`
+
+            <ellipse
+                cx="100"
+                cy="101"
+                rx="40"
+                ry="45"
+                fill="#e8e3dd"/>
+
+            <circle
+                cx="100"
+                cy="64"
+                r="34"
+                fill="#e8e3dd"/>
+
+            <ellipse
+                cx="80"
+                cy="25"
+                rx="14"
+                ry="35"
+                fill="#e8e3dd"/>
+
+            <ellipse
+                cx="120"
+                cy="25"
+                rx="14"
+                ry="35"
+                fill="#e8e3dd"/>
+
+            <ellipse
+                cx="80"
+                cy="25"
+                rx="6"
+                ry="23"
+                fill="#e5b9c0"/>
+
+            <ellipse
+                cx="120"
+                cy="25"
+                rx="6"
+                ry="23"
+                fill="#e5b9c0"/>
+
+            <circle
+                cx="88"
+                cy="64"
+                r="5"
+                fill="#303030"/>
+
+            <circle
+                cx="112"
+                cy="64"
+                r="5"
+                fill="#303030"/>
+
+            <circle
+                cx="100"
+                cy="77"
+                r="6"
+                fill="#e59aaa"/>
+
+        `);
+
+    }
+
+
+    /* =========================
+       MOUNTAIN
+    ========================= */
+
+    if (name === "Mountain") {
+
+        return makeSVG(`
+
+            <path
+                d="M15 140
+                   L72 42
+                   L101 88
+                   L128 55
+                   L185 140Z"
+                fill="#79959b"/>
+
+            <path
+                d="M72 42
+                   L58 68
+                   L75 62
+                   L88 76
+                   L101 88Z"
+                fill="#f8f8f3"/>
+
+            <path
+                d="M128 55
+                   L113 78
+                   L129 72
+                   L141 86
+                   L151 72Z"
+                fill="#f8f8f3"/>
+
+        `);
+
+    }
+
+
+    /* =========================
+       RIVER
+    ========================= */
+
+    if (name === "River") {
+
+        return makeSVG(`
+
+            <path
+                d="M25 30
+                   Q80 58 38 91
+                   Q15 111 48 142"
+                fill="none"
+                stroke="#56a5c8"
+                stroke-width="25"
+                stroke-linecap="round"/>
+
+            <path
+                d="M82 30
+                   Q137 58 95 91
+                   Q72 111 105 142"
+                fill="none"
+                stroke="#7bc0d8"
+                stroke-width="25"
+                stroke-linecap="round"/>
+
+        `);
+
+    }
+
+
+    /* =========================
+       SUN
+    ========================= */
+
+    if (name === "Sun") {
+
+        return makeSVG(`
+
+            <circle
+                cx="100"
+                cy="85"
+                r="34"
+                fill="#f5c63e"/>
+
+            <path
+                d="M100 15V38
+                   M100 132V155
+                   M30 85H53
+                   M147 85H170
+                   M50 35L66 51
+                   M134 119L150 135
+                   M150 35L134 51
+                   M66 119L50 135"
+                stroke="#e2aa2c"
+                stroke-width="10"
+                stroke-linecap="round"/>
+
+        `);
+
+    }
+
+
+    /* =========================
+       LEAF
+    ========================= */
+
+    if (name === "Leaf") {
+
+        return makeSVG(`
+
+            <path
+                d="M30 139
+                   Q36 50 164 27
+                   Q158 123 30 139Z"
+                fill="#65a75c"/>
+
+            <path
+                d="M35 135
+                   Q94 90 151 35"
+                fill="none"
+                stroke="#3f7841"
+                stroke-width="7"/>
+
+        `);
+
+    }
+
+
+    /* =========================
+       RICE
+    ========================= */
+
+    if (name === "Rice") {
+
+        return makeSVG(`
+
+            <path
+                d="M45 132
+                   Q70 90 67 35"
+                fill="none"
+                stroke="#6b9950"
+                stroke-width="7"/>
+
+            <path
+                d="M68 48
+                   Q90 37 103 51
+                   M63 67
+                   Q87 55 101 69
+                   M58 86
+                   Q79 73 94 86"
+                fill="none"
+                stroke="#78a95a"
+                stroke-width="6"/>
+
+            <ellipse
+                cx="91"
+                cy="49"
+                rx="8"
+                ry="13"
+                fill="#f0ead5"/>
+
+            <ellipse
+                cx="82"
+                cy="67"
+                rx="8"
+                ry="13"
+                fill="#f0ead5"/>
+
+            <ellipse
+                cx="75"
+                cy="84"
+                rx="8"
+                ry="13"
+                fill="#f0ead5"/>
+
+        `);
+
+    }
+
+
+    /* =========================
+       BREAD
+    ========================= */
+
+    if (name === "Bread") {
+
+        return makeSVG(`
+
+            <path
+                d="M38 122
+                   V64
+                   Q38 35 72 35
+                   Q100 20 128 35
+                   Q162 35 162 64
+                   V122Z"
+                fill="#d99b4f"/>
+
+            <path
+                d="M65 55
+                   L71 78
+                   M100 47
+                   V72
+                   M135 55
+                   L129 78"
+                stroke="#a96e32"
+                stroke-width="7"
+                stroke-linecap="round"/>
+
+        `);
+
+    }
+
+
+    /* =========================
+       SPOON
+    ========================= */
+
+    if (name === "Spoon") {
+
+        return makeSVG(`
+
+            <ellipse
+                cx="100"
+                cy="42"
+                rx="25"
+                ry="31"
+                fill="#cbd3d5"
+                stroke="#7b878b"
+                stroke-width="5"/>
+
+            <rect
+                x="91"
+                y="65"
+                width="18"
+                height="87"
+                rx="9"
+                fill="#b7c1c4"/>
+
+        `);
+
+    }
+
+
+    /* =========================
+       PLATE
+    ========================= */
+
+    if (name === "Plate") {
+
+        return makeSVG(`
+
+            <circle
+                cx="100"
+                cy="85"
+                r="60"
+                fill="#f1f5f6"
+                stroke="#7b949b"
+                stroke-width="8"/>
+
+            <circle
+                cx="100"
+                cy="85"
+                r="40"
+                fill="none"
+                stroke="#b4c2c5"
+                stroke-width="4"/>
+
+        `);
+
+    }
+
+
+    /* =========================
+       BOWL
+    ========================= */
+
+    if (name === "Bowl") {
+
+        return makeSVG(`
+
+            <path
+                d="M39 66
+                   Q100 137 161 66Z"
+                fill="#dcecf1"
+                stroke="#62838c"
+                stroke-width="7"/>
+
+            <path
+                d="M40 66
+                   Q100 93 160 66"
+                fill="none"
+                stroke="#62838c"
+                stroke-width="7"/>
+
+        `);
+
+    }
+
+
+    /* =========================
+       BOTTLE
+    ========================= */
+
+    if (name === "Bottle") {
+
+        return makeSVG(`
+
+            <path
+                d="M78 24
+                   H122
+                   V45
+                   L137 60
+                   V139
+                   H63
+                   V60
+                   L78 45Z"
+                fill="#8dc5d0"
+                stroke="#527f88"
+                stroke-width="6"/>
+
+            <rect
+                x="78"
+                y="14"
+                width="44"
+                height="14"
+                rx="4"
+                fill="#527f88"/>
+
+        `);
+
+    }
+
+
+    /* =========================
+       SHIRT
+    ========================= */
+
+    if (name === "Shirt") {
+
+        return makeSVG(`
+
+            <path
+                d="M63 32
+                   L86 20
+                   Q100 31 114 20
+                   L137 32
+                   L168 59
+                   L148 78
+                   L132 62
+                   V145
+                   H68
+                   V62
+                   L52 78
+                   L32 59Z"
+                fill="#5d8acb"/>
+
+            <path
+                d="M86 20
+                   Q100 39 114 20"
+                fill="none"
+                stroke="#3f669d"
+                stroke-width="5"/>
+
+        `);
+
+    }
+
+
+    /* =========================
+       SHOES
+    ========================= */
+
+    if (name === "Shoes") {
+
+        return makeSVG(`
+
+            <path
+                d="M32 86
+                   Q62 103 92 77
+                   L119 101
+                   L155 111
+                   Q178 119 168 140
+                   H35
+                   Q22 120 32 86Z"
+                fill="#4f5e68"/>
+
+            <path
+                d="M111 102
+                   Q130 117 160 118"
+                fill="none"
+                stroke="#cfd6d8"
+                stroke-width="5"/>
+
+        `);
+
+    }
+
+
+    /* =========================
+       HAT
+    ========================= */
+
+    if (name === "Hat") {
+
+        return makeSVG(`
+
+            <path
+                d="M59 89
+                   Q60 43 100 35
+                   Q140 43 141 89Z"
+                fill="#b77d42"/>
+
+            <rect
+                x="36"
+                y="84"
+                width="128"
+                height="23"
+                rx="8"
+                fill="#986332"/>
+
+        `);
+
+    }
+
+
+    /* =========================
+       SOCKS
+    ========================= */
+
+    if (name === "Socks") {
+
+        return makeSVG(`
+
+            <path
+                d="M63 24
+                   H103
+                   V89
+                   Q103 112 137 116
+                   V143
+                   H69
+                   Q55 136 55 116
+                   V24Z"
+                fill="#e7ecee"
+                stroke="#78898f"
+                stroke-width="6"/>
+
+            <path
+                d="M55 48
+                   H103"
+                stroke="#9baab0"
+                stroke-width="5"/>
+
+        `);
+
+    }
+
+
+    /* =========================
+       JACKET
+    ========================= */
+
+    if (name === "Jacket") {
+
+        return makeSVG(`
+
+            <path
+                d="M66 25
+                   L100 13
+                   L134 25
+                   L166 141
+                   H34Z"
+                fill="#60748f"/>
+
+            <path
+                d="M100 15
+                   V140"
+                stroke="#dce3ea"
+                stroke-width="5"/>
+
+            <path
+                d="M66 25
+                   L84 68
+                   M134 25
+                   L116 68"
+                stroke="#4b5d75"
+                stroke-width="5"/>
+
+        `);
+
+    }
+
+
+    /* =========================
+       SCARF
+    ========================= */
+
+    if (name === "Scarf") {
+
+        return makeSVG(`
+
+            <path
+                d="M72 20
+                   H112
+                   V88
+                   Q112 112 139 140
+                   H102
+                   Q87 118 73 140
+                   H39
+                   Q65 109 72 88Z"
+                fill="#b75c61"/>
+
+            <path
+                d="M72 50
+                   H112"
+                stroke="#8e464d"
+                stroke-width="6"/>
+
+        `);
+
+    }
+
+
+    /* =========================
+       TRAIN
+    ========================= */
+
+    if (name === "Train") {
+
+        return makeSVG(`
+
+            <rect
+                x="38"
+                y="28"
+                width="124"
+                height="105"
+                rx="16"
+                fill="#727e85"/>
+
+            <rect
+                x="50"
+                y="43"
+                width="43"
+                height="31"
+                fill="#d7edf4"/>
+
+            <rect
+                x="107"
+                y="43"
+                width="43"
+                height="31"
+                fill="#d7edf4"/>
+
+            <circle
+                cx="68"
+                cy="139"
+                r="15"
+                fill="#30373b"/>
+
+            <circle
+                cx="132"
+                cy="139"
+                r="15"
+                fill="#30373b"/>
+
+            <rect
+                x="79"
+                y="88"
+                width="42"
+                height="28"
+                rx="5"
+                fill="#d3d9db"/>
+
+        `);
+
+    }
+
+
+    /* =========================
+       BICYCLE
+    ========================= */
+
+    if (name === "Bicycle") {
+
+        return makeSVG(`
+
+            <circle
+                cx="54"
+                cy="119"
+                r="28"
+                fill="none"
+                stroke="#4f7181"
+                stroke-width="7"/>
+
+            <circle
+                cx="146"
+                cy="119"
+                r="28"
+                fill="none"
+                stroke="#4f7181"
+                stroke-width="7"/>
+
+            <path
+                d="M54 119
+                   L88 60
+                   L116 119
+                   L54 119
+                   M88 60
+                   L146 119
+                   M88 60
+                   H111"
+                fill="none"
+                stroke="#4f7181"
+                stroke-width="7"
+                stroke-linejoin="round"/>
+
+            <line
+                x1="88"
+                y1="60"
+                x2="78"
+                y2="43"
+                stroke="#4f7181"
+                stroke-width="7"/>
+
+            <line
+                x1="111"
+                y1="60"
+                x2="130"
+                y2="48"
+                stroke="#4f7181"
+                stroke-width="7"/>
+
+        `);
+
+    }
+
+
+    /* =========================
+       BOAT
+    ========================= */
+
+    if (name === "Boat") {
+
+        return makeSVG(`
+
+            <path
+                d="M31 94
+                   H169
+                   L146 130
+                   Q100 146 54 130Z"
+                fill="#875e3b"/>
+
+            <line
+                x1="100"
+                y1="94"
+                x2="100"
+                y2="25"
+                stroke="#704b31"
+                stroke-width="7"/>
+
+            <path
+                d="M100 27
+                   L100 89
+                   H145Z"
+                fill="#e8e0cf"/>
+
+        `);
+
+    }
+
+
+    /* =========================
+       AIRPLANE
+    ========================= */
+
+    if (name === "Airplane") {
+
+        return makeSVG(`
+
+            <path
+                d="M25 82
+                   L85 68
+                   L96 25
+                   H113
+                   L120 64
+                   L172 77
+                   Q181 82 172 88
+                   L120 96
+                   L113 139
+                   H96
+                   L85 92
+                   L25 86Z"
+                fill="#8ba8b5"/>
+
+            <path
+                d="M85 68
+                   L48 43
+                   H35
+                   L64 78Z"
+                fill="#6f8f9d"/>
+
+            <path
+                d="M85 92
+                   L49 118
+                   H36
+                   L64 83Z"
+                fill="#6f8f9d"/>
+
+        `);
+
+    }
+
+
+    /* =========================
+       PHONE
+    ========================= */
+
+    if (name === "Phone") {
+
+        return makeSVG(`
+
+            <rect
+                x="57"
+                y="12"
+                width="86"
+                height="146"
+                rx="15"
+                fill="#38454c"/>
+
+            <rect
+                x="67"
+                y="29"
+                width="66"
+                height="101"
+                rx="5"
+                fill="#dceff5"/>
+
+            <circle
+                cx="100"
+                cy="144"
+                r="6"
+                fill="#c5ced1"/>
+
+            <rect
+                x="85"
+                y="19"
+                width="30"
+                height="5"
+                rx="3"
+                fill="#9da8ac"/>
+
+        `);
+
+    }
+
+
+    /* =========================
+       KEY
+    ========================= */
+
+    if (name === "Key") {
+
+        return makeSVG(`
+
+            <circle
+                cx="61"
+                cy="68"
+                r="25"
+                fill="none"
+                stroke="#b78b36"
+                stroke-width="10"/>
+
+            <path
+                d="M82 85
+                   L157 143"
+                stroke="#b78b36"
+                stroke-width="11"
+                stroke-linecap="round"/>
+
+            <path
+                d="M126 118
+                   L140 101
+                   M139 129
+                   L153 112"
+                stroke="#b78b36"
+                stroke-width="10"
+                stroke-linecap="round"/>
+
+        `);
+
+    }
+
+
+    /* =========================
+       BAG
+    ========================= */
+
+    if (name === "Bag") {
+
+        return makeSVG(`
+
+            <rect
+                x="45"
+                y="54"
+                width="110"
+                height="87"
+                rx="12"
+                fill="#80654c"/>
+
+            <path
+                d="M72 56
+                   Q72 25 100 25
+                   Q128 25 128 56"
+                fill="none"
+                stroke="#80654c"
+                stroke-width="12"/>
+
+            <rect
+                x="80"
+                y="79"
+                width="40"
+                height="8"
+                rx="4"
+                fill="#a78968"/>
+
+        `);
+
+    }
+
+
+    /* =========================
+       UMBRELLA
+    ========================= */
+
+    if (name === "Umbrella") {
+
+        return makeSVG(`
+
+            <path
+                d="M25 75
+                   Q100 10 175 75
+                   Q160 82 145 70
+                   Q130 85 115 70
+                   Q100 85 85 70
+                   Q70 85 55 70
+                   Q40 82 25 75Z"
+                fill="#5887b5"/>
+
+            <path
+                d="M100 74
+                   V135
+                   Q100 151 84 151"
+                fill="none"
+                stroke="#69777d"
+                stroke-width="8"
+                stroke-linecap="round"/>
+
+        `);
+
+    }
+
+
+    /* =========================
+       WATCH
+    ========================= */
+
+    if (name === "Watch") {
+
+        return makeSVG(`
+
+            <rect
+                x="78"
+                y="8"
+                width="44"
+                height="154"
+                rx="10"
+                fill="#59676d"/>
+
+            <circle
+                cx="100"
+                cy="85"
+                r="36"
+                fill="#f3f5ef"
+                stroke="#59676d"
+                stroke-width="7"/>
+
+            <line
+                x1="100"
+                y1="85"
+                x2="100"
+                y2="61"
+                stroke="#333"
+                stroke-width="6"
+                stroke-linecap="round"/>
+
+            <line
+                x1="100"
+                y1="85"
+                x2="121"
+                y2="97"
+                stroke="#333"
+                stroke-width="6"
+                stroke-linecap="round"/>
+
+        `);
+
+    }
+
+
+    /* =========================
+       PENCIL
+    ========================= */
+
+    if (name === "Pencil") {
+
+        return makeSVG(`
+
+            <path
+                d="M51 130
+                   L126 35
+                   L151 55
+                   L76 150Z"
+                fill="#e5bf4c"/>
+
+            <path
+                d="M126 35
+                   L140 17
+                   L165 38
+                   L151 55Z"
+                fill="#df8b8b"/>
+
+            <path
+                d="M51 130
+                   L40 153
+                   L76 150Z"
+                fill="#555d60"/>
+
+        `);
+
+    }
+
+
+    /* =========================
+       NOTEBOOK
+    ========================= */
+
+    if (name === "Notebook") {
+
+        return makeSVG(`
+
+            <rect
+                x="48"
+                y="19"
+                width="105"
+                height="132"
+                rx="8"
+                fill="#e7eef1"
+                stroke="#71878e"
+                stroke-width="7"/>
+
+            <path
+                d="M72 51
+                   H131
+                   M72 75
+                   H131
+                   M72 99
+                   H123"
+                stroke="#8da1a7"
+                stroke-width="6"
+                stroke-linecap="round"/>
+
+            <path
+                d="M38 32
+                   V140"
+                stroke="#6c7d82"
+                stroke-width="7"/>
+
+        `);
+
+    }
+
+
+    /* =========================
+       SCHOOL
+    ========================= */
+
+    if (name === "School") {
+
+        return makeSVG(`
+
+            <path
+                d="M22 64
+                   L100 21
+                   L178 64Z"
+                fill="#d4a052"/>
+
+            <rect
+                x="36"
+                y="64"
+                width="128"
+                height="78"
+                fill="#dce7e9"/>
+
+            <rect
+                x="87"
+                y="99"
+                width="26"
+                height="43"
+                fill="#78929a"/>
+
+            <rect
+                x="55"
+                y="81"
+                width="22"
+                height="22"
+                fill="#9fc7d1"/>
+
+            <rect
+                x="123"
+                y="81"
+                width="22"
+                height="22"
+                fill="#9fc7d1"/>
+
+        `);
+
+    }
+
+
+    /* =========================
+       TEACHER
+    ========================= */
+
+    if (name === "Teacher") {
+
+        return makeSVG(`
+
+            <circle
+                cx="95"
+                cy="47"
+                r="24"
+                fill="#c78d60"/>
+
+            <path
+                d="M53 145
+                   Q58 83 95 83
+                   Q132 83 137 145Z"
+                fill="#5e7b98"/>
+
+            <path
+                d="M73 35
+                   Q94 10 117 35"
+                fill="none"
+                stroke="#49362c"
+                stroke-width="11"/>
+
+            <rect
+                x="140"
+                y="64"
+                width="7"
+                height="77"
+                fill="#8b6b4d"/>
+
+            <rect
+                x="145"
+                y="53"
+                width="28"
+                height="12"
+                fill="#6a8d71"/>
+
+        `);
+
+    }
+
+
+    /* =========================
+       ERASER
+    ========================= */
+
+    if (name === "Eraser") {
+
+        return makeSVG(`
+
+            <path
+                d="M42 118
+                   L91 53
+                   L145 93
+                   L104 145
+                   H55Z"
+                fill="#e68ca3"/>
+
+            <path
+                d="M91 53
+                   L145 93"
+                stroke="#ffffff"
+                stroke-width="9"/>
+
+        `);
+
+    }
+
+
+    /* =========================
+       RULER
+    ========================= */
+
+    if (name === "Ruler") {
+
+        return makeSVG(`
+
+            <rect
+                x="35"
+                y="68"
+                width="130"
+                height="38"
+                rx="5"
+                fill="#e4c45d"/>
+
+            <path
+                d="M50 68V91
+                   M70 68V84
+                   M90 68V91
+                   M110 68V84
+                   M130 68V91
+                   M150 68V84"
+                stroke="#7a672c"
+                stroke-width="4"/>
+
+        `);
+
+    }
+
+
+    /* =========================
+       FOOTBALL
+    ========================= */
+
+    if (name === "Football") {
+
+        return makeSVG(`
+
+            <circle
+                cx="100"
+                cy="85"
+                r="55"
+                fill="#f3f3ef"
+                stroke="#555"
+                stroke-width="4"/>
+
+            <path
+                d="M100 55
+                   L123 72
+                   L114 99
+                   H86
+                   L77 72Z"
+                fill="#34393c"/>
+
+            <path
+                d="M77 72L51 63
+                   M123 72L149 63
+                   M86 99L72 123
+                   M114 99L128 123"
+                stroke="#555"
+                stroke-width="5"/>
+
+        `);
+
+    }
+
+
+    /* =========================
+       CRICKET
+    ========================= */
+
+    if (name === "Cricket") {
+
+        return makeSVG(`
+
+            <circle
+                cx="135"
+                cy="47"
+                r="13"
+                fill="#d34e4e"/>
+
+                <path
+                d="M48 139
+                   L116 39"
+                stroke="#b9854e"
+                stroke-width="18"
+                stroke-linecap="round"/>
+
+            <path
+                d="M92 69
+                   L110 84"
+                stroke="#8a6035"
+                stroke-width="5"/>
+
+        `);
+
+    }
+
+
+    /* =========================
+       BADMINTON
+    ========================= */
+
+    if (name === "Badminton") {
+
+        return makeSVG(`
+
+            <line
+                x1="47"
+                y1="139"
+                x2="113"
+                y2="57"
+                stroke="#65757c"
+                stroke-width="8"/>
+
+            <circle
+                cx="117"
+                cy="48"
+                r="10"
+                fill="#f3f2e9"
+                stroke="#8a9599"
+                stroke-width="3"/>
+
+            <path
+                d="M112 39
+                   L96 18
+                   M117 38
+                   L111 14
+                   M122 40
+                   L130 17
+                   M126 44
+                   L145 26"
+                stroke="#8a9599"
+                stroke-width="4"/>
+
+        `);
+
+    }
+
+
+    /* =========================
+       TENNIS
+    ========================= */
+
+    if (name === "Tennis") {
+
+        return makeSVG(`
+
+            <circle
+                cx="100"
+                cy="85"
+                r="55"
+                fill="#dce35d"/>
+
+            <path
+                d="M51 53
+                   Q89 82 149 43
+                   M51 117
+                   Q111 88 149 127"
+                fill="none"
+                stroke="#ffffff"
+                stroke-width="6"/>
+
+        `);
+
+    }
+
+
+    /* =========================
+       VOLLEYBALL
+    ========================= */
+
+    if (name === "Volleyball") {
+
+        return makeSVG(`
+
+            <circle
+                cx="100"
+                cy="85"
+                r="55"
+                fill="#f1f2ed"
+                stroke="#70797c"
+                stroke-width="4"/>
+
+            <path
+                d="M48 67
+                   Q95 84 151 61
+                   M74 35
+                   Q106 79 83 137
+                   M128 40
+                   Q91 68 122 137"
+                fill="none"
+                stroke="#777f82"
+                stroke-width="5"/>
+
+        `);
+
+    }
+
+
+    /* =========================
+       BASKETBALL
+    ========================= */
+
+    if (name === "Basketball") {
+
+        return makeSVG(`
+
+            <circle
+                cx="100"
+                cy="85"
+                r="55"
+                fill="#d98a3d"/>
+
+            <path
+                d="M45 85
+                   H155
+                   M100 30
+                   Q65 85 100 140
+                   M42 51
+                   Q100 77 158 51
+                   M42 119
+                   Q100 93 158 119"
+                fill="none"
+                stroke="#333"
+                stroke-width="6"/>
+
+        `);
+
+    }
+
+
+    /* =========================
+       FAMILY
+    ========================= */
+
+    if (
+        name === "Mother" ||
+        name === "Father" ||
+        name === "Brother" ||
+        name === "Sister" ||
+        name === "Grandmother" ||
+        name === "Grandfather"
+    ) {
+
+        let shirtColor =
+            "#5d8099";
+
+        let hairColor =
+            "#4b362b";
+
+
+        if (
+            name === "Mother"
+        ) {
+
+            shirtColor =
+                "#b66f91";
+
+        }
+
+
+        if (
+            name === "Sister"
+        ) {
+
+            shirtColor =
+                "#8b6db1";
+
+        }
+
+
+        if (
+            name === "Brother"
+        ) {
+
+            shirtColor =
+                "#5f936b";
+
+        }
+
+
+        if (
+            name === "Grandmother"
+        ) {
+
+            shirtColor =
+                "#a58b9b";
+
+            hairColor =
+                "#d2d2d2";
+
+        }
+
+
+        if (
+            name === "Grandfather"
+        ) {
+
+            shirtColor =
+                "#7e8b92";
+
+            hairColor =
+                "#d2d2d2";
+
+        }
+
+
+        return makeSVG(`
+
+            <circle
+                cx="100"
+                cy="55"
+                r="28"
+                fill="#c88e62"/>
+
+            <path
+                d="M61 148
+                   Q64 91 100 91
+                   Q136 91 139 148Z"
+                fill="${shirtColor}"/>
+
+            <path
+                d="M72 43
+                   Q100 13 128 43"
+                fill="none"
+                stroke="${hairColor}"
+                stroke-width="13"
+                stroke-linecap="round"/>
+
+            <circle
+                cx="89"
+                cy="55"
+                r="4"
+                fill="#333"/>
+
+            <circle
+                cx="111"
+                cy="55"
+                r="4"
+                fill="#333"/>
+
+            <path
+                d="M91 69
+                   Q100 75 109 69"
+                fill="none"
+                stroke="#7c493c"
+                stroke-width="4"
+                stroke-linecap="round"/>
+
+        `);
+
+    }
+
+
+    /* =========================
+       BAMBOO
+    ========================= */
+
+    if (name === "Bamboo") {
+
+        return makeSVG(`
+
+            <path
+                d="M65 145
+                   L78 25
+                   M101 145
+                   L108 18
+                   M136 145
+                   L130 38"
+                stroke="#5f9848"
+                stroke-width="16"
+                stroke-linecap="round"/>
+
+            <path
+                d="M71 101
+                   L102 82
+                   M77 66
+                   L108 48
+                   M106 105
+                   L133 89"
+                stroke="#477d39"
+                stroke-width="6"/>
+
+        `);
+
+    }
+
+
+    /* =========================
+       TEA
+    ========================= */
+
+    if (name === "Tea") {
+
+        return makeSVG(`
+
+            <path
+                d="M50 58
+                   H139
+                   L130 123
+                   Q95 140 59 123Z"
+                fill="#dcecf1"
+                stroke="#527f88"
+                stroke-width="7"/>
+
+            <path
+                d="M139 70
+                   Q169 65 160 96
+                   Q153 111 134 103"
+                fill="none"
+                stroke="#527f88"
+                stroke-width="8"/>
+
+            <path
+                d="M78 44
+                   Q69 27 80 14
+                   M104 44
+                   Q95 27 106 14"
+                fill="none"
+                stroke="#b7c0c0"
+                stroke-width="5"
+                stroke-linecap="round"/>
+
+            <rect
+                x="52"
+                y="51"
+                width="86"
+                height="8"
+                rx="4"
+                fill="#9a6a42"/>
+
+        `);
+
+    }
+
+
+    /* =========================
+       HANDLOOM
+    ========================= */
+
+    if (name === "Handloom") {
+
+        return makeSVG(`
+
+            <rect
+                x="32"
+                y="30"
+                width="136"
+                height="108"
+                rx="5"
+                fill="#d9b66d"
+                stroke="#9b7540"
+                stroke-width="6"/>
+
+            <path
+                d="M32 54
+                   H168
+                   M32 78
+                   H168
+                   M32 102
+                   H168
+                   M60 30
+                   V138
+                   M88 30
+                   V138
+                   M116 30
+                   V138
+                   M144 30
+                   V138"
+                stroke="#a37943"
+                stroke-width="4"/>
+
+        `);
+
+    }
+
+
+    /* =========================
+       FESTIVAL
+    ========================= */
+
+    if (name === "Festival") {
+
+        return makeSVG(`
+
+            <line
+                x1="25"
+                y1="137"
+                x2="175"
+                y2="137"
+                stroke="#6e7678"
+                stroke-width="7"/>
+
+            <path
+                d="M33 130
+                   L53 61
+                   L75 130
+                   L100 50
+                   L125 130
+                   L149 61
+                   L168 130"
+                fill="#e6aa3b"
+                stroke="#a86c30"
+                stroke-width="5"/>
+
+            <circle
+                cx="100"
+                cy="38"
+                r="13"
+                fill="#e36f6f"/>
+
+        `);
+
+    }
+
+
+    /* =========================
+       DRUM
+    ========================= */
+
+    if (name === "Drum") {
+
+        return makeSVG(`
+
+            <path
+                d="M48 43
+                   H152
+                   L139 126
+                   Q100 145 61 126Z"
+                fill="#a76f40"
+                stroke="#7b512f"
+                stroke-width="6"/>
+
+            <ellipse
+                cx="100"
+                cy="43"
+                rx="52"
+                ry="17"
+                fill="#f1eee5"
+                stroke="#70787b"
+                stroke-width="6"/>
+
+            <ellipse
+                cx="100"
+                cy="126"
+                rx="39"
+                ry="12"
+                fill="#eeeae0"
+                stroke="#70787b"
+                stroke-width="5"/>
+
+            <line
+                x1="56"
+                y1="53"
+                x2="144"
+                y2="118"
+                stroke="#8a5b36"
+                stroke-width="4"/>
+
+            <line
+                x1="144"
+                y1="53"
+                x2="56"
+                y2="118"
+                stroke="#8a5b36"
+                stroke-width="4"/>
+
+        `);
+
+    }
+
+
+    /* =========================
+       VILLAGE
+    ========================= */
+
+    if (name === "Village") {
+
+        return makeSVG(`
+
+            <rect
+                x="25"
+                y="94"
+                width="63"
+                height="48"
+                fill="#d9a35e"/>
+
+            <path
+                d="M18 94
+                   L56 59
+                   L95 94Z"
+                fill="#b96d50"/>
+
+            <rect
+                x="108"
+                y="82"
+                width="66"
+                height="60"
+                fill="#d8bd78"/>
+
+            <path
+                d="M100 82
+                   L141 48
+                   L181 82Z"
+                fill="#a9684f"/>
+
+            <circle
+                cx="29"
+                cy="47"
+                r="23"
+                fill="#68a05b"/>
+
+            <rect
+                x="18"
+                y="67"
+                width="13"
+                height="39"
+                fill="#805a38"/>
+
+            <path
+                d="M10 143
+                   H190"
+                stroke="#6e9258"
+                stroke-width="9"/>
+
+        `);
+
+    }
+
+
+    /* =====================================================
+       FALLBACK
+    ===================================================== */
+
+    return makeSVG(`
+
+        <circle
+            cx="100"
+            cy="85"
+            r="50"
+            fill="#dcece8"/>
+
+        <text
+            x="100"
+            y="92"
+            text-anchor="middle"
+            font-size="20"
+            font-family="Arial"
+            fill="#17332f">
+
+            ${name}
+
+        </text>
+
+    `);
+
+}
+
+
+/* =========================================================
+   START ROUND
+   ========================================================= */
+
+function startRound() {
+
+    currentPairs =
+        difficultyLevels[currentLevel];
+
+    matchedPairs = 0;
+
+    attempts = 0;
+
+    correctAttempts = 0;
+
+    lockBoard = false;
+
+    firstCard = null;
+
+    secondCard = null;
+
+    startTime = Date.now();
+
+    completedTime = 0;
+
+    adaptationScore = 0;
+
+    sessionSaved = false;
+
+
+    completionBox.style.display =
+        "none";
+
+    feedback.textContent =
+        "";
+
+
+    levelValue.textContent =
+        currentLevel;
+
+    pairsValue.textContent =
+        matchedPairs;
+
+    attemptsValue.textContent =
+        attempts;
+
+    accuracyValue.textContent =
+        "0%";
+
+
+    createBoard();
+
+}
+
+
+/* =========================================================
+   CREATE BOARD
+   ========================================================= */
+
+function createBoard() {
+
+    gameBoard.innerHTML =
+        "";
+
+
+    const categoryNames =
+        Object.keys(
+            categories
+        );
+
+
+    const randomCategory =
+        categoryNames[
+            Math.floor(
+                Math.random() *
+                categoryNames.length
+            )
+        ];
+
+
+    const availableObjects =
+        [
+            ...categories[
+                randomCategory
+            ]
+        ];
+
+
+    availableObjects.sort(
+        () =>
+            Math.random() -
+            0.5
+    );
+
+
+    const selectedObjects =
+        availableObjects.slice(
+            0,
+            currentPairs
+        );
+
+
+    let cards = [];
+
+
+    selectedObjects.forEach(
+        function(object) {
+
+            cards.push(object);
+
+            cards.push(object);
+
+        }
+    );
+
+
+    cards.sort(
+        () =>
+            Math.random() -
+            0.5
+    );
+
+
+    cards.forEach(
+        function(object) {
+
+            const card =
+                document.createElement(
+                    "div"
+                );
+
+
+            card.className =
+                "card";
+
+
+            card.dataset.value =
+                object;
+
+
+            card.innerHTML = `
+
+                <div class="card-inner">
+
+
+                    <div class="card-front">
+
+                        <div
+                            class="question-mark">
+
+                            ?
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="card-back">
+
+
+                        <div
+                            class="card-picture">
+
+                            ${getObjectPicture(object)}
+
+                        </div>
+
+
+                        <div
+                            class="card-label">
+
+                            ${object}
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+            `;
+
+
+            card.addEventListener(
+                "click",
+                function() {
+
+                    flipCard(card);
+
+                }
+            );
+
+
+            gameBoard.appendChild(
+                card
+            );
+
+        }
+    );
+
+
+    updateBoardLayout();
+
+}
+
+
+/* =========================================================
+   BOARD LAYOUT
+   ========================================================= */
+
+function updateBoardLayout() {
+
+    if (
+        currentPairs === 3
+    ) {
+
+        gameBoard.style.gridTemplateColumns =
+            "repeat(3, 1fr)";
+
+    }
+
+    else {
+
+        gameBoard.style.gridTemplateColumns =
+            "repeat(4, 1fr)";
+
+    }
+
+}
+
+
+/* =========================================================
+   FLIP CARD
+   ========================================================= */
+
+function flipCard(card) {
+
+    if (lockBoard) {
+
+        return;
+
+    }
+
+
+    if (card === firstCard) {
+
+        return;
+
+    }
+
+
+    if (
+        card.classList.contains(
+            "matched"
+        )
+    ) {
+
+        return;
+
+    }
+
+
+    card.classList.add(
+        "flipped"
+    );
+
+
+    if (!firstCard) {
+
+        firstCard = card;
+
+        return;
+
+    }
+
+
+    secondCard = card;
+
+    attempts++;
+
+    updateStats();
+
+    checkMatch();
+
+}
+
+
+/* =========================================================
+   CHECK MATCH
+   ========================================================= */
+
+function checkMatch() {
+
+    const firstValue =
+        firstCard.dataset.value;
+
+
+    const secondValue =
+        secondCard.dataset.value;
+
+
+    if (
+        firstValue ===
+        secondValue
+    ) {
+
+        handleMatch();
+
+    }
+
+    else {
+
+        handleMismatch();
+
+    }
+
+}
+
+
+/* =========================================================
+   MATCH
+   ========================================================= */
+
+function handleMatch() {
+
+    firstCard.classList.add(
+        "matched"
+    );
+
+    secondCard.classList.add(
+        "matched"
+    );
+
+
+    matchedPairs++;
+
+    correctAttempts++;
+
+
+    feedback.textContent =
+        "Good match!";
+
+
+    updateStats();
+
+    resetTurn();
+
+
+    if (
+        matchedPairs ===
+        currentPairs
+    ) {
+
+        finishRound();
+
+    }
+
+}
+
+
+/* =========================================================
+   MISMATCH
+   ========================================================= */
+
+function handleMismatch() {
+
+    lockBoard =
+        true;
+
+
+    feedback.textContent =
+        "Try again.";
+
+
+    setTimeout(
+        function() {
+
+            firstCard.classList.remove(
+                "flipped"
+            );
+
+            secondCard.classList.remove(
+                "flipped"
+            );
+
+
+            resetTurn();
+
+        },
+        900
+    );
+
+}
+
+
+/* =========================================================
+   RESET TURN
+   ========================================================= */
+
+function resetTurn() {
+
+    firstCard =
+        null;
+
+    secondCard =
+        null;
+
+    lockBoard =
+        false;
+
+}
+
+
+/* =========================================================
+   UPDATE STATS
+   ========================================================= */
+
+function updateStats() {
+
+    pairsValue.textContent =
+        matchedPairs;
+
+
+    attemptsValue.textContent =
+        attempts;
+
+
+    let accuracy =
+        0;
+
+
+    if (
+        attempts > 0
+    ) {
+
+        accuracy =
+            Math.round(
+                (
+                    correctAttempts /
+                    attempts
+                ) *
+                100
+            );
+
+    }
+
+
+    accuracyValue.textContent =
+        accuracy +
+        "%";
+
+}
+
+
+/* =========================================================
+   FINISH ROUND
+   ========================================================= */
+
+function finishRound() {
+
+    if (
+        sessionSaved
+    ) {
+
+        return;
+
+    }
+
+
+    completedTime =
+        Math.round(
+            (
+                Date.now() -
+                startTime
+            ) /
+            1000
+        );
+
+
+    let accuracy =
+        0;
+
+
+    if (
+        attempts > 0
+    ) {
+
+        accuracy =
+            Math.round(
+                (
+                    correctAttempts /
+                    attempts
+                ) *
+                100
+            );
+
+    }
+
+
+    const playedLevel =
+        currentLevel;
+
+
+    calculateAdaptationScore();
+
+
+    if (
+        typeof
+        NeuroSaathiPerformance !==
+        "undefined"
+    ) {
+
+        NeuroSaathiPerformance.saveGameSession({
+
+            game:
+                "Memory Match",
+
+            level:
+                playedLevel,
+
+            accuracy:
+                accuracy,
+
+            attempts:
+                attempts,
+
+            correct:
+                correctAttempts,
+
+            mistakes:
+                attempts -
+                correctAttempts,
+
+            completionTime:
+                completedTime,
+
+            completed:
+                true
+
+        });
+
+
+        sessionSaved =
+            true;
+
+    }
+
+
+    completionText.textContent =
+
+        "You completed Level " +
+        playedLevel +
+        " with " +
+        accuracy +
+        "% accuracy in " +
+        completedTime +
+        " seconds.";
+
+
+    completionBox.style.display =
+        "block";
+
+
+    playCompletionTune();
+
+    adaptDifficulty();
+
+}
+
+
+/* =========================================================
+   COMPLETION SOUND
+   ========================================================= */
+
+function playCompletionTune() {
+
+    if (
+        !window.AudioContext &&
+        !window.webkitAudioContext
+    ) {
+
+        return;
+
+    }
+
+
+    const AudioCtx =
+        window.AudioContext ||
+        window.webkitAudioContext;
+
+
+    const audioContext =
+        new AudioCtx();
+
+
+    const notes = [
+
+        523.25,
+        659.25,
+        783.99
+
+    ];
+
+
+    notes.forEach(
+        function(
+            frequency,
+            index
+        ) {
+
+            const oscillator =
+                audioContext
+                    .createOscillator();
+
+
+            const gain =
+                audioContext
+                    .createGain();
+
+
+            oscillator.type =
+                "sine";
+
+
+            oscillator.frequency.value =
+                frequency;
+
+
+            oscillator.connect(
+                gain
+            );
+
+
+            gain.connect(
+                audioContext.destination
+            );
+
+
+            const start =
+                audioContext.currentTime +
+                (
+                    index *
+                    0.16
+                );
+
+
+            const end =
+                start +
+                0.45;
+
+
+            gain.gain.setValueAtTime(
+                0,
+                start
+            );
+
+
+            gain.gain.linearRampToValueAtTime(
+                0.12,
+                start + 0.04
+            );
+
+
+            gain.gain.exponentialRampToValueAtTime(
+                0.001,
+                end
+            );
+
+
+            oscillator.start(
+                start
+            );
+
+
+            oscillator.stop(
+                end
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   ADAPTATION SCORE
+   ========================================================= */
+
+function calculateAdaptationScore() {
+
+    adaptationScore =
+        0;
+
+
+    let accuracy =
+        0;
+
+
+    if (
+        attempts > 0
+    ) {
+
+        accuracy =
+            (
+                correctAttempts /
+                attempts
+            ) *
+            100;
+
+    }
+
+
+    if (
+        accuracy >= 90
+    ) {
+
+        adaptationScore +=
+            3;
+
+    }
+
+    else if (
+        accuracy >= 75
+    ) {
+
+        adaptationScore +=
+            2;
+
+    }
+
+    else if (
+        accuracy >= 60
+    ) {
+
+        adaptationScore +=
+            1;
+
+    }
+
+
+    if (
+        completedTime <= 60
+    ) {
+
+        adaptationScore +=
+            2;
+
+    }
+
+    else if (
+        completedTime <= 120
+    ) {
+
+        adaptationScore +=
+            1;
+
+    }
+
+
+    if (
+        attempts <=
+        currentPairs + 2
+    ) {
+
+        adaptationScore +=
+            1;
+
+    }
+
+}
+
+
+/* =========================================================
+   ADAPT DIFFICULTY
+   ========================================================= */
+
+function adaptDifficulty() {
+
+    let accuracy =
+        0;
+
+
+    if (
+        attempts > 0
+    ) {
+
+        accuracy =
+            (
+                correctAttempts /
+                attempts
+            ) *
+            100;
+
+    }
+
+
+    if (
+        adaptationScore >= 5 &&
+        currentLevel < 4
+    ) {
+
+        currentLevel++;
+
+    }
+
+    else if (
+        accuracy < 60 &&
+        currentLevel > 1
+    ) {
+
+        currentLevel--;
+
+    }
+
+
+    levelValue.textContent =
+        currentLevel;
+
+}
+
+
+/* =========================================================
+   RESTART
+   ========================================================= */
+
+restartButton.addEventListener(
+    "click",
+    function() {
+
+        startRound();
+
+    }
+);
+
+
+/* =========================================================
+   NEXT ROUND
+   ========================================================= */
+
+nextRoundButton.addEventListener(
+    "click",
+    function() {
+
+        startRound();
+
+
+        window.scrollTo({
+
+            top:
+                0,
+
+            behavior:
+                "smooth"
+
+        });
+
+    }
+);
+
+
+/* =========================================================
+   VOICE
+   ========================================================= */
+
+function speak(text) {
+
+    if (
+        !(
+            "speechSynthesis"
+            in window
+        )
+    ) {
+
+        return;
+
+    }
+
+
+    window.speechSynthesis.cancel();
+
+
+    const speech =
+        new SpeechSynthesisUtterance(
+            text
+        );
+
+
+    speech.lang =
+        "en-IN";
+
+
+    speech.rate =
+        0.85;
+
+
+    window.speechSynthesis.speak(
+        speech
+    );
+
+}
+
+
+voiceButton.addEventListener(
+    "click",
+    function() {
+
+        speak(
+            "Memory Match. Find all the matching pairs and keep your mind active."
+        );
+
+    }
+);
+
+
+instructionListen.addEventListener(
+    "click",
+    function() {
+
+        speak(
+            "Find all the matching pairs."
+        );
+
+    }
+);
+
+
+/* =========================================================
+   ESCAPE = STOP VOICE
+   ========================================================= */
+
+document.addEventListener(
+    "keydown",
+    function(event) {
+
+        if (
+            event.key ===
+            "Escape"
+        ) {
+
+            if (
+                "speechSynthesis"
+                in window
+            ) {
+
+                window.speechSynthesis.cancel();
+
+            }
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   BACK
+   ========================================================= */
+
+backButton.addEventListener(
+    "click",
+    function() {
+
+        window.location.href =
+            "../index.html";
+
+    }
+);
+
+
+/* =========================================================
+   START GAME
+   ========================================================= */
+
+const recommendedLevel =
+    NeuroSaathiAdaptiveEngine
+        .getRecommendedLevel(
+            "Memory Match"
+        );
+
+
+currentLevel =
+    recommendedLevel ||
+    1;
+
+
+startRound();
+
+
+</script>
+
+</body>
+
+>>>>>>> c26f88dca46a2e27652d1023acf211bd7e9f66b0
 </html>
