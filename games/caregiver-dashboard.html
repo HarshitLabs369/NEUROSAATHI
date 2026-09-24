@@ -1001,9 +1001,7 @@
                 bold;
         }
 
-        
 
-        
         /* =========================
            MEMORY ANCHOR
         ========================= */
@@ -1130,6 +1128,131 @@
 
             line-height:
                 1.5;
+        }
+
+
+        /* =========================
+           RELATIONSHIP PHOTOS
+        ========================= */
+
+        .relationship-photo-grid-dashboard {
+
+            display: grid;
+
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+
+            gap: 16px;
+
+            margin-top: 20px;
+
+        }
+
+        .relationship-photo-dashboard-card {
+
+            background: #f4f7f6;
+
+            border: 1px solid #dfe8e5;
+
+            border-radius: 14px;
+
+            padding: 12px;
+
+        }
+
+        .relationship-photo-dashboard-preview {
+
+            width: 100%;
+
+            aspect-ratio: 1 / 1;
+
+            border-radius: 11px;
+
+            overflow: hidden;
+
+            background: #eaf1ef;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            margin-bottom: 10px;
+
+        }
+
+        .relationship-photo-dashboard-preview img {
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: cover;
+
+        }
+
+        .relationship-photo-dashboard-placeholder {
+
+            padding: 12px;
+
+            text-align: center;
+
+            color: #7b8582;
+
+            font-size: 12px;
+
+        }
+
+        .relationship-photo-dashboard-name {
+
+            font-weight: bold;
+
+            font-size: 15px;
+
+            text-align: center;
+
+        }
+
+        .manage-relationship-photos {
+
+            display: inline-block;
+
+            margin-top: 16px;
+
+            text-decoration: none;
+
+            background: #237c70;
+
+            color: white;
+
+            padding: 11px 16px;
+
+            border-radius: 10px;
+
+            font-weight: bold;
+
+        }
+
+        .manage-relationship-photos:hover {
+
+            background: #1d695f;
+
+        }
+
+        @media (max-width: 900px) {
+
+            .relationship-photo-grid-dashboard {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+
+        }
+
+        @media (max-width: 650px) {
+
+            .relationship-photo-grid-dashboard {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
         }
 
 
@@ -1315,7 +1438,102 @@
 
         }
 
-    </style>
+    
+        /* =========================
+           FINAL ANALYTICS LAYOUT
+        ========================= */
+
+        #dailyPlanList,
+        #sessionHistoryList,
+        #consistencySummary {
+            display: grid;
+            gap: 12px;
+        }
+
+        .plan-item,
+        .history-item,
+        .insight-item {
+            background: #f5f8f7;
+            border: 1px solid #dfe8e5;
+            border-radius: 14px;
+            padding: 16px;
+        }
+
+        .plan-item {
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .plan-number {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            background: #17332f;
+            color: white;
+            font-weight: bold;
+        }
+
+        .plan-item h3,
+        .history-item h3,
+        .insight-item h3 {
+            margin: 0 0 5px;
+            font-size: 17px;
+        }
+
+        .plan-item p,
+        .history-item p,
+        .insight-item p {
+            margin: 0;
+            color: #5d6d69;
+            line-height: 1.5;
+        }
+
+        .plan-level {
+            white-space: nowrap;
+            font-weight: bold;
+        }
+
+        .history-item {
+            display: grid;
+            grid-template-columns: 1.4fr 0.7fr 0.7fr 0.8fr;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .history-value {
+            font-weight: bold;
+        }
+
+        .history-label {
+            display: block;
+            font-size: 12px;
+            color: #6b7975;
+            margin-top: 3px;
+        }
+
+        .analytics-empty {
+            color: #667571;
+            padding: 12px 0;
+        }
+
+        @media (max-width: 700px) {
+            .plan-item {
+                grid-template-columns: auto 1fr;
+            }
+
+            .plan-level {
+                grid-column: 2;
+            }
+
+            .history-item {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+</style>
 
 </head>
 
@@ -1357,12 +1575,6 @@
                 class="back-button"
             >
                 ← Back
-            </a>
-            <a
-            href="caregiver-settings.html"
-            class="caregiver-settings-button"
-        >
-            Caregiver Settings
             </a>
 
         </div>
@@ -1633,6 +1845,68 @@
 
 
         <!-- =========================
+             PERSONALIZED DAILY PLAN
+        ========================= -->
+
+        <section class="summary-card">
+
+            <h2>Personalized Daily Activity Plan</h2>
+
+            <p>
+                A simple activity sequence based on recent participation and performance.
+                It supports personalization and is not a medical recommendation.
+            </p>
+
+            <div id="dailyPlanList" class="recommendation-list">
+                Loading today's plan...
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             30-DAY ANALYTICS
+        ========================= -->
+
+        <section class="summary-card">
+
+            <h2>30-Day Activity Insights</h2>
+
+            <p>
+                A broader view of participation, accuracy and consistency.
+            </p>
+
+            <div class="domain-stats" id="analyticsSummaryCards">
+                Loading insights...
+            </div>
+
+            <div class="activity-list" id="consistencySummary">
+                Loading consistency...
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             SESSION HISTORY
+        ========================= -->
+
+        <section class="summary-card">
+
+            <h2>Session History</h2>
+
+            <p>
+                The latest recorded sessions with their activity performance details.
+            </p>
+
+            <div class="activity-list" id="sessionHistoryList">
+                Loading session history...
+            </div>
+
+        </section>
+
+
+        <!-- =========================
              REMINDERS
         ========================= -->
 
@@ -1803,6 +2077,40 @@
 
 
         <!-- =========================
+             RELATIONSHIP PHOTOS
+        ========================= -->
+
+        <div class="section-heading">
+
+            <h2>
+                Relationship Photos
+            </h2>
+
+            <p>
+                Familiar people photos used by the Relationship Match activity.
+            </p>
+
+        </div>
+
+
+        <section class="summary-card">
+
+            <div
+                class="relationship-photo-grid-dashboard"
+                id="relationshipPhotoDashboardGrid"
+            ></div>
+
+            <a
+                href="caregiver-settings.html"
+                class="manage-relationship-photos"
+            >
+                Manage Relationship Photos
+            </a>
+
+        </section>
+
+
+        <!-- =========================
              ACTIVITY DOMAINS
         ========================= -->
 
@@ -1858,6 +2166,8 @@
          JAVASCRIPT FILES
     ========================= -->
 
+    <script src="../js/neurosaathi-preferences.js"></script>
+    <script src="../js/neurosaathi-voice.js"></script>
     <script
         src="../js/performance.js"
     ></script>
@@ -1870,6 +2180,10 @@
 
     <script
         src="../js/cognitive-profile.js"
+    ></script>
+
+    <script
+        src="../js/neurosaathi-analytics.js"
     ></script>
 
 
@@ -3328,6 +3642,91 @@
 
 
         /* =========================
+           RELATIONSHIP PHOTOS
+        ========================= */
+
+        function loadRelationshipPhotos() {
+
+            const grid =
+                document.getElementById(
+                    "relationshipPhotoDashboardGrid"
+                );
+
+            if (!grid) {
+                return;
+            }
+
+            const people = [
+                "Mother",
+                "Father",
+                "Son",
+                "Daughter",
+                "Brother",
+                "Sister",
+                "Grandson",
+                "Granddaughter",
+                "Friend",
+                "Grandfather",
+                "Grandmother",
+                "Caregiver"
+            ];
+
+            let images = {};
+
+            try {
+
+                images = JSON.parse(
+                    localStorage.getItem(
+                        "neurosaathi_relationship_images"
+                    ) || "{}"
+                );
+
+            }
+            catch (error) {
+                images = {};
+            }
+
+            grid.innerHTML = "";
+
+            people.forEach(function(person) {
+
+                const card = document.createElement("div");
+                card.className = "relationship-photo-dashboard-card";
+
+                const preview = document.createElement("div");
+                preview.className = "relationship-photo-dashboard-preview";
+
+                if (images[person]) {
+
+                    const image = document.createElement("img");
+                    image.src = images[person];
+                    image.alt = person + " photo";
+                    preview.appendChild(image);
+
+                }
+                else {
+
+                    const placeholder = document.createElement("div");
+                    placeholder.className = "relationship-photo-dashboard-placeholder";
+                    placeholder.textContent = "No photo added";
+                    preview.appendChild(placeholder);
+
+                }
+
+                const name = document.createElement("div");
+                name.className = "relationship-photo-dashboard-name";
+                name.textContent = person;
+
+                card.appendChild(preview);
+                card.appendChild(name);
+                grid.appendChild(card);
+
+            });
+
+        }
+
+
+        /* =========================
            CONNECTION STATUS
         ========================= */
 
@@ -3372,12 +3771,137 @@
 
 
         /* =========================
+           FINAL ANALYTICS
+        ========================= */
+
+        function loadDailyPlan() {
+
+            const container = document.getElementById("dailyPlanList");
+            if (!container || typeof NeuroSaathiAnalytics === "undefined") return;
+
+            const plan = NeuroSaathiAnalytics.getDailyPlan();
+
+            if (!plan.length) {
+                container.innerHTML = '<div class="analytics-empty">Enable at least one activity to create a daily plan.</div>';
+                return;
+            }
+
+            container.innerHTML = plan.map(function(item, index) {
+                return `
+                    <div class="plan-item">
+                        <div class="plan-number">${index + 1}</div>
+                        <div>
+                            <h3>${item.label}</h3>
+                            <p>${item.reason}</p>
+                        </div>
+                        <div class="plan-level">Level ${item.recommendedLevel}</div>
+                    </div>
+                `;
+            }).join("");
+        }
+
+
+        function loadThirtyDayAnalytics() {
+
+            if (typeof NeuroSaathiAnalytics === "undefined") return;
+
+            const summary = NeuroSaathiAnalytics.getWindowSummary(30);
+            const cards = document.getElementById("analyticsSummaryCards");
+            const consistency = document.getElementById("consistencySummary");
+
+            if (cards) {
+                cards.innerHTML = `
+                    <div class="stat-box">
+                        <strong>${summary.sessionCount}</strong>
+                        <span>Sessions</span>
+                    </div>
+                    <div class="stat-box">
+                        <strong>${summary.averageAccuracy}%</strong>
+                        <span>Average Accuracy</span>
+                    </div>
+                    <div class="stat-box">
+                        <strong>${summary.completedCount}</strong>
+                        <span>Completed</span>
+                    </div>
+                    <div class="stat-box">
+                        <strong>${summary.totalMistakes}</strong>
+                        <span>Mistakes</span>
+                    </div>
+                `;
+            }
+
+            if (consistency) {
+                const seven = NeuroSaathiAnalytics.getConsistency(7);
+                const thirty = NeuroSaathiAnalytics.getConsistency(30);
+                consistency.innerHTML = `
+                    <div class="insight-item">
+                        <h3>Consistency</h3>
+                        <p>
+                            Active on ${seven.activeDays} of the last 7 days and
+                            ${thirty.activeDays} of the last 30 days.
+                            Current activity streak: ${thirty.currentStreak} day${thirty.currentStreak === 1 ? "" : "s"}.
+                        </p>
+                    </div>
+                `;
+            }
+        }
+
+
+        function loadSessionHistory() {
+
+            const container = document.getElementById("sessionHistoryList");
+            if (!container || typeof NeuroSaathiAnalytics === "undefined") return;
+
+            const sessions = NeuroSaathiAnalytics.getSessions().slice(-12).reverse();
+
+            if (!sessions.length) {
+                container.innerHTML = '<div class="analytics-empty">Complete an activity to start building session history.</div>';
+                return;
+            }
+
+            container.innerHTML = sessions.map(function(session) {
+                const label = NeuroSaathiAnalytics.GAME_LABELS[session.game] || session.game;
+                const date = new Date(session.timestamp);
+                const dateText = Number.isNaN(date.getTime())
+                    ? "Recent"
+                    : date.toLocaleString(undefined, { day: "numeric", month: "short", hour: "numeric", minute: "2-digit" });
+                return `
+                    <div class="history-item">
+                        <div>
+                            <h3>${label}</h3>
+                            <span class="history-label">${dateText}</span>
+                        </div>
+                        <div>
+                            <span class="history-value">${Number(session.accuracy) || 0}%</span>
+                            <span class="history-label">Accuracy</span>
+                        </div>
+                        <div>
+                            <span class="history-value">${Number(session.level) || 1}</span>
+                            <span class="history-label">Level</span>
+                        </div>
+                        <div>
+                            <span class="history-value">${Number(session.attempts) || 0}</span>
+                            <span class="history-label">Attempts</span>
+                        </div>
+                    </div>
+                `;
+            }).join("");
+        }
+
+
+        /* =========================
            START DASHBOARD
         ========================= */
 
         loadDashboard();
 
         loadRecommendations();
+
+        loadDailyPlan();
+
+        loadThirtyDayAnalytics();
+
+        loadSessionHistory();
 
         loadTrendChart();
 
@@ -3387,12 +3911,16 @@
 
         loadMemoryAnchor();
 
+        loadRelationshipPhotos();
+
         updateConnectionStatus();
 
 
     </script>
 
 
+    <script src="../js/neurosaathi-i18n.js"></script>
+    <script src="../js/neurosaathi-multilingual-voice.js"></script>
 </body>
 
 </html>

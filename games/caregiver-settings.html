@@ -713,6 +713,233 @@
         }
 
 
+        .preference-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .preference-card {
+            border: 1px solid #d8e5e2;
+            border-radius: 14px;
+            padding: 18px;
+            background: #f8fbfa;
+        }
+
+        .preference-card label {
+            display: block;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .preference-card select,
+        .preference-card input[type="range"],
+        .preference-card input[type="time"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #cbdcd8;
+            border-radius: 9px;
+            font-size: 16px;
+            background: white;
+        }
+
+        .preference-card input[type="range"] { padding: 0; }
+
+        .preference-help {
+            margin: 8px 0 0;
+            color: #526966;
+            font-size: 14px;
+        }
+
+        .range-value { font-weight: 700; margin-left: 6px; }
+
+        @media (max-width: 700px) {
+            .preference-grid { grid-template-columns: 1fr; }
+        }
+
+
+        /* =========================
+           RELATIONSHIP PHOTOS
+           ========================= */
+
+        .relationship-photo-grid {
+
+            display: grid;
+
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+
+            gap: 16px;
+
+        }
+
+        .relationship-photo-card {
+
+            border: 2px solid #d5e2df;
+
+            border-radius: 14px;
+
+            background: #f8fbfa;
+
+            padding: 14px;
+
+        }
+
+        .relationship-photo-card h3 {
+
+            margin: 0 0 10px;
+
+            font-size: 17px;
+
+        }
+
+        .relationship-photo-preview {
+
+            width: 100%;
+
+            height: 145px;
+
+            border-radius: 11px;
+
+            border: 1px solid #d5e2df;
+
+            background: #edf4f2;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            overflow: hidden;
+
+            margin-bottom: 10px;
+
+        }
+
+        .relationship-photo-preview img {
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: cover;
+
+        }
+
+        .relationship-photo-placeholder {
+
+            color: #70827e;
+
+            font-size: 13px;
+
+            text-align: center;
+
+            padding: 12px;
+
+        }
+
+        .relationship-photo-actions {
+
+            display: flex;
+
+            gap: 8px;
+
+            flex-wrap: wrap;
+
+        }
+
+        .photo-upload-button,
+        .photo-remove-button {
+
+            flex: 1;
+
+            min-height: 42px;
+
+            border-radius: 9px;
+
+            padding: 9px 10px;
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+        }
+
+        .photo-upload-button {
+
+            background: #237c70;
+
+            color: white;
+
+            text-align: center;
+
+        }
+
+        .photo-upload-button:hover {
+
+            background: #1c665c;
+
+        }
+
+        .photo-remove-button {
+
+            background: white;
+
+            color: #8a3030;
+
+            border: 1px solid #e2baba;
+
+        }
+
+        .photo-remove-button:hover {
+
+            background: #fff2f2;
+
+        }
+
+        .relationship-photo-input {
+
+            display: none;
+
+        }
+
+        .relationship-photo-note {
+
+            margin: 0 0 18px;
+
+            padding: 12px 14px;
+
+            border-left: 4px solid #237c70;
+
+            border-radius: 8px;
+
+            background: #eef6f4;
+
+            color: #526966;
+
+            font-size: 14px;
+
+        }
+
+        @media (max-width: 850px) {
+
+            .relationship-photo-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+        }
+
+        @media (max-width: 650px) {
+
+            .relationship-photo-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+
         /* =========================
            ACTIONS
            ========================= */
@@ -1396,6 +1623,103 @@
 
 
         <!-- =========================
+             RELATIONSHIP PHOTOS
+             ========================= -->
+
+        <section class="settings-card">
+
+            <h2 class="section-title">
+                Relationship Photos
+            </h2>
+
+            <p class="section-description">
+                Add familiar photos for the people used in Relationship Match.
+                Photos are stored locally on this device and can be changed at any time.
+            </p>
+
+            <div class="relationship-photo-note">
+                Upload only meaningful photos that the caregiver is comfortable using for this activity.
+                The game will use these photos automatically when they are available.
+            </div>
+
+            <div
+                class="relationship-photo-grid"
+                id="relationshipPhotoGrid"
+            ></div>
+
+        </section>
+
+
+        <!-- =========================
+             ACCESSIBILITY & LANGUAGE
+             ========================= -->
+
+        <section class="settings-card">
+
+            <h2 class="section-title">
+                Accessibility, Language & Reminders
+            </h2>
+
+            <p class="section-description">
+                Personalize the patient experience with voice speed, language,
+                readable text size and a preferred daily reminder time.
+            </p>
+
+            <div class="preference-grid">
+
+                <div class="preference-card">
+                    <label for="language">Preferred Language</label>
+                    <select id="language">
+                        <option value="en-IN">English</option>
+                        <option value="hi-IN">Hindi</option>
+                        <option value="bn-IN">Bengali</option>
+                        <option value="as-IN">Assamese</option>
+                    </select>
+                    <p class="preference-help">Used by the shared Tap-to-Listen voice system.</p>
+                </div>
+
+                <div class="preference-card">
+                    <label for="voiceRate">Voice Speed <span id="voiceRateValue" class="range-value">0.85×</span></label>
+                    <input type="range" id="voiceRate" min="0.6" max="1.2" step="0.05">
+                    <p class="preference-help">A slower speed can make instructions easier to follow.</p>
+                </div>
+
+                <div class="preference-card">
+                    <label for="fontScale">Text Size <span id="fontScaleValue" class="range-value">100%</span></label>
+                    <input type="range" id="fontScale" min="0.9" max="1.2" step="0.05">
+                    <p class="preference-help">Increase this when larger on-screen text is preferred.</p>
+                </div>
+
+                <div class="preference-card">
+                    <label for="reminderTime">Preferred Reminder Time</label>
+                    <input type="time" id="reminderTime">
+                    <p class="preference-help">The saved time can be used by the reminder experience.</p>
+                </div>
+
+                <div class="preference-card">
+                    <label>Voice Instructions</label>
+                    <label class="switch">
+                        <input type="checkbox" id="voiceEnabled">
+                        <span class="slider"></span>
+                    </label>
+                    <p class="preference-help">Enable or disable Tap-to-Listen instructions.</p>
+                </div>
+
+                <div class="preference-card">
+                    <label>Daily Reminders</label>
+                    <label class="switch">
+                        <input type="checkbox" id="reminderEnabled">
+                        <span class="slider"></span>
+                    </label>
+                    <p class="preference-help">Keeps reminder preferences ready for the routine system.</p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
              ACTIONS
              ========================= -->
 
@@ -1467,6 +1791,8 @@
          JAVASCRIPT
          ========================= -->
 
+    <script src="../js/neurosaathi-preferences.js"></script>
+    <script src="../js/neurosaathi-voice.js"></script>
     <script src="../js/caregiver-settings.js"></script>
 
 
@@ -1623,6 +1949,16 @@
             document.getElementById(
                 "breakDuration"
             );
+
+
+        const language = document.getElementById("language");
+        const voiceRate = document.getElementById("voiceRate");
+        const voiceRateValue = document.getElementById("voiceRateValue");
+        const fontScale = document.getElementById("fontScale");
+        const fontScaleValue = document.getElementById("fontScaleValue");
+        const voiceEnabled = document.getElementById("voiceEnabled");
+        const reminderEnabled = document.getElementById("reminderEnabled");
+        const reminderTime = document.getElementById("reminderTime");
 
 
         const exerciseGrid =
@@ -1906,6 +2242,16 @@
             dailyActivityMinutes.value =
                 settings.dailyActivityMinutes;
 
+            const preferences = settings.preferences || {};
+            language.value = preferences.language || "en-IN";
+            voiceRate.value = preferences.voiceRate || 0.85;
+            voiceRateValue.textContent = Number(voiceRate.value).toFixed(2) + "×";
+            fontScale.value = preferences.fontScale || 1;
+            fontScaleValue.textContent = Math.round(Number(fontScale.value) * 100) + "%";
+            voiceEnabled.checked = preferences.voiceEnabled !== false;
+            reminderEnabled.checked = preferences.reminderEnabled !== false;
+            reminderTime.value = preferences.reminderTime || "18:00";
+
 
             memoryMatch.checked =
                 Boolean(
@@ -1997,6 +2343,289 @@
 
         }
 
+
+
+        /*
+         * =========================================
+         * RELATIONSHIP PHOTOS
+         * =========================================
+         */
+
+        const RELATIONSHIP_IMAGE_STORAGE_KEY =
+            "neurosaathi_relationship_images";
+
+        const relationshipPhotoPeople = [
+            "Mother",
+            "Father",
+            "Son",
+            "Daughter",
+            "Brother",
+            "Sister",
+            "Grandson",
+            "Granddaughter",
+            "Friend",
+            "Grandfather",
+            "Grandmother",
+            "Caregiver"
+        ];
+
+        function getRelationshipImages() {
+
+            try {
+
+                const saved =
+                    localStorage.getItem(
+                        RELATIONSHIP_IMAGE_STORAGE_KEY
+                    );
+
+                return saved ? JSON.parse(saved) : {};
+
+            }
+            catch (error) {
+
+                console.log(
+                    "Relationship photos could not be loaded."
+                );
+
+                return {};
+
+            }
+
+        }
+
+        function saveRelationshipImages(images) {
+
+            try {
+
+                localStorage.setItem(
+                    RELATIONSHIP_IMAGE_STORAGE_KEY,
+                    JSON.stringify(images)
+                );
+
+                return true;
+
+            }
+            catch (error) {
+
+                console.log(
+                    "Relationship photos could not be saved.",
+                    error
+                );
+
+                return false;
+
+            }
+
+        }
+
+        function compressRelationshipImage(file) {
+
+            return new Promise(function(resolve, reject) {
+
+                const reader = new FileReader();
+
+                reader.onload = function(event) {
+
+                    const image = new Image();
+
+                    image.onload = function() {
+
+                        const maxSize = 900;
+
+                        let width = image.width;
+                        let height = image.height;
+
+                        if (width > maxSize || height > maxSize) {
+
+                            const scale = Math.min(
+                                maxSize / width,
+                                maxSize / height
+                            );
+
+                            width = Math.round(width * scale);
+                            height = Math.round(height * scale);
+
+                        }
+
+                        const canvas = document.createElement("canvas");
+
+                        canvas.width = width;
+                        canvas.height = height;
+
+                        const context = canvas.getContext("2d");
+
+                        context.drawImage(
+                            image,
+                            0,
+                            0,
+                            width,
+                            height
+                        );
+
+                        resolve(
+                            canvas.toDataURL(
+                                "image/jpeg",
+                                0.78
+                            )
+                        );
+
+                    };
+
+                    image.onerror = reject;
+                    image.src = event.target.result;
+
+                };
+
+                reader.onerror = reject;
+                reader.readAsDataURL(file);
+
+            });
+
+        }
+
+        function renderRelationshipPhotoSettings() {
+
+            const grid =
+                document.getElementById(
+                    "relationshipPhotoGrid"
+                );
+
+            if (!grid) {
+                return;
+            }
+
+            const images = getRelationshipImages();
+
+            grid.innerHTML = "";
+
+            relationshipPhotoPeople.forEach(function(person) {
+
+                const card = document.createElement("div");
+                card.className = "relationship-photo-card";
+
+                const preview = document.createElement("div");
+                preview.className = "relationship-photo-preview";
+
+                if (images[person]) {
+
+                    const image = document.createElement("img");
+                    image.src = images[person];
+                    image.alt = person + " photo";
+                    preview.appendChild(image);
+
+                }
+                else {
+
+                    const placeholder = document.createElement("div");
+                    placeholder.className = "relationship-photo-placeholder";
+                    placeholder.textContent = "No photo added yet.";
+                    preview.appendChild(placeholder);
+
+                }
+
+                const title = document.createElement("h3");
+                title.textContent = person;
+
+                const input = document.createElement("input");
+                input.type = "file";
+                input.accept = "image/*";
+                input.className = "relationship-photo-input";
+                input.id = "relationshipPhotoInput-" + person.replace(/[^a-z0-9]/gi, "");
+
+                const uploadLabel = document.createElement("label");
+                uploadLabel.className = "photo-upload-button";
+                uploadLabel.htmlFor = input.id;
+                uploadLabel.textContent = images[person] ? "Change Photo" : "Upload Photo";
+
+                const removeButton = document.createElement("button");
+                removeButton.type = "button";
+                removeButton.className = "photo-remove-button";
+                removeButton.textContent = "Remove";
+                removeButton.disabled = !images[person];
+                removeButton.addEventListener("click", function() {
+
+                    const updated = getRelationshipImages();
+                    delete updated[person];
+
+                    if (saveRelationshipImages(updated)) {
+                        renderRelationshipPhotoSettings();
+                        showStatus(
+                            person + " photo removed.",
+                            "success"
+                        );
+                    }
+                    else {
+                        showStatus(
+                            "The photo could not be removed.",
+                            "error"
+                        );
+                    }
+
+                });
+
+                input.addEventListener("change", async function() {
+
+                    const file = input.files && input.files[0];
+
+                    if (!file) {
+                        return;
+                    }
+
+                    if (!file.type || file.type.indexOf("image/") !== 0) {
+                        showStatus(
+                            "Please select an image file.",
+                            "error"
+                        );
+                        input.value = "";
+                        return;
+                    }
+
+                    try {
+
+                        const compressed =
+                            await compressRelationshipImage(file);
+
+                        const updated = getRelationshipImages();
+                        updated[person] = compressed;
+
+                        if (!saveRelationshipImages(updated)) {
+                            throw new Error("Storage failed");
+                        }
+
+                        renderRelationshipPhotoSettings();
+
+                        showStatus(
+                            person + " photo saved successfully.",
+                            "success"
+                        );
+
+                    }
+                    catch (error) {
+
+                        showStatus(
+                            "Photo could not be saved. Try a smaller image.",
+                            "error"
+                        );
+
+                    }
+
+                });
+
+                const actions = document.createElement("div");
+                actions.className = "relationship-photo-actions";
+                actions.appendChild(uploadLabel);
+                actions.appendChild(removeButton);
+
+                card.appendChild(title);
+                card.appendChild(preview);
+                card.appendChild(input);
+                card.appendChild(actions);
+
+                grid.appendChild(card);
+
+            });
+
+        }
 
 
         /*
@@ -2096,6 +2725,15 @@
                     guidedYogaFocus:
                         guidedYogaFocus.checked
 
+                },
+
+                preferences: {
+                    language: language.value,
+                    voiceEnabled: voiceEnabled.checked,
+                    voiceRate: Number(voiceRate.value),
+                    reminderEnabled: reminderEnabled.checked,
+                    reminderTime: reminderTime.value || "18:00",
+                    fontScale: Number(fontScale.value)
                 },
 
                 yoga: {
@@ -2274,6 +2912,16 @@
 
 
 
+        voiceRate.addEventListener("input", function() {
+            voiceRateValue.textContent = Number(voiceRate.value).toFixed(2) + "×";
+        });
+
+        fontScale.addEventListener("input", function() {
+            fontScaleValue.textContent = Math.round(Number(fontScale.value) * 100) + "%";
+            document.documentElement.style.setProperty("--ns-font-scale", fontScale.value);
+        });
+
+
         /*
          * =========================================
          * INITIALIZE
@@ -2281,10 +2929,58 @@
          */
 
         loadSettings();
+        renderRelationshipPhotoSettings();
 
     </script>
 
 
+    <script src="../js/neurosaathi-i18n.js"></script>
+
+<div class="settings-group" id="language-settings">
+  <label for="preferredLanguage" data-i18n="caregiver.language">Preferred Language</label>
+  <select id="preferredLanguage">
+    <option value="en">English</option>
+    <option value="hi">हिन्दी</option>
+    <option value="bn">বাংলা</option>
+    <option value="as">অসমীয়া</option>
+    <optgroup label="North-East India">
+      <option value="mni">Meitei (Manipuri)</option>
+      <option value="lus">Mizo</option>
+      <option value="kha">Khasi</option>
+      <option value="grt">Garo</option>
+      <option value="kok">Kokborok</option>
+    </optgroup>
+    <optgroup label="Southern India">
+      <option value="ta">தமிழ்</option>
+      <option value="te">తెలుగు</option>
+      <option value="kn">ಕನ್ನಡ</option>
+      <option value="ml">മലയാളം</option>
+    </optgroup>
+    <optgroup label="Eastern India">
+      <option value="or">ଓଡ଼ିଆ</option>
+    </optgroup>
+  </select>
+</div>
+<script>
+(function(){
+  var el=document.getElementById("preferredLanguage");
+  if(!el) return;
+  try {
+    var p=JSON.parse(localStorage.getItem("neurosaathi_preferences")||"{}");
+    el.value=p.language||"en";
+  } catch(e){}
+  el.addEventListener("change",function(){
+    try {
+      var p=JSON.parse(localStorage.getItem("neurosaathi_preferences")||"{}");
+      p.language=el.value;
+      localStorage.setItem("neurosaathi_preferences",JSON.stringify(p));
+    } catch(e){}
+    if(window.NeuroSaathiI18n) window.NeuroSaathiI18n.apply(document);
+  });
+})();
+</script>
+
+    <script src="../js/neurosaathi-multilingual-voice.js"></script>
 </body>
 
 </html>

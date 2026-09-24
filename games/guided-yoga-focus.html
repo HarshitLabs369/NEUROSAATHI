@@ -25,11 +25,39 @@
         }
 
         body {
-            margin: 0;
-            font-family: Arial, Helvetica, sans-serif;
-            background: #f4f8f6;
-            color: #17332f;
-        }
+    margin: 0;
+
+    font-family:
+        Arial,
+        sans-serif;
+
+    color: #17332f;
+
+    /*
+       NeuroSaathi botanical background
+
+     guided-yoga-focus.html is inside /games
+       bg.png is inside /assests
+
+       Therefore:
+       ../assests/bg.png
+    */
+    background-image:
+        url("../assests/bg.png");
+
+    background-repeat:
+        no-repeat;
+
+    background-position:
+        center center;
+
+    background-size:
+        cover;
+
+    background-attachment:
+        fixed;
+}
+
 
         button,
         input {
@@ -384,21 +412,383 @@
             margin: 5px 0 25px;
         }
 
-        .visual-demo {
-            width: 100%;
-            max-width: 700px;
-            height: 380px;
-            margin: 0 auto 25px;
-            border-radius: 20px;
-            background: #e9f3ef;
-            border: 3px solid #d4e5df;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-        }
+       /* =========================================
+   VIDEO-STYLE EXERCISE DEMONSTRATION
+   ========================================= */
 
+.visual-demo {
+    width: min(760px, 100%);
+    margin: 25px auto 30px;
+    padding: 18px;
+    border-radius: 24px;
+    background: #f4f8f6;
+    border: 2px solid #dce8e4;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.07);
+    position: relative;
+}
+
+/* Video header */
+
+.visual-demo::before {
+    content: "LIVE EXERCISE DEMO";
+
+    display: block;
+    width: fit-content;
+
+    margin: 0 auto 14px;
+
+    padding: 6px 12px;
+
+    border-radius: 20px;
+
+    background: #17332f;
+    color: white;
+
+    font-size: 12px;
+    font-weight: bold;
+
+    letter-spacing: 0.8px;
+}
+
+/* Main visual screen */
+
+.exercise-illustration {
+    width: 100%;
+    height: 330px;
+
+    margin: 0;
+
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #eef8f5 0%,
+            #f8fbfa 65%,
+            #e5f1ed 100%
+        );
+
+    border: 2px solid #cfe2dc;
+
+    box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,0.7);
+}
+
+/* Soft background decoration */
+
+.exercise-illustration::before {
+    content: "";
+
+    position: absolute;
+
+    width: 230px;
+    height: 230px;
+
+    border-radius: 50%;
+
+    background: rgba(35, 124, 112, 0.08);
+
+    top: 40px;
+    left: 50%;
+
+    transform: translateX(-50%);
+}
+
+/* Ground shadow */
+
+.exercise-illustration::after {
+    content: "";
+
+    position: absolute;
+
+    width: 190px;
+    height: 12px;
+
+    border-radius: 50%;
+
+    background: rgba(35, 124, 112, 0.16);
+
+    bottom: 30px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    z-index: 1;
+}
+
+/* Person */
+
+.illustration-person {
+    width: 190px;
+    height: 245px;
+
+    position: relative;
+
+    z-index: 3;
+
+    transform-origin: center bottom;
+
+    animation:
+        gentle-body-motion
+        3.5s
+        ease-in-out
+        infinite;
+}
+
+/* Head */
+
+.illustration-head {
+    width: 46px;
+    height: 46px;
+
+    border-radius: 50%;
+
+    background: #d8a47f;
+
+    position: absolute;
+
+    top: 3px;
+    left: 72px;
+
+    z-index: 5;
+
+    box-shadow:
+        0 2px 5px rgba(0,0,0,0.08);
+}
+
+/* Body */
+
+.illustration-body {
+    width: 58px;
+    height: 92px;
+
+    border-radius:
+        27px
+        27px
+        18px
+        18px;
+
+    background: #237c70;
+
+    position: absolute;
+
+    top: 50px;
+    left: 66px;
+
+    z-index: 3;
+}
+
+/* Arms */
+
+.illustration-arm-left,
+.illustration-arm-right {
+    width: 18px;
+    height: 78px;
+
+    border-radius: 12px;
+
+    background: #d8a47f;
+
+    position: absolute;
+
+    top: 54px;
+
+    transform-origin: top center;
+
+    z-index: 4;
+}
+
+/* Legs */
+
+.illustration-leg-left,
+.illustration-leg-right {
+    width: 20px;
+    height: 86px;
+
+    border-radius: 12px;
+
+    background: #315b66;
+
+    position: absolute;
+
+    top: 137px;
+
+    transform-origin: top center;
+
+    z-index: 2;
+}
+
+/* Base movement */
+
+.illustration-person > * {
+    transition:
+        transform 0.55s ease,
+        top 0.55s ease,
+        left 0.55s ease,
+        right 0.55s ease;
+}
+
+/* Gentle breathing motion */
+
+@keyframes gentle-body-motion {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+/* Demo label */
+
+.demo-label {
+    margin-top: 14px;
+
+    text-align: center;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    color: #17332f;
+}
+
+/* Listen button for current exercise */
+
+.exercise-listen-button {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    margin: 14px auto 0;
+
+    padding: 11px 18px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: #237c70;
+    color: white;
+
+    font-size: 15px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.15s ease,
+        background 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+.exercise-listen-button:hover {
+    transform: translateY(-2px);
+
+    background: #17332f;
+
+    box-shadow:
+        0 5px 14px rgba(0,0,0,0.12);
+}
+
+.exercise-listen-button:active {
+    transform: translateY(0);
+}
+
+/* Small live indicator */
+
+.exercise-live-indicator {
+    position: absolute;
+
+    top: 30px;
+    right: 30px;
+
+    z-index: 10;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    padding: 7px 10px;
+
+    border-radius: 20px;
+
+    background: rgba(255,255,255,0.92);
+
+    color: #17332f;
+
+    font-size: 12px;
+    font-weight: bold;
+
+    box-shadow:
+        0 3px 10px rgba(0,0,0,0.08);
+}
+
+.exercise-live-dot {
+    width: 8px;
+    height: 8px;
+
+    border-radius: 50%;
+
+    background: #237c70;
+
+    animation:
+        live-pulse
+        1.5s
+        ease-in-out
+        infinite;
+}
+
+@keyframes live-pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.45;
+        transform: scale(0.75);
+    }
+}
+
+/* Mobile */
+
+@media (max-width: 700px) {
+
+    .visual-demo {
+        padding: 12px;
+        border-radius: 20px;
+    }
+
+    .exercise-illustration {
+        height: 280px;
+    }
+
+    .exercise-live-indicator {
+        top: 22px;
+        right: 22px;
+    }
+
+    .illustration-person {
+        transform: scale(0.9);
+    }
+
+}
         .demo-person {
             width: 150px;
             height: 240px;
@@ -1124,6 +1514,263 @@
 .pose-default .illustration-leg-right {
     transform: rotate(-7deg);
 }
+
+/* =========================================================
+   FINAL EXERCISE DEMO FIXES
+   These rules intentionally come last so they override the
+   older demo rules above without changing the rest of the page.
+   ========================================================= */
+
+/* Keep the exercise name and Listen button separated cleanly. */
+.visual-demo .demo-label {
+    position: static;
+    width: 100%;
+    margin: 14px auto 0;
+    padding: 0 10px;
+    text-align: center;
+    line-height: 1.4;
+}
+
+.visual-demo .exercise-listen-button {
+    position: relative;
+    z-index: 20;
+    display: flex;
+    width: fit-content;
+    margin: 14px auto 4px;
+}
+
+/* Remove the old identical floating animation. */
+.visual-demo .illustration-person {
+    animation: none;
+}
+
+/* A little breathing motion remains, but every exercise now has
+   its own movement pattern. */
+
+.pose-breathing .illustration-body {
+    animation: yoga-breathe-body 3s ease-in-out infinite;
+}
+.pose-breathing .illustration-arm-left {
+    animation: yoga-breathe-left 3s ease-in-out infinite;
+}
+.pose-breathing .illustration-arm-right {
+    animation: yoga-breathe-right 3s ease-in-out infinite;
+}
+
+.pose-seated-marching .illustration-leg-left {
+    animation: yoga-march-left 1.8s ease-in-out infinite;
+}
+.pose-seated-marching .illustration-leg-right {
+    animation: yoga-march-right 1.8s ease-in-out infinite;
+}
+
+.pose-shoulder-rotation .illustration-arm-left {
+    animation: yoga-shoulder-left 2.4s ease-in-out infinite;
+}
+.pose-shoulder-rotation .illustration-arm-right {
+    animation: yoga-shoulder-right 2.4s ease-in-out infinite;
+}
+
+.pose-arm-raise .illustration-arm-left {
+    animation: yoga-raise-left 2.8s ease-in-out infinite;
+}
+.pose-arm-raise .illustration-arm-right {
+    animation: yoga-raise-right 2.8s ease-in-out infinite;
+}
+
+.pose-arm-circles .illustration-arm-left {
+    animation: yoga-circle-left 2.4s linear infinite;
+}
+.pose-arm-circles .illustration-arm-right {
+    animation: yoga-circle-right 2.4s linear infinite;
+}
+
+.pose-neck .illustration-head {
+    animation: yoga-neck 2.8s ease-in-out infinite;
+    transform-origin: 50% 85%;
+}
+
+.pose-side-stretch .illustration-person {
+    animation: yoga-side-stretch 3s ease-in-out infinite;
+}
+
+.pose-leg-extension .illustration-leg-left {
+    animation: yoga-leg-left 2.2s ease-in-out infinite;
+}
+.pose-leg-extension .illustration-leg-right {
+    animation: yoga-leg-right 2.2s ease-in-out infinite;
+}
+
+.pose-heel-toe .illustration-leg-left {
+    animation: yoga-heel-left 2s ease-in-out infinite;
+}
+.pose-heel-toe .illustration-leg-right {
+    animation: yoga-heel-right 2s ease-in-out infinite;
+}
+
+.pose-ankle .illustration-leg-left {
+    animation: yoga-ankle-left 2.2s linear infinite;
+}
+.pose-ankle .illustration-leg-right {
+    animation: yoga-ankle-right 2.2s linear infinite;
+}
+
+.pose-rowing .illustration-arm-left {
+    animation: yoga-row-left 2.2s ease-in-out infinite;
+}
+.pose-rowing .illustration-arm-right {
+    animation: yoga-row-right 2.2s ease-in-out infinite;
+}
+
+.pose-sit-stand .illustration-person {
+    animation: yoga-sit-stand 3.2s ease-in-out infinite;
+}
+
+.pose-balance .illustration-person {
+    animation: yoga-balance 3.2s ease-in-out infinite;
+}
+
+.pose-tai-chi .illustration-person {
+    animation: yoga-tai-chi 3.4s ease-in-out infinite;
+}
+
+.pose-relaxation .illustration-body {
+    animation: yoga-relax-body 4s ease-in-out infinite;
+}
+.pose-relaxation .illustration-head {
+    animation: yoga-relax-head 4s ease-in-out infinite;
+}
+
+@keyframes yoga-breathe-body {
+    0%, 100% { transform: scaleY(1); }
+    50% { transform: scaleY(1.06); }
+}
+@keyframes yoga-breathe-left {
+    0%, 100% { transform: rotate(42deg); }
+    50% { transform: rotate(58deg); }
+}
+@keyframes yoga-breathe-right {
+    0%, 100% { transform: rotate(-42deg); }
+    50% { transform: rotate(-58deg); }
+}
+
+@keyframes yoga-march-left {
+    0%, 100% { transform: rotate(72deg); }
+    50% { transform: rotate(48deg); }
+}
+@keyframes yoga-march-right {
+    0%, 100% { transform: rotate(-8deg); }
+    50% { transform: rotate(-42deg); }
+}
+
+@keyframes yoga-shoulder-left {
+    0%, 100% { transform: rotate(70deg); }
+    50% { transform: rotate(115deg); }
+}
+@keyframes yoga-shoulder-right {
+    0%, 100% { transform: rotate(-70deg); }
+    50% { transform: rotate(-115deg); }
+}
+
+@keyframes yoga-raise-left {
+    0%, 100% { transform: rotate(-145deg); }
+    50% { transform: rotate(-35deg); }
+}
+@keyframes yoga-raise-right {
+    0%, 100% { transform: rotate(145deg); }
+    50% { transform: rotate(35deg); }
+}
+
+@keyframes yoga-circle-left {
+    0% { transform: rotate(-115deg); }
+    50% { transform: rotate(-20deg); }
+    100% { transform: rotate(-115deg); }
+}
+@keyframes yoga-circle-right {
+    0% { transform: rotate(115deg); }
+    50% { transform: rotate(20deg); }
+    100% { transform: rotate(115deg); }
+}
+
+@keyframes yoga-neck {
+    0%, 100% { transform: rotate(-18deg); }
+    50% { transform: rotate(18deg); }
+}
+
+@keyframes yoga-side-stretch {
+    0%, 100% { transform: translateX(0) rotate(-15deg); }
+    50% { transform: translateX(8px) rotate(8deg); }
+}
+
+@keyframes yoga-leg-left {
+    0%, 100% { transform: rotate(82deg); }
+    50% { transform: rotate(48deg); }
+}
+@keyframes yoga-leg-right {
+    0%, 100% { transform: rotate(-8deg); }
+    50% { transform: rotate(-35deg); }
+}
+
+@keyframes yoga-heel-left {
+    0%, 100% { transform: rotate(3deg); }
+    50% { transform: rotate(-7deg); }
+}
+@keyframes yoga-heel-right {
+    0%, 100% { transform: rotate(-3deg); }
+    50% { transform: rotate(7deg); }
+}
+
+@keyframes yoga-ankle-left {
+    0% { transform: rotate(28deg); }
+    50% { transform: rotate(-8deg); }
+    100% { transform: rotate(28deg); }
+}
+@keyframes yoga-ankle-right {
+    0% { transform: rotate(-28deg); }
+    50% { transform: rotate(8deg); }
+    100% { transform: rotate(-28deg); }
+}
+
+@keyframes yoga-row-left {
+    0%, 100% { transform: rotate(72deg); }
+    50% { transform: rotate(35deg); }
+}
+@keyframes yoga-row-right {
+    0%, 100% { transform: rotate(-72deg); }
+    50% { transform: rotate(-35deg); }
+}
+
+@keyframes yoga-sit-stand {
+    0%, 100% { transform: translateY(5px) scaleY(0.94); }
+    50% { transform: translateY(-8px) scaleY(1); }
+}
+
+@keyframes yoga-balance {
+    0%, 100% { transform: translateX(-2px) rotate(-1deg); }
+    50% { transform: translateX(5px) rotate(2deg); }
+}
+
+@keyframes yoga-tai-chi {
+    0%, 100% { transform: translateX(-7px); }
+    50% { transform: translateX(8px); }
+}
+
+@keyframes yoga-relax-body {
+    0%, 100% { transform: translateY(8px); }
+    50% { transform: translateY(2px); }
+}
+@keyframes yoga-relax-head {
+    0%, 100% { transform: translateY(3px); }
+    50% { transform: translateY(-1px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .visual-demo * {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
     </style>
 
 </head>
@@ -1442,6 +2089,13 @@
 
 
                 <div class="visual-demo">
+                    <div class="exercise-live-indicator">
+
+                        <span class="exercise-live-dot"></span>
+                    
+                        Gentle Demo
+                    
+                    </div>
 
                     <div
                         id="exerciseIllustration"
@@ -1464,6 +2118,13 @@
                     >
                         Follow the gentle movement
                     </div>
+                    <button
+                      id="exerciseListenButton"
+                     class="exercise-listen-button"
+                     type="button"
+                    >
+                      🔊 Listen to Exercise
+                    </button>
                 
                 </div>
 
@@ -2390,6 +3051,8 @@ document.getElementById(
 ).textContent =
     exercise.focus;
 
+/* Update the visual demonstration for the current exercise. */
+updateExerciseIllustration(exercise.id);
 
 document.getElementById(
     "pauseButton"
@@ -2460,8 +3123,6 @@ const poseMap = {
 const pose =
     poseMap[exerciseId];
     
-    console.log("ILLUSTRATION:",exercise,pose);
-
 illustration.className =
     "exercise-illustration";
 
@@ -2896,7 +3557,8 @@ speakExercise(
 
         function speakExercise(
             exercise
-        ) {
+        )
+         {
 
             speakText(
 
@@ -2907,7 +3569,26 @@ speakExercise(
             );
 
         }
+        document
+    .getElementById("exerciseListenButton")
+    .addEventListener(
+        "click",
+        function () {
 
+            const exercise =
+                selectedExercises[
+                    currentExerciseIndex
+                ];
+
+            if (!exercise) {
+                return;
+            }
+
+            speakExercise(exercise);
+
+        }
+    );
+        
 
         function speakText(
             text

@@ -12,65 +12,77 @@
 
     <title>Relationship Match - NeuroSaathi</title>
 
+
     <!-- NeuroSaathi Performance Tracking -->
     <script src="../js/performance.js"></script>
+
     <script src="../js/adaptive-engine.js"></script>
 
 
     <style>
+
+        /* =========================================
+           GLOBAL
+        ========================================= */
 
         * {
             box-sizing: border-box;
         }
 
 
+        html {
+            scroll-behavior: smooth;
+        }
+
+
         body {
+
             margin: 0;
 
-            font-family: Arial, sans-serif;
-
-            background: #f4f8f7;
+            font-family:
+                Arial,
+                sans-serif;
 
             color: #17332f;
+
+            background-image:
+                url("../assests/bg.png");
+
+            background-repeat:
+                no-repeat;
+
+            background-position:
+                center center;
+
+            background-size:
+                cover;
+
+            background-attachment:
+                fixed;
+
+            min-height: 100vh;
         }
 
 
-        /* ================================
-           HEADER
-        ================================= */
+        body::before {
 
-        header {
-            background: #17332f;
+            content: "";
 
-            color: white;
+            position: fixed;
 
-            padding: 18px 25px;
+            inset: 0;
 
-            display: flex;
+            background:
+                rgba(244, 248, 247, 0.16);
 
-            justify-content: space-between;
+            pointer-events: none;
 
-            align-items: center;
-
-            gap: 15px;
-        }
-
-
-        header h1 {
-            margin: 0;
-
-            font-size: 24px;
-        }
-
-
-        .header-buttons {
-            display: flex;
-
-            gap: 10px;
+            z-index: 0;
         }
 
 
         button {
+
             border: none;
 
             cursor: pointer;
@@ -79,66 +91,168 @@
         }
 
 
+        /* =========================================
+           HEADER
+        ========================================= */
+
+        header {
+
+            background:
+                rgba(23, 51, 47, 0.97);
+
+            color: white;
+
+            padding:
+                18px 25px;
+
+            display: flex;
+
+            justify-content:
+                space-between;
+
+            align-items: center;
+
+            gap: 15px;
+
+            position: relative;
+
+            z-index: 10;
+
+            box-shadow:
+                0 4px 15px
+                rgba(0, 0, 0, 0.12);
+        }
+
+
+        header h1 {
+
+            margin: 0;
+
+            font-size: 24px;
+        }
+
+
+        .header-buttons {
+
+            display: flex;
+
+            gap: 10px;
+        }
+
+
         .listen-button,
         .back-button {
+
             background: white;
 
             color: #17332f;
 
-            padding: 12px 18px;
+            padding:
+                12px 18px;
 
             border-radius: 10px;
 
             font-size: 16px;
 
             font-weight: bold;
+
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease;
         }
 
 
         .listen-button:hover,
         .back-button:hover {
-            transform: translateY(-2px);
+
+            transform:
+                translateY(-2px);
+
+            box-shadow:
+                0 5px 12px
+                rgba(0, 0, 0, 0.14);
         }
 
 
-        /* ================================
+        .listen-button:active,
+        .back-button:active {
+
+            transform:
+                translateY(0);
+        }
+
+
+        /* =========================================
            MAIN CONTAINER
-        ================================= */
+        ========================================= */
 
         .container {
-            width: min(1050px, 94%);
 
-            margin: 25px auto 50px;
+            width:
+                min(1050px, 94%);
+
+            margin:
+                25px auto 50px;
+
+            position: relative;
+
+            z-index: 1;
         }
 
 
+        /* =========================================
+           INTRO
+        ========================================= */
+
         .intro {
+
             text-align: center;
 
             margin-bottom: 25px;
+
+            background:
+                rgba(255, 255, 255, 0.90);
+
+            padding: 20px;
+
+            border-radius: 20px;
+
+            box-shadow:
+                0 6px 20px
+                rgba(0, 0, 0, 0.08);
+
+            backdrop-filter:
+                blur(4px);
         }
 
 
         .intro h2 {
-            margin-bottom: 8px;
+
+            margin:
+                0 0 8px;
 
             font-size: 30px;
         }
 
 
         .intro p {
+
             font-size: 18px;
 
             margin: 5px 0;
+
+            line-height: 1.5;
         }
 
 
-        /* ================================
+        /* =========================================
            INSTRUCTIONS
-        ================================= */
+        ========================================= */
 
         .instruction-box {
-            background: white;
+
+            background:
+                rgba(255, 255, 255, 0.94);
 
             padding: 20px;
 
@@ -149,24 +263,30 @@
             text-align: center;
 
             box-shadow:
-                0 5px 18px rgba(0, 0, 0, 0.07);
+                0 5px 18px
+                rgba(0, 0, 0, 0.08);
         }
 
 
         #instruction {
+
             font-size: 20px;
 
-            margin: 0 0 15px;
+            margin:
+                0 0 15px;
 
             font-weight: bold;
+
+            line-height: 1.5;
         }
 
 
-        /* ================================
+        /* =========================================
            STATS
-        ================================= */
+        ========================================= */
 
         .stats {
+
             display: grid;
 
             grid-template-columns:
@@ -179,7 +299,9 @@
 
 
         .stat {
-            background: white;
+
+            background:
+                rgba(255, 255, 255, 0.94);
 
             padding: 15px;
 
@@ -188,11 +310,13 @@
             text-align: center;
 
             box-shadow:
-                0 4px 15px rgba(0, 0, 0, 0.06);
+                0 4px 15px
+                rgba(0, 0, 0, 0.07);
         }
 
 
         .stat-title {
+
             font-size: 14px;
 
             color: #56716c;
@@ -202,29 +326,34 @@
 
 
         .stat-value {
+
             font-size: 24px;
 
             font-weight: bold;
         }
 
 
-        /* ================================
+        /* =========================================
            GAME AREA
-        ================================= */
+        ========================================= */
 
         .game-area {
-            background: white;
+
+            background:
+                rgba(255, 255, 255, 0.95);
 
             border-radius: 25px;
 
             padding: 30px;
 
             box-shadow:
-                0 7px 25px rgba(0, 0, 0, 0.08);
+                0 8px 28px
+                rgba(0, 0, 0, 0.10);
         }
 
 
         .game-title {
+
             text-align: center;
 
             font-size: 23px;
@@ -235,9 +364,9 @@
         }
 
 
-        /* ================================
+        /* =========================================
            PEOPLE GRID
-        ================================= */
+        ========================================= */
 
         .relationship-grid {
 
@@ -255,11 +384,7 @@
         }
 
 
-        /*
-        LEVEL 1
-        2 people
-        2 × 1
-        */
+        /* LEVEL 1 */
 
         .relationship-grid.level-1 {
 
@@ -268,11 +393,7 @@
         }
 
 
-        /*
-        LEVEL 2
-        3 people
-        3 × 1
-        */
+        /* LEVEL 2 */
 
         .relationship-grid.level-2 {
 
@@ -281,11 +402,7 @@
         }
 
 
-        /*
-        LEVEL 3
-        4 people
-        2 × 2
-        */
+        /* LEVEL 3 */
 
         .relationship-grid.level-3 {
 
@@ -294,11 +411,7 @@
         }
 
 
-        /*
-        LEVEL 4
-        6 people
-        3 × 2
-        */
+        /* LEVEL 4 */
 
         .relationship-grid.level-4 {
 
@@ -307,21 +420,23 @@
         }
 
 
-        /* ================================
+        /* =========================================
            PERSON CARD
-        ================================= */
+        ========================================= */
 
         .person-card {
 
-            min-height: 170px;
+            min-height: 230px;
 
-            background: #f4faf8;
+            background:
+                rgba(244, 250, 248, 0.97);
 
-            border: 3px solid #c4dfd9;
+            border:
+                3px solid #c4dfd9;
 
             border-radius: 20px;
 
-            padding: 22px;
+            padding: 18px;
 
             display: flex;
 
@@ -335,64 +450,104 @@
 
             cursor: pointer;
 
-            transition:
-                transform 0.15s ease,
-                border-color 0.15s ease,
-                background 0.15s ease;
+            overflow: hidden;
 
             user-select: none;
+
+            transition:
+                transform 0.2s ease,
+                border-color 0.2s ease,
+                background 0.2s ease,
+                box-shadow 0.2s ease;
         }
 
 
         .person-card:hover {
 
-            transform: translateY(-3px);
+            transform:
+                translateY(-3px);
 
-            border-color: #237c70;
+            border-color:
+                #237c70;
+
+            box-shadow:
+                0 8px 18px
+                rgba(35, 124, 112, 0.14);
         }
 
 
         .person-card.selected {
 
-            border-color: #237c70;
+            border-color:
+                #237c70;
 
-            background: #e1f2ee;
+            background:
+                #e1f2ee;
 
-            transform: scale(1.02);
+            transform:
+                scale(1.02);
+
+            box-shadow:
+                0 7px 18px
+                rgba(35, 124, 112, 0.15);
         }
 
 
         .person-card.correct {
 
-            border-color: #237c70;
+            border-color:
+                #237c70;
 
-            background: #dff3ec;
+            background:
+                #dff3ec;
         }
 
 
         .person-card.wrong {
 
-            border-color: #b34a3a;
+            border-color:
+                #b34a3a;
 
-            background: #f9e5e1;
+            background:
+                #f9e5e1;
         }
 
 
-        /* ================================
-           PERSON IDENTIFIER
-        ================================= */
+        /* =========================================
+           FULL PHOTO CARD
+           
+           IMPORTANT:
+           When a caregiver photo exists,
+           the image fills the entire card.
+           
+           No name or hint is displayed.
+        ========================================= */
 
-        .person-icon {
+        .person-card.image-card {
 
-            width: 75px;
+            padding: 0;
+        }
 
-            height: 75px;
 
-            border-radius: 50%;
+        .person-card.image-card
+        .person-image-wrapper {
 
-            background: #d9ebe7;
+            width: 100%;
 
-            border: 3px solid #237c70;
+            height: 100%;
+
+            min-height: 230px;
+
+            margin: 0;
+
+            border: none;
+
+            border-radius: 17px;
+
+            background:
+                #d9ebe7;
+
+            overflow: hidden;
 
             display: flex;
 
@@ -400,11 +555,110 @@
 
             justify-content: center;
 
-            margin-bottom: 14px;
+            flex: 1;
+        }
 
-            font-size: 18px;
+
+        .person-card.image-card
+        .person-image {
+
+            width: 100%;
+
+            height: 100%;
+
+            min-height: 230px;
+
+            object-fit: cover;
+
+            display: block;
+        }
+
+
+        /* =========================================
+           CAREGIVER PHOTO
+           
+           This remains unchanged for fallback
+           compatibility, but image-card overrides
+           it when an actual photo exists.
+        ========================================= */
+
+        .person-image-wrapper {
+
+            width: 105px;
+
+            height: 105px;
+
+            border-radius: 50%;
+
+            overflow: hidden;
+
+            background:
+                #d9ebe7;
+
+            border:
+                3px solid #237c70;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            margin-bottom: 12px;
+
+            flex-shrink: 0;
+
+            box-shadow:
+                0 3px 10px
+                rgba(0, 0, 0, 0.08);
+        }
+
+
+        .person-image {
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: cover;
+
+            display: block;
+        }
+
+
+        /* =========================================
+           FALLBACK PERSON ICON
+        ========================================= */
+
+        .person-icon {
+
+            width: 105px;
+
+            height: 105px;
+
+            border-radius: 50%;
+
+            background:
+                #d9ebe7;
+
+            border:
+                3px solid #237c70;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            margin-bottom: 12px;
+
+            font-size: 22px;
 
             font-weight: bold;
+
+            color: #17332f;
+
+            flex-shrink: 0;
         }
 
 
@@ -415,6 +669,8 @@
             font-weight: bold;
 
             margin-bottom: 5px;
+
+            color: #17332f;
         }
 
 
@@ -426,9 +682,9 @@
         }
 
 
-        /* ================================
+        /* =========================================
            RELATIONSHIP OPTIONS
-        ================================= */
+        ========================================= */
 
         .relationship-title {
 
@@ -438,7 +694,8 @@
 
             font-weight: bold;
 
-            margin: 30px 0 18px;
+            margin:
+                30px 0 18px;
         }
 
 
@@ -459,9 +716,11 @@
 
         .relationship-button {
 
-            background: white;
+            background:
+                rgba(255, 255, 255, 0.97);
 
-            border: 3px solid #9fc8c0;
+            border:
+                3px solid #9fc8c0;
 
             border-radius: 15px;
 
@@ -476,41 +735,53 @@
             min-height: 65px;
 
             transition:
-                transform 0.15s ease,
-                background 0.15s ease,
-                border-color 0.15s ease;
+                transform 0.2s ease,
+                background 0.2s ease,
+                border-color 0.2s ease,
+                box-shadow 0.2s ease;
         }
 
 
         .relationship-button:hover {
 
-            transform: translateY(-2px);
+            transform:
+                translateY(-2px);
 
-            border-color: #237c70;
+            border-color:
+                #237c70;
 
-            background: #eef8f5;
+            background:
+                #eef8f5;
+
+            box-shadow:
+                0 5px 12px
+                rgba(0, 0, 0, 0.08);
         }
 
 
         .relationship-button.selected {
 
-            background: #e1f2ee;
+            background:
+                #e1f2ee;
 
-            border-color: #237c70;
+            border-color:
+                #237c70;
         }
 
 
         .relationship-button.wrong {
 
-            background: #f9e5e1;
+            background:
+                #f9e5e1;
 
-            border-color: #b34a3a;
+            border-color:
+                #b34a3a;
         }
 
 
-        /* ================================
+        /* =========================================
            MESSAGE
-        ================================= */
+        ========================================= */
 
         .message {
 
@@ -523,24 +794,28 @@
             font-size: 20px;
 
             font-weight: bold;
+
+            line-height: 1.4;
         }
 
 
         .success {
 
-            color: #237c70;
+            color:
+                #237c70;
         }
 
 
         .error {
 
-            color: #b34a3a;
+            color:
+                #b34a3a;
         }
 
 
-        /* ================================
+        /* =========================================
            CONTROLS
-        ================================= */
+        ========================================= */
 
         .controls {
 
@@ -558,43 +833,123 @@
 
         .control-button {
 
-            padding: 14px 22px;
+            padding:
+                14px 22px;
 
             border-radius: 12px;
 
-            background: #237c70;
+            background:
+                #237c70;
 
             color: white;
 
             font-size: 17px;
 
             font-weight: bold;
+
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease;
         }
 
 
         .control-button:hover {
 
-            transform: translateY(-2px);
+            transform:
+                translateY(-2px);
+
+            box-shadow:
+                0 6px 14px
+                rgba(0, 0, 0, 0.12);
+        }
+
+
+        .control-button:active {
+
+            transform:
+                translateY(0);
         }
 
 
         .secondary-button {
 
-            background: #17332f;
+            background:
+                #17332f;
         }
 
 
-        /* ================================
+        /* =========================================
            MOBILE
-        ================================= */
+        ========================================= */
 
         @media (max-width: 700px) {
 
+            body {
+
+                background-attachment:
+                    scroll;
+            }
+
+
             header {
 
-                flex-direction: column;
+                flex-direction:
+                    column;
 
                 text-align: center;
+
+                padding: 15px;
+            }
+
+
+            header h1 {
+
+                font-size: 21px;
+            }
+
+
+            .header-buttons {
+
+                width: 100%;
+
+                justify-content:
+                    center;
+            }
+
+
+            .listen-button,
+            .back-button {
+
+                padding:
+                    10px 13px;
+
+                font-size: 14px;
+            }
+
+
+            .container {
+
+                width: 94%;
+
+                margin-top: 18px;
+            }
+
+
+            .intro {
+
+                padding: 17px;
+            }
+
+
+            .intro h2 {
+
+                font-size: 25px;
+            }
+
+
+            .intro p {
+
+                font-size: 16px;
             }
 
 
@@ -605,16 +960,29 @@
             }
 
 
+            .stat {
+
+                padding: 13px;
+            }
+
+
+            .stat-value {
+
+                font-size: 21px;
+            }
+
+
             .game-area {
 
                 padding: 20px;
+
+                border-radius: 20px;
             }
 
 
             /*
-            On smaller screens the cards
-            become single-column so they
-            remain easy to use.
+               Keep people cards easy
+               to use on small screens.
             */
 
             .relationship-grid.level-1,
@@ -622,19 +990,129 @@
             .relationship-grid.level-3,
             .relationship-grid.level-4 {
 
-                grid-template-columns: 1fr;
+                grid-template-columns:
+                    1fr;
             }
 
 
             .relationship-options {
 
-                grid-template-columns: 1fr;
+                grid-template-columns:
+                    1fr;
             }
 
 
             .person-card {
 
-                min-height: 150px;
+                min-height: 205px;
+
+                padding: 18px;
+            }
+
+
+            /* Full photo on mobile too */
+
+            .person-card.image-card {
+
+                padding: 0;
+            }
+
+
+            .person-card.image-card
+            .person-image-wrapper {
+
+                min-height: 205px;
+
+                border-radius: 17px;
+            }
+
+
+            .person-card.image-card
+            .person-image {
+
+                min-height: 205px;
+            }
+
+
+            .person-image-wrapper {
+
+                width: 90px;
+
+                height: 90px;
+            }
+
+
+            .person-icon {
+
+                width: 90px;
+
+                height: 90px;
+            }
+
+
+            .person-name {
+
+                font-size: 19px;
+            }
+
+
+            .relationship-button {
+
+                min-height: 60px;
+
+                font-size: 17px;
+            }
+
+        }
+
+
+        /* =========================================
+           VERY SMALL PHONES
+        ========================================= */
+
+        @media (max-width: 400px) {
+
+            .stats {
+
+                gap: 8px;
+            }
+
+
+            .stat-title {
+
+                font-size: 12px;
+            }
+
+
+            .stat-value {
+
+                font-size: 19px;
+            }
+
+
+            .game-area {
+
+                padding: 15px;
+            }
+
+
+            .person-card {
+
+                min-height: 195px;
+            }
+
+
+            .person-card.image-card
+            .person-image-wrapper {
+
+                min-height: 195px;
+            }
+
+
+            .person-card.image-card
+            .person-image {
+
+                min-height: 195px;
             }
 
         }
@@ -647,28 +1125,32 @@
 <body>
 
 
+<!-- =========================================
+     HEADER
+========================================= -->
+
 <header>
 
-    <h1>NeuroSaathi</h1>
+    <h1>
+        NeuroSaathi
+    </h1>
 
 
     <div class="header-buttons">
 
         <button
             class="listen-button"
-            id="listenButton">
-
+            id="listenButton"
+        >
             🔊 Listen
-
         </button>
 
 
         <button
             class="back-button"
-            onclick="goBack()">
-
+            onclick="goBack()"
+        >
             Back
-
         </button>
 
     </div>
@@ -677,8 +1159,14 @@
 
 
 
+<!-- =========================================
+     MAIN
+========================================= -->
+
 <div class="container">
 
+
+    <!-- INTRO -->
 
     <div class="intro">
 
@@ -695,6 +1183,8 @@
 
 
 
+    <!-- INSTRUCTIONS -->
+
     <div class="instruction-box">
 
         <p id="instruction">
@@ -707,7 +1197,8 @@
 
         <button
             class="listen-button"
-            id="instructionListen">
+            id="instructionListen"
+        >
 
             🔊 Listen to Instructions
 
@@ -717,7 +1208,9 @@
 
 
 
-    <!-- STATS -->
+    <!-- =========================================
+         STATS
+    ========================================= -->
 
     <div class="stats">
 
@@ -731,10 +1224,9 @@
 
             <div
                 class="stat-value"
-                id="levelDisplay">
-
+                id="levelDisplay"
+            >
                 1
-
             </div>
 
         </div>
@@ -750,10 +1242,9 @@
 
             <div
                 class="stat-value"
-                id="peopleDisplay">
-
+                id="peopleDisplay"
+            >
                 2
-
             </div>
 
         </div>
@@ -769,10 +1260,9 @@
 
             <div
                 class="stat-value"
-                id="correctDisplay">
-
+                id="correctDisplay"
+            >
                 0
-
             </div>
 
         </div>
@@ -788,10 +1278,9 @@
 
             <div
                 class="stat-value"
-                id="accuracyDisplay">
-
+                id="accuracyDisplay"
+            >
                 0%
-
             </div>
 
         </div>
@@ -800,7 +1289,9 @@
 
 
 
-    <!-- GAME -->
+    <!-- =========================================
+         GAME
+    ========================================= -->
 
     <section class="game-area">
 
@@ -815,8 +1306,8 @@
 
         <div
             class="relationship-grid"
-            id="relationshipGrid">
-
+            id="relationshipGrid"
+        >
         </div>
 
 
@@ -831,16 +1322,16 @@
 
         <div
             class="relationship-options"
-            id="relationshipOptions">
-
+            id="relationshipOptions"
+        >
         </div>
 
 
 
         <div
             class="message"
-            id="message">
-
+            id="message"
+        >
         </div>
 
 
@@ -850,19 +1341,17 @@
 
             <button
                 class="control-button"
-                id="nextButton">
-
+                id="nextButton"
+            >
                 Next
-
             </button>
 
 
             <button
                 class="control-button secondary-button"
-                id="restartButton">
-
+                id="restartButton"
+            >
                 Restart
-
             </button>
 
         </div>
@@ -879,7 +1368,6 @@
     /* =========================================
        RELATIONSHIP DATA
     ========================================= */
-
 
     const relationshipData = [
 
@@ -951,7 +1439,6 @@
        DIFFICULTY
     ========================================= */
 
-
     const difficultyLevels = {
 
         1: {
@@ -978,7 +1465,6 @@
        GAME STATE
     ========================================= */
 
-
     let currentLevel = 1;
 
     let currentPeople = [];
@@ -989,10 +1475,6 @@
 
     let attempts = 0;
 
-    /*
-     * Performance tracking
-     */
-
     let levelStartTime = 0;
 
     let performanceSaved = false;
@@ -1000,9 +1482,235 @@
 
 
     /* =========================================
-       DOM ELEMENTS
+       RELATIONSHIP PHOTO STORAGE
+       
+       Caregiver settings/dashboard stores
+       photos under:
+
+       neurosaathi_relationship_images
     ========================================= */
 
+    const RELATIONSHIP_IMAGE_KEY =
+        "neurosaathi_relationship_images";
+
+
+    let relationshipImages = {};
+
+
+
+    /* =========================================
+       LOAD CAREGIVER PHOTOS
+    ========================================= */
+
+    function loadRelationshipImages() {
+
+        relationshipImages = {};
+
+
+        try {
+
+            const stored =
+                localStorage.getItem(
+                    RELATIONSHIP_IMAGE_KEY
+                );
+
+
+            if (!stored) {
+
+                return;
+
+            }
+
+
+            const parsed =
+                JSON.parse(stored);
+
+
+            /*
+             * Standard NeuroSaathi format:
+             *
+             * {
+             *     "Mother": "data:image/...",
+             *     "Father": "data:image/...",
+             *     ...
+             * }
+             */
+
+            if (
+                parsed &&
+                typeof parsed === "object" &&
+                !Array.isArray(parsed)
+            ) {
+
+                Object.keys(parsed).forEach(
+                    key => {
+
+                        const value =
+                            parsed[key];
+
+
+                        /*
+                         * Normal string format.
+                         */
+
+                        if (
+                            typeof value ===
+                            "string"
+                        ) {
+
+                            relationshipImages[key] =
+                                value;
+
+                            return;
+
+                        }
+
+
+                        /*
+                         * Also support an object
+                         * containing image/data/url.
+                         */
+
+                        if (
+                            value &&
+                            typeof value ===
+                            "object"
+                        ) {
+
+                            if (
+                                typeof value.image ===
+                                "string"
+                            ) {
+
+                                relationshipImages[key] =
+                                    value.image;
+
+                            }
+
+                            else if (
+                                typeof value.data ===
+                                "string"
+                            ) {
+
+                                relationshipImages[key] =
+                                    value.data;
+
+                            }
+
+                            else if (
+                                typeof value.url ===
+                                "string"
+                            ) {
+
+                                relationshipImages[key] =
+                                    value.url;
+
+                            }
+
+                        }
+
+                    }
+                );
+
+            }
+
+
+            /*
+             * Also support array-based storage
+             * in case caregiver settings uses it.
+             */
+
+            if (
+                Array.isArray(parsed)
+            ) {
+
+                parsed.forEach(
+                    item => {
+
+                        if (
+                            !item ||
+                            typeof item !==
+                            "object"
+                        ) {
+
+                            return;
+
+                        }
+
+
+                        const name =
+                            item.name ||
+                            item.relationship;
+
+
+                        const image =
+                            item.image ||
+                            item.data ||
+                            item.url;
+
+
+                        if (
+                            name &&
+                            typeof image ===
+                            "string"
+                        ) {
+
+                            relationshipImages[name] =
+                                image;
+
+                        }
+
+                    }
+                );
+
+            }
+
+        }
+
+        catch (error) {
+
+            console.log(
+                "Relationship images could not be loaded."
+            );
+
+            relationshipImages = {};
+
+        }
+
+    }
+
+
+
+    /* =========================================
+       GET PERSON IMAGE
+    ========================================= */
+
+    function getRelationshipImage(
+        personName
+    ) {
+
+        if (
+            relationshipImages[
+                personName
+            ]
+        ) {
+
+            return relationshipImages[
+                personName
+            ];
+
+        }
+
+
+        return null;
+
+    }
+
+
+
+    /* =========================================
+       DOM ELEMENTS
+    ========================================= */
 
     const relationshipGrid =
         document.getElementById(
@@ -1051,10 +1759,10 @@
        SHUFFLE
     ========================================= */
 
-
     function shuffle(array) {
 
-        const copy = [...array];
+        const copy =
+            [...array];
 
 
         for (
@@ -1092,35 +1800,51 @@
        START LEVEL
     ========================================= */
 
-
     function startLevel(level) {
 
-        currentLevel = level;
+        currentLevel =
+            level;
 
-        correctCount = 0;
+        correctCount =
+            0;
 
-        attempts = 0;
+        attempts =
+            0;
 
-        selectedPerson = null;
+        selectedPerson =
+            null;
 
-        /*
-         * Start a new performance session.
-         */
 
         levelStartTime =
             Date.now();
 
-        performanceSaved = false;
+        performanceSaved =
+            false;
 
 
-        message.textContent = "";
+        message.textContent =
+            "";
 
         message.className =
             "message";
 
 
+        /*
+         * Reload caregiver photos every
+         * time a level starts.
+         *
+         * This allows newly uploaded
+         * photos to appear without
+         * changing the game logic.
+         */
+
+        loadRelationshipImages();
+
+
         const settings =
-            difficultyLevels[level];
+            difficultyLevels[
+                level
+            ];
 
 
         currentPeople =
@@ -1146,16 +1870,11 @@
        RENDER PEOPLE
     ========================================= */
 
-
     function renderPeople() {
 
-        relationshipGrid.innerHTML = "";
+        relationshipGrid.innerHTML =
+            "";
 
-
-        /*
-        Apply the correct symmetry
-        class for the current level.
-        */
 
         relationshipGrid.className =
             "relationship-grid level-" +
@@ -1180,21 +1899,83 @@
                     index;
 
 
-                card.innerHTML = `
+                const image =
+                    getRelationshipImage(
+                        person.name
+                    );
 
-                    <div class="person-icon">
-                        ${index + 1}
-                    </div>
 
-                    <div class="person-name">
-                        ${person.name}
-                    </div>
+                /*
+                 * Caregiver photo available.
+                 *
+                 * PHOTO ONLY:
+                 * The relationship name and
+                 * hint are deliberately not
+                 * displayed.
+                 */
 
-                    <div class="person-hint">
-                        Select this person
-                    </div>
+                if (image) {
 
-                `;
+                    card.classList.add(
+                        "image-card"
+                    );
+
+
+                    card.innerHTML = `
+
+                        <div
+                            class="person-image-wrapper"
+                        >
+
+                            <img
+                                class="person-image"
+                                src="${image}"
+                                alt=""
+                                loading="lazy"
+                            >
+
+                        </div>
+
+                    `;
+
+                }
+
+
+                /*
+                 * No caregiver photo.
+                 *
+                 * Keep the existing numbered
+                 * fallback instead of
+                 * breaking the game.
+                 */
+
+                else {
+
+                    card.innerHTML = `
+
+                        <div
+                            class="person-icon"
+                        >
+                            ${index + 1}
+                        </div>
+
+
+                        <div
+                            class="person-name"
+                        >
+                            ${person.name}
+                        </div>
+
+
+                        <div
+                            class="person-hint"
+                        >
+                            Select this person
+                        </div>
+
+                    `;
+
+                }
 
 
                 card.addEventListener(
@@ -1225,13 +2006,13 @@
        SELECT PERSON
     ========================================= */
 
-
     function selectPerson(
         index,
         card
     ) {
 
-        selectedPerson = index;
+        selectedPerson =
+            index;
 
 
         document
@@ -1269,10 +2050,10 @@
        RENDER RELATIONSHIPS
     ========================================= */
 
-
     function renderRelationships() {
 
-        relationshipOptions.innerHTML = "";
+        relationshipOptions.innerHTML =
+            "";
 
 
         const relationships =
@@ -1330,14 +2111,14 @@
        CHECK ANSWER
     ========================================= */
 
-
     function checkAnswer(
         relationship,
         button
     ) {
 
         if (
-            selectedPerson === null
+            selectedPerson ===
+            null
         ) {
 
             message.textContent =
@@ -1366,7 +2147,6 @@
             relationship ===
             person.relationship
         ) {
-
 
             correctCount++;
 
@@ -1399,7 +2179,8 @@
             updateStats();
 
 
-            selectedPerson = null;
+            selectedPerson =
+                null;
 
 
             checkCompletion();
@@ -1407,7 +2188,6 @@
         }
 
         else {
-
 
             button.classList.add(
                 "wrong"
@@ -1493,65 +2273,76 @@
             ];
 
 
-            notes.forEach(note => {
+            notes.forEach(
+                note => {
 
-                const oscillator =
-                    audioContext.createOscillator();
-
-
-                const gain =
-                    audioContext.createGain();
+                    const oscillator =
+                        audioContext
+                            .createOscillator();
 
 
-                oscillator.type =
-                    "sine";
+                    const gain =
+                        audioContext
+                            .createGain();
 
 
-                oscillator.frequency.value =
-                    note.frequency;
+                    oscillator.type =
+                        "sine";
 
 
-                gain.gain.setValueAtTime(
-                    0.0001,
-                    now + note.start
-                );
+                    oscillator.frequency.value =
+                        note.frequency;
 
 
-                gain.gain.exponentialRampToValueAtTime(
-                    0.18,
-                    now +
-                    note.start +
-                    0.03
-                );
+                    gain.gain.setValueAtTime(
+                        0.0001,
+                        now +
+                        note.start
+                    );
 
 
-                gain.gain.exponentialRampToValueAtTime(
-                    0.0001,
-                    now +
-                    note.start +
-                    note.duration
-                );
+                    gain.gain
+                        .exponentialRampToValueAtTime(
+                            0.18,
+                            now +
+                            note.start +
+                            0.03
+                        );
 
 
-                oscillator.connect(gain);
-
-                gain.connect(
-                    audioContext.destination
-                );
-
-
-                oscillator.start(
-                    now + note.start
-                );
+                    gain.gain
+                        .exponentialRampToValueAtTime(
+                            0.0001,
+                            now +
+                            note.start +
+                            note.duration
+                        );
 
 
-                oscillator.stop(
-                    now +
-                    note.start +
-                    note.duration
-                );
+                    oscillator.connect(
+                        gain
+                    );
 
-            });
+
+                    gain.connect(
+                        audioContext.destination
+                    );
+
+
+                    oscillator.start(
+                        now +
+                        note.start
+                    );
+
+
+                    oscillator.stop(
+                        now +
+                        note.start +
+                        note.duration
+                    );
+
+                }
+            );
 
 
             setTimeout(
@@ -1583,10 +2374,6 @@
 
     function savePerformanceData() {
 
-        /*
-         * Prevent duplicate saves.
-         */
-
         if (
             performanceSaved
         ) {
@@ -1596,7 +2383,8 @@
         }
 
 
-        performanceSaved = true;
+        performanceSaved =
+            true;
 
 
         const accuracy =
@@ -1629,33 +2417,34 @@
             "undefined"
         ) {
 
-            NeuroSaathiPerformance.saveGameSession({
+            NeuroSaathiPerformance
+                .saveGameSession({
 
-                game:
-                    "relationship-match",
+                    game:
+                        "relationship-match",
 
-                level:
-                    currentLevel,
+                    level:
+                        currentLevel,
 
-                accuracy:
-                    accuracy,
+                    accuracy:
+                        accuracy,
 
-                attempts:
-                    attempts,
+                    attempts:
+                        attempts,
 
-                correct:
-                    correctCount,
+                    correct:
+                        correctCount,
 
-                mistakes:
-                    mistakes,
+                    mistakes:
+                        mistakes,
 
-                completionTime:
-                    completionTime,
+                    completionTime:
+                        completionTime,
 
-                completed:
-                    true
+                    completed:
+                        true
 
-            });
+                });
 
         }
 
@@ -1674,7 +2463,6 @@
     /* =========================================
        COMPLETION
     ========================================= */
-
 
     function checkCompletion() {
 
@@ -1699,18 +2487,8 @@
                 );
 
 
-        /*
-         * Save performance before
-         * showing completion message.
-         */
-
         savePerformanceData();
 
-
-        /*
-         * Play the same soothing
-         * completion tune.
-         */
 
         playSuccessSound();
 
@@ -1748,7 +2526,6 @@
        UPDATE STATS
     ========================================= */
 
-
     function updateStats() {
 
         levelDisplay.textContent =
@@ -1775,7 +2552,8 @@
 
 
         accuracyDisplay.textContent =
-            accuracy + "%";
+            accuracy +
+            "%";
 
     }
 
@@ -1785,7 +2563,6 @@
        NEXT LEVEL
     ========================================= */
 
-
     document
         .getElementById(
             "nextButton"
@@ -1793,7 +2570,6 @@
         .addEventListener(
             "click",
             () => {
-
 
                 if (
                     currentLevel < 4
@@ -1825,7 +2601,6 @@
        RESTART
     ========================================= */
 
-
     document
         .getElementById(
             "restartButton"
@@ -1847,11 +2622,14 @@
        VOICE ASSISTANCE
     ========================================= */
 
-
     function speakInstruction() {
 
         if (
-            !("speechSynthesis" in window)
+            !(
+                "speechSynthesis"
+                in
+                window
+            )
         ) {
 
             alert(
@@ -1878,11 +2656,16 @@
             );
 
 
-        speech.lang = "en-IN";
+        speech.lang =
+            "en-IN";
 
-        speech.rate = 0.85;
 
-        speech.pitch = 1;
+        speech.rate =
+            0.85;
+
+
+        speech.pitch =
+            1;
 
 
         window.speechSynthesis.speak(
@@ -1919,7 +2702,6 @@
        BACK
     ========================================= */
 
-
     function goBack() {
 
         window.location.href =
@@ -1933,16 +2715,24 @@
        ESCAPE
     ========================================= */
 
-
     document.addEventListener(
         "keydown",
         event => {
 
             if (
-                event.key === "Escape"
+                event.key ===
+                "Escape"
             ) {
 
-                window.speechSynthesis.cancel();
+                if (
+                    "speechSynthesis"
+                    in
+                    window
+                ) {
+
+                    window.speechSynthesis.cancel();
+
+                }
 
             }
 
@@ -1955,15 +2745,31 @@
        START GAME
     ========================================= */
 
+    let recommendedLevel = 1;
 
-    const recommendedLevel =
-    NeuroSaathiAdaptiveEngine
-        .getRecommendedLevel("relationship-match");
 
-currentLevel =
-    recommendedLevel || 1;
+    if (
+        typeof NeuroSaathiAdaptiveEngine !==
+        "undefined"
+    ) {
 
-startLevel(currentLevel);
+        recommendedLevel =
+            NeuroSaathiAdaptiveEngine
+                .getRecommendedLevel(
+                    "relationship-match"
+                );
+
+    }
+
+
+    currentLevel =
+        recommendedLevel ||
+        1;
+
+
+    startLevel(
+        currentLevel
+    );
 
 </script>
 

@@ -11,404 +11,781 @@
     <script src="../js/adaptive-engine.js"></script>
 
     <style>
+        /* =========================================================
+           NEUROSAATHI — SORTING & MATCHING
+           Complete Style Replacement
+           ========================================================= */
+        
         * {
             box-sizing: border-box;
         }
-
+        
+        html {
+            min-height: 100%;
+        }
+        
         body {
             margin: 0;
+            min-height: 100vh;
+        
             font-family: Arial, sans-serif;
-            background: #f4f8f6;
+        
             color: #17332f;
+        
+            /*
+               Sorting & Matching file is inside /games
+               Botanical background is inside /assests
+        
+               Correct relative path:
+               ../assests/bg.png
+            */
+        
+            background-image: url("../assests/bg.png");
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            background-attachment: fixed;
         }
-
+        
+        
+        /* =========================================================
+           HEADER
+           ========================================================= */
+        
         header {
             background: #17332f;
             color: white;
+        
             padding: 18px 25px;
+        
             display: flex;
             justify-content: space-between;
             align-items: center;
+        
+            position: relative;
+            z-index: 2;
         }
-
+        
         header h1 {
             margin: 0;
             font-size: 24px;
         }
-
+        
         .header-buttons {
             display: flex;
             gap: 10px;
         }
-
+        
         button {
             border: none;
             cursor: pointer;
             font-family: inherit;
         }
-
+        
+        
+        /* =========================================================
+           HEADER BUTTONS
+           ========================================================= */
+        
         .listen-button,
         .back-button {
             padding: 11px 17px;
             border-radius: 10px;
+        
             font-size: 15px;
             font-weight: bold;
+        
+            transition:
+                opacity 0.25s ease,
+                transform 0.25s ease,
+                box-shadow 0.25s ease;
         }
-
+        
         .listen-button {
             background: #ffffff;
             color: #17332f;
         }
-
+        
         .back-button {
             background: #237c70;
             color: white;
         }
-
+        
+        .listen-button:hover,
+        .back-button:hover {
+            opacity: 0.84;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.12);
+        }
+        
+        .listen-button:active,
+        .back-button:active {
+            transform: translateY(0);
+            opacity: 0.7;
+        }
+        
+        
+        /* =========================================================
+           MAIN
+           ========================================================= */
+        
         main {
             max-width: 1100px;
+        
             margin: 0 auto;
+        
             padding: 30px 20px 50px;
+        
+            position: relative;
+            z-index: 1;
         }
-
+        
+        
+        /* =========================================================
+           INTRO
+           ========================================================= */
+        
         .intro {
             text-align: center;
+        
             margin-bottom: 25px;
+        
+            background: rgba(255, 255, 255, 0.78);
+        
+            padding: 24px;
+        
+            border-radius: 22px;
+        
+            box-shadow:
+                0 5px 18px rgba(0, 0, 0, 0.06);
         }
-
+        
         .intro h2 {
+            margin-top: 0;
             margin-bottom: 10px;
+        
             font-size: 30px;
         }
-
+        
         .intro p {
             font-size: 18px;
+        
             margin: 0 auto;
+        
             max-width: 700px;
+        
             line-height: 1.5;
+        
+            color: #55706b;
         }
-
+        
+        
+        /* =========================================================
+           INSTRUCTION BOX
+           ========================================================= */
+        
         .instruction-box {
-            background: white;
+            background: rgba(255, 255, 255, 0.88);
+        
             border-radius: 18px;
+        
             padding: 18px;
+        
             margin-bottom: 25px;
+        
             text-align: center;
-            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.06);
+        
+            box-shadow:
+                0 5px 18px rgba(0, 0, 0, 0.06);
         }
-
+        
         #instruction {
             font-size: 19px;
+        
             margin: 0 0 12px;
+        
             font-weight: bold;
         }
-
+        
         .small-listen {
             background: #237c70;
+        
             color: white;
+        
             padding: 10px 17px;
+        
             border-radius: 10px;
+        
             font-size: 15px;
+        
             font-weight: bold;
+        
+            transition:
+                opacity 0.25s ease,
+                transform 0.25s ease,
+                box-shadow 0.25s ease;
         }
-
-        /* =========================
+        
+        .small-listen:hover {
+            opacity: 0.85;
+        
+            transform: translateY(-2px);
+        
+            box-shadow:
+                0 5px 12px rgba(0, 0, 0, 0.12);
+        }
+        
+        .small-listen:active {
+            transform: translateY(0);
+        
+            opacity: 0.7;
+        }
+        
+        
+        /* =========================================================
            STATS
-        ========================= */
-
+           ========================================================= */
+        
         .stats {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+        
+            grid-template-columns:
+                repeat(4, 1fr);
+        
             gap: 12px;
+        
             margin-bottom: 30px;
         }
-
+        
         .stat {
-            background: white;
+            background: rgba(255, 255, 255, 0.88);
+        
             border-radius: 15px;
+        
             padding: 15px;
+        
             text-align: center;
-            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+        
+            box-shadow:
+                0 4px 14px rgba(0, 0, 0, 0.05);
         }
-
+        
         .stat-label {
             font-size: 14px;
+        
             margin-bottom: 6px;
+        
             color: #55706b;
         }
-
+        
         .stat-value {
             font-size: 23px;
+        
             font-weight: bold;
         }
-
-        /* =========================
+        
+        
+        /* =========================================================
            GAME AREA
-        ========================= */
-
+           ========================================================= */
+        
         .game-area {
             display: flex;
+        
             flex-direction: column;
+        
             gap: 25px;
         }
-
+        
+        
+        /* =========================================================
+           SECTION TITLES
+           ========================================================= */
+        
         .section-title {
             text-align: center;
+        
             margin-bottom: 15px;
+        
+            background: rgba(255, 255, 255, 0.74);
+        
+            padding: 12px;
+        
+            border-radius: 16px;
         }
-
+        
         .section-title h3 {
             margin: 0 0 5px;
+        
             font-size: 24px;
         }
-
+        
         .section-title p {
             margin: 0;
+        
             color: #55706b;
         }
-
-        /* =========================
+        
+        
+        /* =========================================================
            OBJECTS
-        ========================= */
-
+           ========================================================= */
+        
         .objects-container {
             display: grid;
+        
             gap: 15px;
+        
             max-width: 800px;
+        
             margin: 0 auto;
+        
             width: 100%;
         }
-
+        
         .object-slot {
             width: 100%;
+        
             height: 115px;
+        
             min-height: 115px;
+        
             border-radius: 16px;
-            background: #e8f1ee;
+        
+            background:
+                rgba(232, 241, 238, 0.82);
         }
-
+        
         .draggable-object {
             width: 100%;
+        
             height: 115px;
+        
             border-radius: 16px;
+        
             border: 3px solid #237c70;
-            background: white;
-
+        
+            background: rgba(255, 255, 255, 0.96);
+        
             display: flex;
+        
             align-items: center;
+        
             justify-content: center;
-
+        
             text-align: center;
+        
             padding: 12px;
-
+        
             font-size: 18px;
+        
             font-weight: bold;
+        
             color: #17332f;
-
+        
             cursor: grab;
+        
             user-select: none;
+        
             -webkit-user-select: none;
-
+        
             touch-action: none;
-
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-
+        
+            box-shadow:
+                0 4px 12px rgba(0, 0, 0, 0.08);
+        
             transition:
                 transform 0.15s ease,
                 box-shadow 0.15s ease;
         }
+        
+        .draggable-object-image {
+            width: 68px;
+            height: 68px;
+            object-fit: contain;
+            flex: 0 0 68px;
+            pointer-events: none;
+            border-radius: 12px;
+            background: #f4faf8;
+        }
+
+        .draggable-object-label {
+            line-height: 1.2;
+        }
 
         .draggable-object:hover {
             transform: translateY(-2px);
-            box-shadow: 0 7px 16px rgba(0, 0, 0, 0.12);
+        
+            box-shadow:
+                0 7px 16px rgba(0, 0, 0, 0.12);
         }
-
+        
         .draggable-object.dragging {
             cursor: grabbing;
+        
             transform: scale(1.03);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.20);
+        
+            box-shadow:
+                0 15px 30px rgba(0, 0, 0, 0.20);
         }
-
+        
         .draggable-object.placed {
             visibility: hidden;
+        
             pointer-events: none;
         }
-
-        /* =========================
+        
+        
+        /* =========================================================
            CATEGORIES
-        ========================= */
-
+           ========================================================= */
+        
         .categories-container {
             display: grid;
+        
             gap: 18px;
+        
             width: 100%;
         }
-
+        
         .category-card {
             width: 100%;
         }
-
+        
         .category-box {
             min-height: 180px;
-            background: white;
+        
+            background: rgba(255, 255, 255, 0.90);
+        
             border: 3px dashed #237c70;
+        
             border-radius: 18px;
-
+        
             padding: 15px;
-
+        
             display: flex;
+        
             flex-direction: column;
+        
             align-items: center;
-
+        
             transition:
                 background 0.15s ease,
                 border-color 0.15s ease,
                 transform 0.15s ease;
         }
-
+        
         .category-box.drag-over {
-            background: #e4f3ef;
+            background: rgba(228, 243, 239, 0.96);
+        
             border-color: #17332f;
+        
             transform: scale(1.02);
         }
-
+        
         .drop-hint {
             color: #78918c;
+        
             font-size: 14px;
+        
             margin-bottom: 10px;
         }
-
+        
         .category-title {
             text-align: center;
+        
             font-size: 19px;
+        
             font-weight: bold;
+        
             margin-top: 9px;
+        
             color: #17332f;
         }
-
+        
         .placed-items {
             width: 100%;
+        
             display: flex;
+        
             flex-wrap: wrap;
+        
             justify-content: center;
+        
             gap: 8px;
         }
-
+        
         .placed-pill {
             background: #e4f3ef;
+        
             border: 2px solid #237c70;
+        
             border-radius: 10px;
+        
             padding: 8px 12px;
+        
             font-size: 14px;
+        
             font-weight: bold;
         }
-
-        /* =========================
+        
+        
+        /* =========================================================
            MESSAGE
-        ========================= */
-
+           ========================================================= */
+        
         .message {
             min-height: 28px;
+        
             text-align: center;
+        
             font-size: 18px;
+        
             font-weight: bold;
+        
             margin-top: 5px;
+        
+            background: rgba(255, 255, 255, 0.72);
+        
+            border-radius: 12px;
+        
+            padding: 4px 12px;
         }
-
-        /* =========================
+        
+        
+        /* =========================================================
            CONTROLS
-        ========================= */
-
+           ========================================================= */
+        
         .controls {
             display: flex;
+        
             justify-content: center;
+        
             gap: 12px;
+        
             flex-wrap: wrap;
+        
             margin-top: 10px;
         }
-
+        
         .control-button {
             padding: 13px 22px;
+        
             border-radius: 12px;
+        
             font-size: 16px;
+        
             font-weight: bold;
+        
+            transition:
+                opacity 0.25s ease,
+                transform 0.25s ease,
+                box-shadow 0.25s ease;
         }
-
+        
         .restart-button {
             background: #237c70;
+        
             color: white;
         }
-
+        
         .next-button {
             background: #17332f;
+        
             color: white;
         }
-
+        
         .next-button:disabled {
             opacity: 0.45;
+        
             cursor: not-allowed;
         }
-
-        /* =========================
+        
+        .control-button:not(:disabled):hover {
+            opacity: 0.85;
+        
+            transform: translateY(-2px);
+        
+            box-shadow:
+                0 5px 12px rgba(0, 0, 0, 0.12);
+        }
+        
+        .control-button:not(:disabled):active {
+            transform: translateY(0);
+        
+            opacity: 0.7;
+        }
+        
+        
+        /* =========================================================
            MOBILE
-        ========================= */
-
+           ========================================================= */
+        
         @media (max-width: 700px) {
-
+        
+            body {
+                background-attachment: scroll;
+        
+                background-position: center top;
+        
+                background-size: cover;
+            }
+        
             header {
                 padding: 15px;
             }
-
+        
             header h1 {
                 font-size: 20px;
             }
-
+        
             .header-buttons {
                 gap: 6px;
             }
-
+        
             .listen-button,
             .back-button {
                 padding: 9px 11px;
+        
                 font-size: 13px;
             }
-
+        
             main {
-                padding: 22px 14px 40px;
+                padding:
+                    22px
+                    14px
+                    40px;
             }
-
+        
+            .intro {
+                padding: 20px 15px;
+            }
+        
             .intro h2 {
                 font-size: 25px;
             }
-
+        
             .intro p {
                 font-size: 16px;
             }
-
-            .stats {
-                grid-template-columns: repeat(2, 1fr);
+        
+            .instruction-box {
+                padding: 16px 12px;
             }
-
+        
+            #instruction {
+                font-size: 17px;
+            }
+        
+            .stats {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+        
+            .stat {
+                padding: 13px 8px;
+            }
+        
+            .stat-value {
+                font-size: 21px;
+            }
+        
+            .section-title {
+                padding: 10px;
+            }
+        
+            .section-title h3 {
+                font-size: 21px;
+            }
+        
+            .section-title p {
+                font-size: 14px;
+            }
+        
             .object-slot,
             .draggable-object {
                 height: 95px;
+        
                 min-height: 95px;
+            }
+        
+            .draggable-object-image {
+                width: 54px;
+                height: 54px;
+                flex-basis: 54px;
             }
 
             .draggable-object {
                 font-size: 16px;
+        
                 padding: 8px;
             }
-
+        
             .categories-container {
                 grid-template-columns: 1fr !important;
             }
-
+        
             .category-box {
                 min-height: 150px;
             }
+        
+            .placed-pill {
+                font-size: 13px;
+        
+                padding: 7px 10px;
+            }
+        
+            .controls {
+                gap: 9px;
+            }
+        
+            .control-button {
+                padding: 12px 18px;
+        
+                font-size: 15px;
+            }
         }
-    </style>
+        
+        
+        /* =========================================================
+           SMALL DEVICES
+           ========================================================= */
+        
+        @media (max-width: 420px) {
+        
+            header {
+                align-items: flex-start;
+            }
+        
+            header h1 {
+                font-size: 18px;
+            }
+        
+            .header-buttons {
+                flex-direction: column;
+        
+                align-items: stretch;
+            }
+        
+            .listen-button,
+            .back-button {
+                width: 100%;
+            }
+        
+            .stats {
+                gap: 8px;
+            }
+        
+            .stat-label {
+                font-size: 13px;
+            }
+        
+            .stat-value {
+                font-size: 19px;
+            }
+        }
+        </style>
 </head>
 
 <body>
@@ -939,6 +1316,52 @@
        RENDER OBJECTS
     ================================================ */
 
+    function getObjectImage(object) {
+
+        const colors = {
+            Food: "#f7d9d0",
+            Household: "#dcebe7",
+            Clothing: "#e7dff0",
+            Transport: "#dce8f5",
+            Education: "#f2e8cc",
+            Nature: "#dcebd8",
+            Sports: "#f1dfd0"
+        };
+
+        const bg = colors[object.category] || "#e8f1ee";
+
+        const shapes = {
+            Apple: `<circle cx="50" cy="48" r="25" fill="#d95f59"/><path d="M50 24c-2-9 4-15 13-17" fill="none" stroke="#17332f" stroke-width="5" stroke-linecap="round"/><path d="M57 15c10-7 18-3 22 4-9 5-17 4-22-4Z" fill="#6e9b68"/>`,
+            Banana: `<path d="M22 35c9 29 33 39 55 13" fill="none" stroke="#e5c84d" stroke-width="13" stroke-linecap="round"/><path d="M20 31l5-5M75 47l5-4" stroke="#9a7f25" stroke-width="5" stroke-linecap="round"/>`,
+            Spoon: `<path d="M48 37v42" stroke="#8ca6a0" stroke-width="8" stroke-linecap="round"/><ellipse cx="48" cy="27" rx="15" ry="19" fill="#d5e1df" stroke="#6d8982" stroke-width="4"/>`,
+            Cup: `<path d="M30 29h38v29c0 10-8 16-19 16S30 68 30 58Z" fill="#d9ebe7" stroke="#5e8178" stroke-width="4"/><path d="M68 38h8c10 0 10 18 0 18h-8" fill="none" stroke="#5e8178" stroke-width="4"/>`,
+            Shirt: `<path d="M30 25l16-9 4 9 4-9 16 9 10 14-12 9-6-8v28H38V40l-6 8-12-9Z" fill="#8fb6d8" stroke="#55788f" stroke-width="4"/>`,
+            Shoes: `<path d="M20 57c12-1 17-12 21-25l13 6 4 12 20 7c5 2 6 8 0 10H23c-7 0-9-8-3-10Z" fill="#d7a77d" stroke="#8a6447" stroke-width="4"/><path d="M55 57h21" stroke="#8a6447" stroke-width="4"/>`,
+            Bus: `<rect x="22" y="22" width="56" height="49" rx="9" fill="#e4c653" stroke="#806d27" stroke-width="4"/><rect x="29" y="30" width="42" height="18" rx="3" fill="#dce8f5"/><circle cx="35" cy="70" r="7" fill="#3f4d4b"/><circle cx="65" cy="70" r="7" fill="#3f4d4b"/>`,
+            Bicycle: `<circle cx="28" cy="65" r="14" fill="none" stroke="#55788f" stroke-width="4"/><circle cx="72" cy="65" r="14" fill="none" stroke="#55788f" stroke-width="4"/><path d="M28 65l15-25 14 25M43 40h15M43 40l-7 25h36M57 40l15 25M72 65l7-18" fill="none" stroke="#55788f" stroke-width="4" stroke-linecap="round"/>`,
+            Book: `<path d="M24 25c11-5 22-3 26 2v45c-4-5-15-7-26-2Z" fill="#d7a77d" stroke="#80604b" stroke-width="4"/><path d="M76 25c-11-5-22-3-26 2v45c4-5 15-7 26-2Z" fill="#e7c69f" stroke="#80604b" stroke-width="4"/>`,
+            Pencil: `<path d="M27 72l8-22 28-28 13 13-28 28Z" fill="#e2c94e" stroke="#806d27" stroke-width="4"/><path d="M63 22l8-8 13 13-8 8Z" fill="#d8a07d" stroke="#80604b" stroke-width="4"/><path d="M27 72l4-12 8 8Z" fill="#80604b"/>`,
+            Flower: `<path d="M50 48v33" stroke="#5d8a63" stroke-width="5"/><circle cx="50" cy="43" r="9" fill="#e4c653"/><circle cx="50" cy="27" r="12" fill="#d98eaa"/><circle cx="34" cy="37" r="12" fill="#d98eaa"/><circle cx="66" cy="37" r="12" fill="#d98eaa"/><circle cx="39" cy="52" r="12" fill="#d98eaa"/><circle cx="61" cy="52" r="12" fill="#d98eaa"/>`,
+            Tree: `<rect x="43" y="55" width="14" height="25" rx="3" fill="#8a6447"/><circle cx="50" cy="37" r="25" fill="#76a66f"/><circle cx="32" cy="47" r="16" fill="#6b9965"/><circle cx="68" cy="47" r="16" fill="#6b9965"/>`,
+            Football: `<circle cx="50" cy="50" r="28" fill="#f7f7f4" stroke="#5b6a67" stroke-width="4"/><path d="M50 34l10 7-4 12H44l-4-12Z" fill="#5b6a67"/><path d="M40 41l-10-7M60 41l10-7M44 53l-7 13M56 53l7 13M50 34V22" stroke="#5b6a67" stroke-width="4"/>`,
+            "Badminton Racket": `<ellipse cx="50" cy="35" rx="23" ry="28" fill="none" stroke="#7d9a94" stroke-width="4"/><path d="M35 18l30 34M65 18L35 52M50 8v54M27 35h46" stroke="#9db6b0" stroke-width="2"/><path d="M50 62l-8 20" stroke="#55788f" stroke-width="6" stroke-linecap="round"/>`
+        };
+
+        const shape = shapes[object.name] || `<circle cx="50" cy="50" r="30" fill="#9fc8c0"/>`;
+
+        return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(`
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+                <rect width="100" height="100" rx="18" fill="${bg}"/>
+                ${shape}
+            </svg>
+        `)}`;
+    }
+
+
+    /* ================================================
+       RENDER OBJECTS
+    ================================================ */
+
     function renderObjects() {
 
         objectsContainer.innerHTML = "";
@@ -969,14 +1392,42 @@
                 objectElement.className =
                     "draggable-object";
 
-                objectElement.textContent =
-                    object.name;
-
                 objectElement.dataset.category =
                     object.category;
 
                 objectElement.dataset.name =
                     object.name;
+
+
+                const image =
+                    document.createElement("img");
+
+                image.className =
+                    "draggable-object-image";
+
+                image.src =
+                    getObjectImage(object);
+
+                image.alt =
+                    object.name;
+
+                image.draggable =
+                    false;
+
+
+                const label =
+                    document.createElement("span");
+
+                label.className =
+                    "draggable-object-label";
+
+                label.textContent =
+                    object.name;
+
+
+                objectElement.appendChild(image);
+
+                objectElement.appendChild(label);
 
 
                 objectElement.originalSlot =
@@ -1001,7 +1452,6 @@
         );
 
     }
-
 
     /* ================================================
        RENDER CATEGORIES
